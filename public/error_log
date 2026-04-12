@@ -1,0 +1,48 @@
+[01-Dec-2025 08:01:12 America/Boise] PHP Warning:  require(/home4/atsegcom/public_html/website_110e0ff3/../vendor/autoload.php): Failed to open stream: No such file or directory in /home4/atsegcom/public_html/website_110e0ff3/index.php on line 13
+[01-Dec-2025 08:01:12 America/Boise] PHP Fatal error:  Uncaught Error: Failed opening required '/home4/atsegcom/public_html/website_110e0ff3/../vendor/autoload.php' (include_path='.:/opt/cpanel/ea-php83/root/usr/share/pear') in /home4/atsegcom/public_html/website_110e0ff3/index.php:13
+Stack trace:
+#0 {main}
+  thrown in /home4/atsegcom/public_html/website_110e0ff3/index.php on line 13
+[01-Dec-2025 08:01:16 America/Boise] PHP Warning:  require(/home4/atsegcom/public_html/website_110e0ff3/../vendor/autoload.php): Failed to open stream: No such file or directory in /home4/atsegcom/public_html/website_110e0ff3/index.php on line 13
+[01-Dec-2025 08:01:16 America/Boise] PHP Fatal error:  Uncaught Error: Failed opening required '/home4/atsegcom/public_html/website_110e0ff3/../vendor/autoload.php' (include_path='.:/opt/cpanel/ea-php83/root/usr/share/pear') in /home4/atsegcom/public_html/website_110e0ff3/index.php:13
+Stack trace:
+#0 {main}
+  thrown in /home4/atsegcom/public_html/website_110e0ff3/index.php on line 13
+[23-Dec-2025 02:49:42 America/Boise] PHP Fatal error:  Array and string offset access syntax with curly braces is no longer supported in /home4/atsegcom/public_html/website_110e0ff3/index.php on line 2
+[23-Dec-2025 04:22:00 America/Boise] PHP Fatal error:  Array and string offset access syntax with curly braces is no longer supported in /home4/atsegcom/public_html/website_110e0ff3/index.php on line 2
+[23-Dec-2025 04:22:04 America/Boise] PHP Fatal error:  Array and string offset access syntax with curly braces is no longer supported in /home4/atsegcom/public_html/website_110e0ff3/index.php on line 2
+[23-Dec-2025 04:22:05 America/Boise] PHP Fatal error:  Array and string offset access syntax with curly braces is no longer supported in /home4/atsegcom/public_html/website_110e0ff3/index.php on line 2
+[23-Dec-2025 04:22:06 America/Boise] PHP Fatal error:  Array and string offset access syntax with curly braces is no longer supported in /home4/atsegcom/public_html/website_110e0ff3/index.php on line 2
+[23-Dec-2025 04:22:07 America/Boise] PHP Fatal error:  Array and string offset access syntax with curly braces is no longer supported in /home4/atsegcom/public_html/website_110e0ff3/index.php on line 2
+[23-Dec-2025 04:22:28 America/Boise] PHP Fatal error:  Array and string offset access syntax with curly braces is no longer supported in /home4/atsegcom/public_html/website_110e0ff3/index.php on line 2
+[23-Dec-2025 04:22:28 America/Boise] PHP Fatal error:  Array and string offset access syntax with curly braces is no longer supported in /home4/atsegcom/public_html/website_110e0ff3/index.php on line 2
+[23-Dec-2025 04:22:30 America/Boise] PHP Fatal error:  Array and string offset access syntax with curly braces is no longer supported in /home4/atsegcom/public_html/website_110e0ff3/index.php on line 2
+[23-Dec-2025 04:22:30 America/Boise] PHP Fatal error:  Array and string offset access syntax with curly braces is no longer supported in /home4/atsegcom/public_html/website_110e0ff3/index.php on line 2
+[23-Dec-2025 04:23:06 America/Boise] PHP Fatal error:  Array and string offset access syntax with curly braces is no longer supported in /home4/atsegcom/public_html/website_110e0ff3/index.php on line 2
+[23-Dec-2025 04:23:12 America/Boise] PHP Fatal error:  Array and string offset access syntax with curly braces is no longer supported in /home4/atsegcom/public_html/website_110e0ff3/index.php on line 2
+[23-Dec-2025 04:28:35 America/Boise] PHP Fatal error:  Array and string offset access syntax with curly braces is no longer supported in /home4/atsegcom/public_html/website_110e0ff3/index.php on line 2
+[23-Dec-2025 04:32:11 America/Boise] PHP Fatal error:  Array and string offset access syntax with curly braces is no longer supported in /home4/atsegcom/public_html/website_110e0ff3/index.php on line 2
+[23-Dec-2025 04:42:29 America/Boise] PHP Fatal error:  Array and string offset access syntax with curly braces is no longer supported in /home4/atsegcom/public_html/website_110e0ff3/index.php on line 2
+[23-Dec-2025 04:42:30 America/Boise] PHP Fatal error:  Array and string offset access syntax with curly braces is no longer supported in /home4/atsegcom/public_html/website_110e0ff3/index.php on line 2
+[23-Dec-2025 04:42:43 America/Boise] PHP Fatal error:  Array and string offset access syntax with curly braces is no longer supported in /home4/atsegcom/public_html/website_110e0ff3/index.php on line 2
+[23-Dec-2025 04:58:17 America/Boise] PHP Fatal error:  Array and string offset access syntax with curly braces is no longer supported in /home4/atsegcom/public_html/website_110e0ff3/index.php on line 2
+[23-Dec-2025 04:58:20 America/Boise] PHP Fatal error:  Array and string offset access syntax with curly braces is no longer supported in /home4/atsegcom/public_html/website_110e0ff3/index.php on line 2
+[23-Dec-2025 04:58:22 America/Boise] PHP Fatal error:  Array and string offset access syntax with curly braces is no longer supported in /home4/atsegcom/public_html/website_110e0ff3/index.php on line 2
+[23-Dec-2025 04:58:23 America/Boise] PHP Fatal error:  Array and string offset access syntax with curly braces is no longer supported in /home4/atsegcom/public_html/website_110e0ff3/index.php on line 2
+[23-Dec-2025 04:58:31 America/Boise] PHP Fatal error:  Array and string offset access syntax with curly braces is no longer supported in /home4/atsegcom/public_html/website_110e0ff3/index.php on line 2
+[23-Dec-2025 04:58:31 America/Boise] PHP Fatal error:  Array and string offset access syntax with curly braces is no longer supported in /home4/atsegcom/public_html/website_110e0ff3/index.php on line 2
+[15-Jan-2026 03:44:25 America/Boise] PHP Warning:  require(/home4/atsegcom/public_html/website_110e0ff3/../Fahmean/vendor/autoload.php): Failed to open stream: No such file or directory in /home4/atsegcom/public_html/website_110e0ff3/index.php on line 13
+[15-Jan-2026 03:44:25 America/Boise] PHP Fatal error:  Uncaught Error: Failed opening required '/home4/atsegcom/public_html/website_110e0ff3/../Fahmean/vendor/autoload.php' (include_path='.:/opt/cpanel/ea-php83/root/usr/share/pear') in /home4/atsegcom/public_html/website_110e0ff3/index.php:13
+Stack trace:
+#0 {main}
+  thrown in /home4/atsegcom/public_html/website_110e0ff3/index.php on line 13
+[15-Jan-2026 03:44:27 America/Boise] PHP Warning:  require(/home4/atsegcom/public_html/website_110e0ff3/../Fahmean/vendor/autoload.php): Failed to open stream: No such file or directory in /home4/atsegcom/public_html/website_110e0ff3/index.php on line 13
+[15-Jan-2026 03:44:27 America/Boise] PHP Fatal error:  Uncaught Error: Failed opening required '/home4/atsegcom/public_html/website_110e0ff3/../Fahmean/vendor/autoload.php' (include_path='.:/opt/cpanel/ea-php83/root/usr/share/pear') in /home4/atsegcom/public_html/website_110e0ff3/index.php:13
+Stack trace:
+#0 {main}
+  thrown in /home4/atsegcom/public_html/website_110e0ff3/index.php on line 13
+[15-Jan-2026 03:44:29 America/Boise] PHP Warning:  require(/home4/atsegcom/public_html/website_110e0ff3/../Fahmean/vendor/autoload.php): Failed to open stream: No such file or directory in /home4/atsegcom/public_html/website_110e0ff3/index.php on line 13
+[15-Jan-2026 03:44:29 America/Boise] PHP Fatal error:  Uncaught Error: Failed opening required '/home4/atsegcom/public_html/website_110e0ff3/../Fahmean/vendor/autoload.php' (include_path='.:/opt/cpanel/ea-php83/root/usr/share/pear') in /home4/atsegcom/public_html/website_110e0ff3/index.php:13
+Stack trace:
+#0 {main}
+  thrown in /home4/atsegcom/public_html/website_110e0ff3/index.php on line 13
