@@ -1,10 +1,10 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\HomeController;
+use App\Http\Controllers\BlogController;
 
 Route::prefix('pages')->group(function () {
-    Route::controller(pagesController::class)->group(function () {
+    Route::controller(BlogController::class)->group(function () {
         Route::get('/page-error' ,'pageError')->name('pageError');
         Route::get('/aboutus-01' ,'aboutus01')->name('aboutus01');
         Route::get('/aboutus-02' ,'aboutus02')->name('aboutus02');

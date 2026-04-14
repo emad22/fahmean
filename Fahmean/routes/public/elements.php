@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\HomeController;
+use App\Http\Controllers\ElementsController;
 
 Route::prefix('elements')->group(function () {
     Route::controller(ElementsController::class)->group(function () {

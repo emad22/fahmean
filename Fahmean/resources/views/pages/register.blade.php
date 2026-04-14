@@ -1,1157 +1,555 @@
-@extends('layout.layout', ['header' => 'false', 'topToBottom' => 'false'])
+@extends('layout.layout')
+
+@php
+    $topToBottom = 'true';
+    $footer = 'false';
+@endphp
 
 @section('content')
-
-{{-- Google Fonts --}}
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;800;900&display=swap" rel="stylesheet">
-
-<style>
-/* ===================================================
-   FAHMEAN - Professional Registration Page 2026
-=================================================== */
-
-*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-.freg-page {
-    font-family: 'Tajawal', sans-serif;
-    direction: rtl;
-    min-height: 100vh;
-    display: flex;
-    align-items: stretch;
-    background: #0f1923;
-    position: relative;
-    overflow: hidden;
-}
-
-/* ---------- Animated Background ---------- */
-.freg-bg {
-    position: fixed;
-    inset: 0;
-    z-index: 0;
-    overflow: hidden;
-    pointer-events: none;
-}
-
-.freg-orb {
-    position: absolute;
-    border-radius: 50%;
-    filter: blur(80px);
-    animation: orbFloat 12s infinite ease-in-out;
-    opacity: 0.6;
-}
-.freg-orb-1 { width: 500px; height: 500px; background: radial-gradient(circle, #1e88e5 0%, transparent 70%); top: -150px; right: -100px; animation-delay: 0s; }
-.freg-orb-2 { width: 400px; height: 400px; background: radial-gradient(circle, #7c3aed 0%, transparent 70%); bottom: -100px; left: -100px; animation-delay: 3s; }
-.freg-orb-3 { width: 300px; height: 300px; background: radial-gradient(circle, #0891b2 0%, transparent 70%); top: 40%; left: 30%; animation-delay: 6s; }
-
-@keyframes orbFloat {
-    0%, 100% { transform: translateY(0px) scale(1); }
-    50%       { transform: translateY(-40px) scale(1.05); }
-}
-
-/* Grid overlay */
-.freg-bg-grid {
-    position: fixed;
-    inset: 0;
-    z-index: 0;
-    pointer-events: none;
-    background-image:
-        linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px);
-    background-size: 50px 50px;
-}
-
-/* ---------- Left Panel (Branding) ---------- */
-.freg-left {
-    flex: 0 0 420px;
-    background: linear-gradient(165deg, #1a2a3a 0%, #0d1b2a 100%);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    padding: 60px 40px;
-    position: relative;
-    z-index: 10;
-    border-left: 1px solid rgba(255,255,255,0.06);
-}
-
-.freg-left-logo {
-    width: 130px;
-    margin-bottom: 32px;
-    filter: drop-shadow(0 8px 24px rgba(30,136,229,0.4));
-}
-
-.freg-left-title {
-    font-size: 32px;
-    font-weight: 900;
-    color: #ffffff;
-    text-align: center;
-    line-height: 1.3;
-    margin-bottom: 16px;
-    background: linear-gradient(135deg, #fff 0%, #7ec8f7 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-}
-
-.freg-left-subtitle {
-    font-size: 15px;
-    color: rgba(255,255,255,0.55);
-    text-align: center;
-    line-height: 1.7;
-    margin-bottom: 48px;
-}
-
-.freg-feature-list {
-    list-style: none;
-    width: 100%;
-}
-
-.freg-feature-item {
-    display: flex;
-    align-items: center;
-    gap: 14px;
-    padding: 14px 0;
-    border-bottom: 1px solid rgba(255,255,255,0.06);
-    color: rgba(255,255,255,0.8);
-    font-size: 14px;
-    font-weight: 500;
-}
-
-.freg-feature-icon {
-    width: 38px;
-    height: 38px;
-    border-radius: 10px;
-    background: linear-gradient(135deg, rgba(30,136,229,0.25), rgba(124,58,237,0.15));
-    border: 1px solid rgba(30,136,229,0.3);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-shrink: 0;
-    color: #60aef0;
-    font-size: 16px;
-}
-
-.freg-tagline {
-    margin-top: 40px;
-    padding: 16px 24px;
-    background: linear-gradient(135deg, rgba(30,136,229,0.15), rgba(124,58,237,0.1));
-    border: 1px solid rgba(30,136,229,0.25);
-    border-radius: 14px;
-    text-align: center;
-    color: rgba(255,255,255,0.7);
-    font-size: 13px;
-    line-height: 1.6;
-}
-
-/* ---------- Right Panel (Form) ---------- */
-.freg-right {
-    flex: 1;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 40px 60px;
-    position: relative;
-    z-index: 10;
-    overflow-y: auto;
-}
-
-.freg-card {
-    width: 100%;
-    max-width: 700px;
-    background: rgba(15, 25, 35, 0.85);
-    border: 1px solid rgba(255,255,255,0.08);
-    border-radius: 28px;
-    padding: 48px;
-    backdrop-filter: blur(20px);
-    box-shadow: 0 40px 80px rgba(0,0,0,0.5),
-                0 0 0 1px rgba(255,255,255,0.04) inset;
-    position: relative;
-    overflow: hidden;
-}
-
-.freg-card::before {
-    content: '';
-    position: absolute;
-    top: 0; left: 0; right: 0;
-    height: 3px;
-    background: linear-gradient(90deg, #1e88e5, #7c3aed, #0891b2);
-    border-radius: 28px 28px 0 0;
-}
-
-/* ---------- Form Header ---------- */
-.freg-form-header {
-    margin-bottom: 36px;
-}
-
-.freg-step-badge {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    background: rgba(30,136,229,0.15);
-    border: 1px solid rgba(30,136,229,0.35);
-    color: #60aef0;
-    font-size: 12px;
-    font-weight: 700;
-    padding: 5px 14px;
-    border-radius: 50px;
-    margin-bottom: 16px;
-    letter-spacing: 0.5px;
-    text-transform: uppercase;
-}
-
-.freg-form-title {
-    font-size: 26px;
-    font-weight: 800;
-    color: #ffffff;
-    margin-bottom: 6px;
-}
-
-.freg-form-desc {
-    font-size: 14px;
-    color: rgba(255,255,255,0.45);
-}
-
-/* ---------- Section Divider ---------- */
-.freg-section {
-    margin-bottom: 8px;
-}
-
-.freg-section-label {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    margin-bottom: 16px;
-    margin-top: 24px;
-}
-
-.freg-section-label span {
-    font-size: 12px;
-    font-weight: 800;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    color: rgba(255,255,255,0.35);
-    white-space: nowrap;
-}
-
-.freg-section-label::before,
-.freg-section-label::after {
-    content: '';
-    flex: 1;
-    height: 1px;
-    background: rgba(255,255,255,0.08);
-}
-
-/* ---------- Form Grid ---------- */
-.freg-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 18px;
-}
-
-.freg-grid-full {
-    grid-column: 1 / -1;
-}
-
-/* ---------- Form Group ---------- */
-.freg-group {
-    display: flex;
-    flex-direction: column;
-}
-
-.freg-label {
-    font-size: 13px;
-    font-weight: 700;
-    color: rgba(255,255,255,0.75);
-    margin-bottom: 8px;
-    display: flex;
-    align-items: center;
-    gap: 6px;
-}
-
-.freg-label-required {
-    color: #f87171;
-    font-size: 16px;
-    line-height: 1;
-}
-
-/* ---------- Input Wrapper ---------- */
-.freg-input-wrap {
-    position: relative;
-}
-
-.freg-input-icon {
-    position: absolute;
-    top: 50%;
-    right: 16px;
-    transform: translateY(-50%);
-    color: rgba(255,255,255,0.3);
-    font-size: 16px;
-    pointer-events: none;
-    transition: color 0.3s;
-    z-index: 2;
-}
-
-.freg-input {
-    width: 100%;
-    height: 52px;
-    background: rgba(255,255,255,0.05) !important;
-    border: 1.5px solid rgba(255,255,255,0.1) !important;
-    border-radius: 13px !important;
-    padding: 0 48px 0 16px !important;
-    font-size: 14px !important;
-    color: #ffffff !important;
-    font-family: 'Tajawal', sans-serif !important;
-    transition: all 0.3s ease !important;
-    outline: none !important;
-    text-align: right !important;
-    display: block !important;
-    -webkit-appearance: none;
-    appearance: none;
-}
-
-.freg-input::placeholder {
-    color: rgba(255,255,255,0.2) !important;
-}
-
-.freg-input:focus {
-    background: rgba(30,136,229,0.08) !important;
-    border-color: rgba(30,136,229,0.6) !important;
-    box-shadow: 0 0 0 4px rgba(30,136,229,0.12) !important;
-    color: #ffffff !important;
-}
-
-.freg-input:focus + .freg-input-icon {
-    color: #1e88e5;
-}
-
-.freg-input:focus ~ .freg-input-icon {
-    color: #1e88e5;
-}
-
-/* Select styling */
-select.freg-input {
-    cursor: pointer;
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='18' height='18' viewBox='0 0 24 24' fill='none' stroke='rgba(255,255,255,0.3)' stroke-width='2'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E") !important;
-    background-repeat: no-repeat !important;
-    background-position: left 14px center !important;
-    background-color: rgba(255,255,255,0.05) !important;
-}
-
-select.freg-input option {
-    background: #1a2a3a;
-    color: #ffffff;
-}
-
-select.freg-input:disabled {
-    opacity: 0.4;
-    cursor: not-allowed;
-}
-
-/* Error */
-.freg-error {
-    color: #f87171;
-    font-size: 12px;
-    font-weight: 600;
-    margin-top: 5px;
-    display: flex;
-    align-items: center;
-    gap: 4px;
-}
-
-/* Password toggle */
-.freg-pwd-toggle {
-    position: absolute;
-    left: 16px;
-    top: 50%;
-    transform: translateY(-50%);
-    background: none;
-    border: none;
-    cursor: pointer;
-    color: rgba(255,255,255,0.3);
-    font-size: 16px;
-    padding: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: color 0.2s;
-    z-index: 3;
-}
-
-.freg-pwd-toggle:hover { color: #1e88e5; }
-
-/* Password input with two icons */
-.freg-input.has-toggle {
-    padding-right: 48px !important;
-    padding-left: 48px !important;
-}
-
-/* ---------- Alert Error ---------- */
-.freg-alert {
-    background: rgba(239,68,68,0.12);
-    border: 1px solid rgba(239,68,68,0.3);
-    border-radius: 12px;
-    padding: 14px 18px;
-    margin-bottom: 24px;
-    color: #fca5a5;
-    font-size: 13px;
-    font-weight: 600;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-}
-
-/* ---------- Terms ---------- */
-.freg-terms {
-    display: flex;
-    align-items: flex-start;
-    gap: 10px;
-    margin-top: 20px;
-    margin-bottom: 4px;
-}
-
-.freg-terms input[type="checkbox"] {
-    width: 18px;
-    height: 18px;
-    accent-color: #1e88e5;
-    flex-shrink: 0;
-    margin-top: 2px;
-    cursor: pointer;
-}
-
-.freg-terms label {
-    font-size: 13px;
-    color: rgba(255,255,255,0.5);
-    line-height: 1.5;
-    cursor: pointer;
-}
-
-.freg-terms a {
-    color: #60aef0;
-    text-decoration: none;
-}
-
-/* ---------- Submit Button ---------- */
-.freg-btn-wrap {
-    margin-top: 28px;
-}
-
-.freg-btn {
-    width: 100%;
-    height: 58px;
-    background: linear-gradient(135deg, #1e88e5 0%, #7c3aed 100%);
-    border: none;
-    border-radius: 15px;
-    color: #ffffff;
-    font-size: 17px;
-    font-weight: 800;
-    font-family: 'Tajawal', sans-serif;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 12px;
-    transition: all 0.3s ease;
-    box-shadow: 0 8px 32px rgba(30,136,229,0.35);
-    position: relative;
-    overflow: hidden;
-}
-
-.freg-btn::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(135deg, rgba(255,255,255,0.12) 0%, transparent 60%);
-    border-radius: 15px;
-}
-
-.freg-btn:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 14px 42px rgba(30,136,229,0.5);
-}
-
-.freg-btn:active {
-    transform: translateY(0);
-}
-
-.freg-btn i { font-size: 20px; }
-
-/* ---------- Login Link ---------- */
-.freg-login-link {
-    text-align: center;
-    margin-top: 28px;
-    font-size: 14px;
-    color: rgba(255,255,255,0.4);
-}
-
-.freg-login-link a {
-    color: #60aef0;
-    font-weight: 700;
-    text-decoration: none;
-    transition: color 0.2s;
-}
-
-.freg-login-link a:hover { color: #1e88e5; }
-
-/* ---------- Loading Spinner ---------- */
-.freg-spinner {
-    display: none;
-    width: 22px;
-    height: 22px;
-    border: 2.5px solid rgba(255,255,255,0.3);
-    border-top-color: #fff;
-    border-radius: 50%;
-    animation: spin 0.7s linear infinite;
-}
-
-@keyframes spin { to { transform: rotate(360deg); } }
-
-.freg-btn.loading .freg-btn-text { display: none; }
-.freg-btn.loading .freg-btn-icon { display: none; }
-.freg-btn.loading .freg-spinner { display: block; }
-
-/* ---------- Strength Indicator ---------- */
-.freg-strength {
-    margin-top: 8px;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-}
-
-.freg-strength-bars {
-    display: flex;
-    gap: 4px;
-    flex: 1;
-}
-
-.freg-strength-bar {
-    flex: 1;
-    height: 4px;
-    border-radius: 2px;
-    background: rgba(255,255,255,0.1);
-    transition: background 0.35s;
-}
-
-.freg-strength-label {
-    font-size: 11px;
-    font-weight: 700;
-    min-width: 40px;
-    text-align: left;
-}
-
-/* ---------- Responsive ---------- */
-@media (max-width: 1100px) {
-    .freg-left { flex: 0 0 340px; padding: 40px 28px; }
-    .freg-right { padding: 30px 30px; }
-    .freg-card { padding: 36px 32px; }
-}
-
-@media (max-width: 900px) {
-    .freg-page { flex-direction: column; }
-    .freg-left {
-        flex: none;
-        padding: 40px 24px 32px;
-        border-left: none;
-        border-bottom: 1px solid rgba(255,255,255,0.06);
-    }
-    .freg-feature-list { display: none; }
-    .freg-tagline { display: none; }
-    .freg-left-title { font-size: 24px; }
-    .freg-right { padding: 32px 20px; }
-    .freg-card { padding: 28px 22px; }
-}
-
-@media (max-width: 600px) {
-    .freg-grid { grid-template-columns: 1fr; }
-    .freg-grid-full { grid-column: 1; }
-}
-/* ---------- Academic Path Cards ---------- */
-.freg-academic-cards {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
-    gap: 15px;
-    margin-top: 10px;
-}
-
-.freg-level-card {
-    background: rgba(255, 255, 255, 0.03);
-    border: 1px solid rgba(255, 255, 255, 0.08);
-    border-radius: 16px;
-    padding: 20px 15px;
-    text-align: center;
-    cursor: pointer;
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    position: relative;
-    overflow: hidden;
-}
-
-.freg-level-card:hover {
-    background: rgba(255, 255, 255, 0.06);
-    transform: translateY(-5px);
-    border-color: rgba(255, 255, 255, 0.2);
-}
-
-.freg-level-card.active {
-    background: var(--color-primary);
-    border-color: var(--color-primary);
-    box-shadow: 0 10px 20px rgba(var(--color-primary-rgb), 0.3);
-}
-
-.freg-level-icon {
-    font-size: 28px;
-    margin-bottom: 12px;
-    display: block;
-    color: var(--color-primary);
-    transition: all 0.3s;
-}
-
-.freg-level-card.active .freg-level-icon {
-    color: #fff;
-}
-
-.freg-level-name {
-    display: block;
-    font-size: 14px;
-    font-weight: 700;
-    color: #fff;
-}
-
-.freg-level-card.active .freg-level-name {
-    color: #fff;
-}
-
-.freg-level-card input {
-    display: none;
-}
-
-.freg-academic-group {
-    background: rgba(255, 255, 255, 0.02);
-    border: 1px solid rgba(255, 255, 255, 0.05);
-    border-radius: 20px;
-    padding: 25px;
-    margin-bottom: 30px;
-}
-
-/* Fix for Selectpicker overlapping */
-.bootstrap-select .dropdown-toggle {
-    background: rgba(255, 255, 255, 0.05) !important;
-    border: 1px solid rgba(255, 255, 255, 0.1) !important;
-    border-radius: 12px !important;
-    color: #fff !important;
-    padding: 12px 15px !important;
-}
-
-.bootstrap-select .dropdown-menu {
-    background: #1a1a2e !important;
-    border: 1px solid rgba(255,255,255,0.1) !important;
-    box-shadow: 0 20px 40px rgba(0,0,0,0.4) !important;
-}
-
-.bootstrap-select .dropdown-menu li a {
-    color: #fff !important;
-}
-
-.bootstrap-select .dropdown-menu li a:hover {
-    background: var(--color-primary) !important;
-}
-</style>
-
-<div class="freg-page">
-
-    {{-- Animated Background --}}
-    <div class="freg-bg">
-        <div class="freg-orb freg-orb-1"></div>
-        <div class="freg-orb freg-orb-2"></div>
-        <div class="freg-orb freg-orb-3"></div>
-    </div>
-    <div class="freg-bg-grid"></div>
-
-    {{-- Dummy SVG to prevent backtotop.js error (Cannot read properties of null (reading 'getTotalLength')) --}}
-    <svg class="rbt-back-circle svg-inner" width="0" height="0" style="display:none;">
-        <path d="M50,1 a49,49 0 0,1 0,98 a49,49 0 0,1 0,-98" />
-    </svg>
-
-    {{-- ===== LEFT PANEL ===== --}}
-    <div class="freg-left">
-        <img src="{{ asset('assets/images/logo/logo.png') }}" alt="فاهمين" class="freg-left-logo"
-             onerror="this.style.display='none'">
-
-        <h1 class="freg-left-title">انضم إلى<br>منصة فاهمين</h1>
-        <p class="freg-left-subtitle">
-            ابدأ رحلتك التعليمية مع أفضل المعلمين<br>وأحدث الأساليب التفاعلية
-        </p>
-
-        <ul class="freg-feature-list">
-            <li class="freg-feature-item">
-                <span class="freg-feature-icon"><i class="feather-video"></i></span>
-                <span>دروس مصورة تفاعلية وعالية الجودة</span>
-            </li>
-            <li class="freg-feature-item">
-                <span class="freg-feature-icon"><i class="feather-check-circle"></i></span>
-                <span>اختبارات وتقييم فوري لمستواك</span>
-            </li>
-            <li class="freg-feature-item">
-                <span class="freg-feature-icon"><i class="feather-users"></i></span>
-                <span>تواصل مباشر مع المعلمين</span>
-            </li>
-            <li class="freg-feature-item">
-                <span class="freg-feature-icon"><i class="feather-award"></i></span>
-                <span>شهادات معتمدة عند إتمام الكورسات</span>
-            </li>
-        </ul>
-
-        <div class="freg-tagline">
-            🎓 انضم إلى آلاف الطلاب الذين يثقون في فاهمين لتحقيق أهدافهم الدراسية
+    <div class="popup-mobile-menu">
+        <div class="inner-wrapper">
+            <div class="inner-top">
+                <div class="content">
+                    <div class="logo">
+                        <div class="logo logo-dark">
+                            <a href="/">
+                                <img src="{{ asset('assets/images/logo/logo.png') }}" alt="Education Logo Images">
+                            </a>
+                        </div>
+
+                        <div class="logo d-none logo-light">
+                            <a href="/">
+                                <img src="{{ asset('assets/images/dark/logo/logo-light.png') }}" alt="Education Logo Images">
+                            </a>
+                        </div>
+                    </div>
+                    <div class="rbt-btn-close">
+                        <button class="close-button rbt-round-btn"><i class="feather-x"></i></button>
+                    </div>
+                </div>
+                <p class="description">منصة فهمين التعليمية طريقك الأمثل للوصول لما تريد</p>
+                <ul class="navbar-top-left rbt-information-list justify-content-start">
+                    <li><a href="mailto:info@fahmean.com"><i class="feather-mail"></i>info@fahmean.com</a></li>
+                    <li><a href="#"><i class="feather-phone"></i>(010) 735-8555</a></li>
+                </ul>
+            </div>
         </div>
     </div>
 
-    {{-- ===== RIGHT PANEL (FORM) ===== --}}
-    <div class="freg-right">
-        <div class="freg-card">
+    <x-sideVav />
+    <a class="close_side_menu" href="javascript:void(0);"></a>
 
-            {{-- Header --}}
-            <div class="freg-form-header">
-                <div class="freg-step-badge">
-                    <i class="feather-user-plus" style="font-size:12px;"></i>
-                    تسجيل طالب جديد
+    <div class="rbt-banner-area rbt-banner-3 header-transperent-spacer fahmean-register-page">
+        <div class="wrapper">
+            <div class="container">
+                <div class="row g-5 align-items-start fahmean-register-row">
+                    <div class="col-lg-4 order-1 order-lg-1 fahmean-register-visual-col">
+                        <div class="fahmean-register-visual">
+                            <div class="fahmean-register-visual-card">
+                                <div class="fahmean-register-visual-header">اعمل حساب جديد</div>
+                                <div class="fahmean-register-visual-copy">
+                                    ابدأ رحلتك التعليمية على منصة فهمين وسجّل بياناتك كاملة للانضمام إلى المحتوى والدروس والمتابعة الأكاديمية.
+                                </div>
+                                <div class="fahmean-register-visual-image-wrap">
+                                    <img src="{{ asset('assets/images/banner/banner-group-image.png') }}" alt="Register Illustration">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-8 order-2 order-lg-2 fahmean-register-form-col">
+                        <div class="rbt-contact-form contact-form-style-1 max-width-auto fahmean-register-form-shell">
+                            <div class="fahmean-register-form-header">
+                                <h2 class="title">إنشاء حساب جديد</h2>
+                                <p>املأ البيانات التالية للانضمام إلى منصة فهمين.</p>
+                            </div>
+
+                            @if ($errors->has('error'))
+                                <div class="alert alert-danger mb--30">{{ $errors->first('error') }}</div>
+                            @endif
+
+                            @if(session('success'))
+                                <div class="alert alert-success mb--30">{{ session('success') }}</div>
+                            @endif
+
+                            <form action="{{ route('register.post') }}" method="POST" id="freg-form" novalidate>
+                                @csrf
+
+                                <div class="freg-section-label"><span>البيانات الشخصية</span></div>
+                                <div class="freg-grid">
+                                    <div class="freg-group freg-grid-full freg-line-group {{ old('name') ? 'focused' : '' }}">
+                                        <div class="freg-input-wrap">
+                                            <input type="text" id="reg_name" name="name" class="freg-input freg-line-input" value="{{ old('name') }}" autocomplete="name" required>
+                                            <label class="freg-floating-label" for="reg_name">الاسم بالكامل <span class="freg-label-required">*</span></label>
+                                            <span class="focus-border"></span>
+                                        </div>
+                                        @error('name')<span class="freg-error"><i class="feather-alert-circle"></i> {{ $message }}</span>@enderror
+                                    </div>
+
+                                    <div class="freg-group freg-grid-full freg-line-group {{ old('email') ? 'focused' : '' }}">
+                                        <div class="freg-input-wrap">
+                                            <input type="email" id="reg_email" name="email" class="freg-input freg-line-input" value="{{ old('email') }}" autocomplete="email" required dir="ltr">
+                                            <label class="freg-floating-label" for="reg_email">البريد الإلكتروني <span class="freg-label-required">*</span></label>
+                                            <span class="focus-border"></span>
+                                        </div>
+                                        @error('email')<span class="freg-error"><i class="feather-alert-circle"></i> {{ $message }}</span>@enderror
+                                    </div>
+                                </div>
+
+                                <div class="freg-section-label"><span>المسار التعليمي</span></div>
+                                <div class="freg-academic-group">
+                                    <div class="freg-group mb--30">
+                                        <label class="freg-label">العام الدراسي الحالي <span class="freg-label-required">*</span></label>
+                                        <div class="freg-input-wrap">
+                                            <select id="reg_academic_year" name="academic_year" class="freg-input selectpicker" required>
+                                                <option value="">اختر العام الدراسي</option>
+                                                <option value="2024-2025" {{ old('academic_year') == '2024-2025' ? 'selected' : '' }}>2024 - 2025 (الحالي)</option>
+                                                <option value="2025-2026" {{ old('academic_year') == '2025-2026' ? 'selected' : '' }}>2025 - 2026</option>
+                                            </select>
+                                            <i class="feather-calendar freg-input-icon"></i>
+                                        </div>
+                                    </div>
+
+                                    <div class="freg-group mb--30">
+                                        <label class="freg-label">المرحلة الدراسية <span class="freg-label-required">*</span></label>
+                                        <input type="hidden" name="education_level_id" id="hidden_level_id" value="{{ old('education_level_id') }}">
+                                        <div class="freg-academic-cards">
+                                            @foreach($education_levels as $level)
+                                                <div class="freg-level-card {{ old('education_level_id') == $level->id ? 'active' : '' }}" data-id="{{ $level->id }}">
+                                                    <i class="freg-level-icon feather-{{ match(trim($level->name)) {
+                                                        'المرحلة الابتدائية' => 'book',
+                                                        'المرحلة الإعدادية' => 'award',
+                                                        'المرحلة الثانوية' => 'user-check',
+                                                        default => 'layers'
+                                                    } }}"></i>
+                                                    <span class="freg-level-name">{{ $level->name }}</span>
+                                                </div>
+                                            @endforeach
+                                        </div>
+                                        @error('education_level_id')<span class="freg-error"><i class="feather-alert-circle"></i> {{ $message }}</span>@enderror
+                                    </div>
+
+                                    <div class="freg-group mb-0">
+                                        <label class="freg-label" for="reg_grade">الصف الدراسي <span class="freg-label-required">*</span></label>
+                                        <div class="freg-input-wrap">
+                                            <select id="reg_grade" name="grade_id" class="freg-input selectpicker" required disabled data-live-search="true" title="اختر الصف الدراسي">
+                                                <option value="">اختر المرحلة أولاً</option>
+                                            </select>
+                                            <i class="feather-bookmark freg-input-icon"></i>
+                                        </div>
+                                        @error('grade_id')<span class="freg-error"><i class="feather-alert-circle"></i> {{ $message }}</span>@enderror
+                                    </div>
+                                </div>
+
+                                <div class="freg-section-label"><span>أرقام التواصل</span></div>
+                                <div class="freg-grid">
+                                    <div class="freg-group freg-line-group {{ old('phone_number') ? 'focused' : '' }}">
+                                        <div class="freg-input-wrap">
+                                            <input type="tel" id="reg_phone" name="phone_number" class="freg-input freg-line-input" value="{{ old('phone_number') }}" maxlength="11" dir="ltr" required>
+                                            <label class="freg-floating-label" for="reg_phone">رقم هاتف الطالب <span class="freg-label-required">*</span></label>
+                                            <span class="focus-border"></span>
+                                        </div>
+                                        @error('phone_number')<span class="freg-error"><i class="feather-alert-circle"></i> {{ $message }}</span>@enderror
+                                    </div>
+
+                                    <div class="freg-group freg-line-group {{ old('parent_phone') ? 'focused' : '' }}">
+                                        <div class="freg-input-wrap">
+                                            <input type="tel" id="reg_parent_phone" name="parent_phone" class="freg-input freg-line-input" value="{{ old('parent_phone') }}" maxlength="11" dir="ltr" required>
+                                            <label class="freg-floating-label" for="reg_parent_phone">رقم هاتف ولي الأمر <span class="freg-label-required">*</span></label>
+                                            <span class="focus-border"></span>
+                                        </div>
+                                        @error('parent_phone')<span class="freg-error"><i class="feather-alert-circle"></i> {{ $message }}</span>@enderror
+                                    </div>
+                                </div>
+
+                                <div class="freg-section-label"><span>كلمة المرور</span></div>
+                                <div class="freg-grid">
+                                    <div class="freg-group freg-line-group {{ old('password') ? 'focused' : '' }}">
+                                        <div class="freg-input-wrap">
+                                            <input type="password" id="reg_password" name="password" class="freg-input freg-line-input has-toggle freg-line-password" required autocomplete="new-password">
+                                            <label class="freg-floating-label" for="reg_password">كلمة المرور <span class="freg-label-required">*</span></label>
+                                            <button type="button" class="freg-pwd-toggle" onclick="togglePassword('reg_password', this)"><i class="feather-eye"></i></button>
+                                            <span class="focus-border"></span>
+                                        </div>
+                                        <div class="freg-strength" id="strength-bar" style="display:none;">
+                                            <div class="freg-strength-bars">
+                                                <div class="freg-strength-bar" id="s1"></div>
+                                                <div class="freg-strength-bar" id="s2"></div>
+                                                <div class="freg-strength-bar" id="s3"></div>
+                                                <div class="freg-strength-bar" id="s4"></div>
+                                            </div>
+                                            <span class="freg-strength-label" id="strength-text"></span>
+                                        </div>
+                                        @error('password')<span class="freg-error"><i class="feather-alert-circle"></i> {{ $message }}</span>@enderror
+                                    </div>
+
+                                    <div class="freg-group freg-line-group">
+                                        <div class="freg-input-wrap">
+                                            <input type="password" id="reg_password_confirm" name="password_confirmation" class="freg-input freg-line-input has-toggle freg-line-password" required autocomplete="new-password">
+                                            <label class="freg-floating-label" for="reg_password_confirm">تأكيد كلمة المرور <span class="freg-label-required">*</span></label>
+                                            <button type="button" class="freg-pwd-toggle" onclick="togglePassword('reg_password_confirm', this)"><i class="feather-eye"></i></button>
+                                            <span class="focus-border"></span>
+                                        </div>
+                                        <span class="freg-error" id="pwd-match-error" style="display:none;"><i class="feather-alert-circle"></i> كلمتا المرور غير متطابقتين</span>
+                                    </div>
+                                </div>
+
+                                <div class="freg-terms">
+                                    <input type="checkbox" id="reg_terms" name="terms" required>
+                                    <label for="reg_terms">أوافق على <a href="#">شروط الاستخدام</a> و<a href="#">سياسة الخصوصية</a> الخاصة بمنصة فاهمين</label>
+                                </div>
+
+                                <div class="freg-btn-wrap">
+                                    <button type="submit" class="rbt-btn btn-md btn-gradient hover-icon-reverse freg-btn" id="freg-submit-btn">
+                                        <span class="icon-reverse-wrapper">
+                                            <span class="btn-text freg-btn-text">اعمل حساب جديد</span>
+                                            <span class="btn-icon freg-btn-icon"><i class="feather-user-plus"></i></span>
+                                            <span class="btn-icon freg-btn-icon"><i class="feather-user-plus"></i></span>
+                                        </span>
+                                        <div class="freg-spinner"></div>
+                                    </button>
+                                </div>
+
+                                <div class="freg-login-link">لديك حساب بالفعل؟ <a href="{{ route('login') }}">سجّل دخولك الآن</a></div>
+                            </form>
+                        </div>
+                    </div>
                 </div>
-                <h2 class="freg-form-title">إنشاء حساب جديد</h2>
-                <p class="freg-form-desc">أدخل بياناتك كاملةً للانضمام إلى المنصة</p>
             </div>
 
-            {{-- Global Error --}}
-            @if ($errors->has('error'))
-                <div class="freg-alert">
-                    <i class="feather-alert-circle"></i>
-                    {{ $errors->first('error') }}
-                </div>
-            @endif
-
-            @if(session('success'))
-                <div class="freg-alert" style="background:rgba(16,185,129,0.12);border-color:rgba(16,185,129,0.3);color:#6ee7b7;">
-                    <i class="feather-check-circle"></i>
-                    {{ session('success') }}
-                </div>
-            @endif
-
-            <form action="{{ route('register.post') }}" method="POST" id="freg-form" novalidate>
-                @csrf
-
-                {{-- ===== SECTION 1: البيانات الشخصية ===== --}}
-                <div class="freg-section-label">
-                    <span>البيانات الشخصية</span>
-                </div>
-
-                <div class="freg-grid">
-
-                    {{-- الاسم بالكامل --}}
-                    <div class="freg-group freg-grid-full">
-                        <label class="freg-label" for="reg_name">
-                            الاسم بالكامل <span class="freg-label-required">*</span>
-                        </label>
-                        <div class="freg-input-wrap">
-                            <input
-                                type="text"
-                                id="reg_name"
-                                name="name"
-                                class="freg-input"
-                                placeholder="اسم الطالب كما في شهادة الميلاد"
-                                value="{{ old('name') }}"
-                                autocomplete="name"
-                                required
-                            >
-                            <i class="feather-user freg-input-icon"></i>
-                        </div>
-                        @error('name')
-                            <span class="freg-error"><i class="feather-alert-circle"></i> {{ $message }}</span>
-                        @enderror
-                    </div>
-
-                    {{-- البريد الإلكتروني --}}
-                    <div class="freg-group">
-                        <label class="freg-label" for="reg_email">
-                            البريد الإلكتروني <span class="freg-label-required">*</span>
-                        </label>
-                        <div class="freg-input-wrap">
-                            <input
-                                type="email"
-                                id="reg_email"
-                                name="email"
-                                class="freg-input"
-                                placeholder="example@gmail.com"
-                                value="{{ old('email') }}"
-                                autocomplete="email"
-                                required
-                                dir="ltr"
-                                style="text-align:right!important;"
-                            >
-                            <i class="feather-mail freg-input-icon"></i>
-                        </div>
-                        @error('email')
-                            <span class="freg-error"><i class="feather-alert-circle"></i> {{ $message }}</span>
-                        @enderror
-                    </div>
-
-                {{-- ===== ACADEMIC SECTION: Academic Year + Education Level + Grade ===== --}}
-                <div class="freg-academic-group">
-                    <div class="freg-section-label" style="margin-top: 0;">
-                        <span>المسار التعليمي</span>
-                    </div>
-
-                    <div class="mb--30">
-                        <label class="freg-label">العام الدراسي الحالي <span class="freg-label-required">*</span></label>
-                        <div class="freg-input-wrap">
-                            <select id="reg_academic_year" name="academic_year" class="freg-input selectpicker" required>
-                                <option value="">اختر العام الدراسي</option>
-                                <option value="2024-2025" {{ old('academic_year') == '2024-2025' ? 'selected' : '' }}>2024 - 2025 (الحالي)</option>
-                                <option value="2025-2026" {{ old('academic_year') == '2025-2026' ? 'selected' : '' }}>2025 - 2026</option>
-                            </select>
-                            <i class="feather-calendar freg-input-icon"></i>
-                        </div>
-                    </div>
-
-                    <div class="mb--30">
-                        <label class="freg-label">المرحلة الدراسية <span class="freg-label-required">*</span></label>
-                        <input type="hidden" name="education_level_id" id="hidden_level_id" value="{{ old('education_level_id') }}">
-                        <div class="freg-academic-cards">
-                            @foreach($education_levels as $level)
-                                <div class="freg-level-card {{ old('education_level_id') == $level->id ? 'active' : '' }}" 
-                                     data-id="{{ $level->id }}">
-                                    <i class="freg-level-icon feather-{{ match(trim($level->name)) {
-                                        'المرحلة الابتدائية' => 'book',
-                                        'المرحلة الإعدادية' => 'award',
-                                        'المرحلة الثانوية' => 'user-check',
-                                        default => 'layers'
-                                    } }}"></i>
-                                    <span class="freg-level-name">{{ $level->name }}</span>
-                                </div>
-                            @endforeach
-                        </div>
-                        @error('education_level_id')
-                            <span class="freg-error"><i class="feather-alert-circle"></i> {{ $message }}</span>
-                        @enderror
-                    </div>
-
-                    <div class="freg-group mb-0">
-                        <label class="freg-label" for="reg_grade">الصف الدراسي <span class="freg-label-required">*</span></label>
-                        <div class="freg-input-wrap">
-                            <select id="reg_grade" name="grade_id" class="freg-input selectpicker" required disabled data-live-search="true" title="اختر الصف الدراسي">
-                                <option value="">اختر المرحلة أولاً</option>
-                            </select>
-                            <i class="feather-bookmark freg-input-icon"></i>
-                        </div>
-                        @error('grade_id')
-                            <span class="freg-error"><i class="feather-alert-circle"></i> {{ $message }}</span>
-                        @enderror
-                    </div>
-                </div>
-
-                </div>
-
-                {{-- ===== SECTION 2: أرقام التواصل ===== --}}
-                <div class="freg-section-label">
-                    <span>أرقام التواصل</span>
-                </div>
-
-                <div class="freg-grid">
-
-                    {{-- رقم هاتف الطالب --}}
-                    <div class="freg-group">
-                        <label class="freg-label" for="reg_phone">
-                            رقم هاتف الطالب <span class="freg-label-required">*</span>
-                        </label>
-                        <div class="freg-input-wrap">
-                            <input
-                                type="tel"
-                                id="reg_phone"
-                                name="phone_number"
-                                class="freg-input"
-                                placeholder="01xxxxxxxxx"
-                                value="{{ old('phone_number') }}"
-                                maxlength="11"
-                                dir="ltr"
-                                style="text-align:right!important;"
-                                required
-                            >
-                            <i class="feather-smartphone freg-input-icon"></i>
-                        </div>
-                        @error('phone_number')
-                            <span class="freg-error"><i class="feather-alert-circle"></i> {{ $message }}</span>
-                        @enderror
-                    </div>
-
-                    {{-- رقم هاتف ولي الأمر --}}
-                    <div class="freg-group">
-                        <label class="freg-label" for="reg_parent_phone">
-                            رقم هاتف ولي الأمر <span class="freg-label-required">*</span>
-                        </label>
-                        <div class="freg-input-wrap">
-                            <input
-                                type="tel"
-                                id="reg_parent_phone"
-                                name="parent_phone"
-                                class="freg-input"
-                                placeholder="01xxxxxxxxx"
-                                value="{{ old('parent_phone') }}"
-                                maxlength="11"
-                                dir="ltr"
-                                style="text-align:right!important;"
-                                required
-                            >
-                            <i class="feather-phone freg-input-icon"></i>
-                        </div>
-                        @error('parent_phone')
-                            <span class="freg-error"><i class="feather-alert-circle"></i> {{ $message }}</span>
-                        @enderror
-                    </div>
-
-                </div>
-
-
-                {{-- ===== SECTION 4: كلمة المرور ===== --}}
-                <div class="freg-section-label">
-                    <span>كلمة المرور</span>
-                </div>
-
-                <div class="freg-grid">
-
-                    {{-- كلمة المرور --}}
-                    <div class="freg-group">
-                        <label class="freg-label" for="reg_password">
-                            كلمة المرور <span class="freg-label-required">*</span>
-                        </label>
-                        <div class="freg-input-wrap">
-                            <input
-                                type="password"
-                                id="reg_password"
-                                name="password"
-                                class="freg-input has-toggle"
-                                placeholder="8 أحرف على الأقل"
-                                required
-                                autocomplete="new-password"
-                            >
-                            <i class="feather-lock freg-input-icon"></i>
-                            <button type="button" class="freg-pwd-toggle" onclick="togglePassword('reg_password', this)">
-                                <i class="feather-eye"></i>
-                            </button>
-                        </div>
-                        {{-- Strength Bar --}}
-                        <div class="freg-strength" id="strength-bar" style="display:none;">
-                            <div class="freg-strength-bars">
-                                <div class="freg-strength-bar" id="s1"></div>
-                                <div class="freg-strength-bar" id="s2"></div>
-                                <div class="freg-strength-bar" id="s3"></div>
-                                <div class="freg-strength-bar" id="s4"></div>
-                            </div>
-                            <span class="freg-strength-label" id="strength-text"></span>
-                        </div>
-                        @error('password')
-                            <span class="freg-error"><i class="feather-alert-circle"></i> {{ $message }}</span>
-                        @enderror
-                    </div>
-
-                    {{-- تأكيد كلمة المرور --}}
-                    <div class="freg-group">
-                        <label class="freg-label" for="reg_password_confirm">
-                            تأكيد كلمة المرور <span class="freg-label-required">*</span>
-                        </label>
-                        <div class="freg-input-wrap">
-                            <input
-                                type="password"
-                                id="reg_password_confirm"
-                                name="password_confirmation"
-                                class="freg-input has-toggle"
-                                placeholder="أعد كتابة كلمة المرور"
-                                required
-                                autocomplete="new-password"
-                            >
-                            <i class="feather-check-circle freg-input-icon"></i>
-                            <button type="button" class="freg-pwd-toggle" onclick="togglePassword('reg_password_confirm', this)">
-                                <i class="feather-eye"></i>
-                            </button>
-                        </div>
-                        <span class="freg-error" id="pwd-match-error" style="display:none;">
-                            <i class="feather-alert-circle"></i> كلمتا المرور غير متطابقتين
-                        </span>
-                    </div>
-
-                </div>
-
-                {{-- Terms --}}
-                <div class="freg-terms">
-                    <input type="checkbox" id="reg_terms" name="terms" required>
-                    <label for="reg_terms">
-                        أوافق على <a href="#">شروط الاستخدام</a> و<a href="#">سياسة الخصوصية</a> الخاصة بمنصة فاهمين
-                    </label>
-                </div>
-
-                {{-- Submit --}}
-                <div class="freg-btn-wrap">
-                    <button type="submit" class="freg-btn" id="freg-submit-btn">
-                        <span class="freg-btn-text">إنشاء الحساب الآن</span>
-                        <i class="feather-arrow-left freg-btn-icon"></i>
-                        <div class="freg-spinner"></div>
-                    </button>
-                </div>
-
-                <div class="freg-login-link">
-                    لديك حساب بالفعل؟
-                    <a href="{{ route('login') }}">سجّل دخولك الآن</a>
-                </div>
-
-            </form>
+            <div class="shape-wrapper">
+                <div class="left-shape"><img src="{{ asset('assets/images/banner/right-shape.png') }}" alt="Banner Images"></div>
+                <div class="top-shape"><img src="{{ asset('assets/images/banner/top-shape.png') }}" alt="Banner Images"></div>
+                <div class="marque-images edumarque"></div>
+            </div>
         </div>
     </div>
-</div>
 
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script>
-/* ============================================
-   Fahmean Registration JS
-============================================ */
+    <footer class="rbt-footer footer-style-1 bg-color-extra2" style="font-family: var(--font-secondary) !important;">
+        <div class="footer-top">
+            <div class="container">
+                <div class="row row--15 mt_dec--30">
+                    <div class="col-lg-4 col-md-6 col-sm-6 col-12 mt--30">
+                        <div class="footer-widget">
+                            <div class="logo logo-dark"><a href="#"><img src="{{ asset('assets/images/logo/logo.png') }}" alt="Edu-cause"></a></div>
+                            <div class="logo d-none logo-light"><a href="#"><img src="{{ asset('assets/images/dark/logo/logo-light.png') }}" alt="Edu-cause"></a></div>
+                            <p class="description mt--20">نحن دائمًا نبحث عن الأشخاص الموهوبين والمتحمسين. لا تتردد قدم نفسك!</p>
+                            <div class="contact-btn mt--30">
+                                <a class="rbt-btn hover-icon-reverse btn-border-gradient radius-round" href="#">
+                                    <div class="icon-reverse-wrapper">
+                                        <span class="btn-text">تواصل معنا</span>
+                                        <span class="btn-icon"><i class="feather-arrow-right"></i></span>
+                                        <span class="btn-icon"><i class="feather-arrow-right"></i></span>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="offset-lg-1 col-lg-2 col-md-6 col-sm-6 col-12 mt--30">
+                        <div class="footer-widget">
+                            <h3 class="ft-title">روابط مفيدة</h3>
+                            <ul class="ft-link">
+                                <li><a href="{{ route('marketplace') }}">المتجر</a></li>
+                                <li><a href="{{ route('kindergarten') }}">روضة أطفال</a></li>
+                                <li><a href="{{ route('universityClassic') }}">الجامعة</a></li>
+                                <li><a href="{{ route('gymCoaching') }}">تدريب الجيم</a></li>
+                                <li><a href="{{ route('faqs') }}">الأسئلة الشائعة</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-lg-2 col-md-6 col-sm-6 col-12 mt--30">
+                        <div class="footer-widget">
+                            <h3 class="ft-title">شركتنا</h3>
+                            <ul class="ft-link">
+                                <li><a href="{{ route('contact') }}">اتصل بنا</a></li>
+                                <li><a href="{{ route('becomeTeacher') }}">كن معلمًا</a></li>
+                                <li><a href="{{ route('blog') }}">المدونة</a></li>
+                                <li><a href="#">المحاضر</a></li>
+                                <li><a href="{{ route('eventList') }}">الأحداث</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-12 mt--30">
+                        <div class="footer-widget">
+                            <h3 class="ft-title">معلومات الاتصال</h3>
+                            <ul class="ft-link">
+                                <li><span>الهاتف:</span> <a href="#">(406) 555-0120</a></li>
+                                <li><span>البريد الإلكتروني:</span> <a href="mailto:hr@example.com">info@fahmean.com</a></li>
+                                <li><span>العنوان:</span> القاهرة، ج.م.ع</li>
+                            </ul>
+                            <ul class="social-icon social-default icon-naked justify-content-start mt--20">
+                                <li><a href="https://www.facebook.com/"><i class="feather-facebook"></i></a></li>
+                                <li><a href="https://www.twitter.com"><i class="feather-twitter"></i></a></li>
+                                <li><a href="https://www.instagram.com/"><i class="feather-instagram"></i></a></li>
+                                <li><a href="https://www.linkdin.com/"><i class="feather-linkedin"></i></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
 
-// 1. Toggle Password Visibility
-function togglePassword(inputId, btn) {
-    const input = document.getElementById(inputId);
-    const icon = btn.querySelector('i');
-    if (input.type === 'password') {
-        input.type = 'text';
-        icon.className = 'feather-eye-off';
-    } else {
-        input.type = 'password';
-        icon.className = 'feather-eye';
-    }
-}
+    <div class="rbt-separator-mid"><div class="container"><hr class="rbt-separator m-0"></div></div>
+    <div class="copyright-area copyright-style-1 ptb--20">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-12 col-12">
+                    <p class="rbt-link-hover text-center text-lg-start">حقوق النشر © 2025 <a href="https://www.fahmean.com/">Fahmean.com</a> جميع الحقوق محفوظة</p>
+                </div>
+                <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-12 col-12">
+                    <ul class="copyright-link rbt-link-hover justify-content-center justify-content-lg-end mt_sm--10 mt_md--10">
+                        <li><a href="#">شروط الخدمة</a></li>
+                        <li><a href="{{ route('privacyPolicy') }}">سياسة الخصوصية</a></li>
+                        <li><a href="{{ route('subscription') }}">الاشتراك</a></li>
+                        <li><a href="{{ route('login') }}">تسجيل الدخول والتسجيل</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
 
-// 2. Password Strength Meter
-const pwdInput = document.getElementById('reg_password');
-const strengthBar = document.getElementById('strength-bar');
-const bars = [document.getElementById('s1'), document.getElementById('s2'), document.getElementById('s3'), document.getElementById('s4')];
-const strengthText = document.getElementById('strength-text');
+    <style>
+        .fahmean-register-page { overflow: hidden; }
+        .fahmean-register-row { min-height: 920px; }
+        .fahmean-register-form-col { width: 60%; flex: 0 0 60%; max-width: 60%; }
+        .fahmean-register-visual-col { width: 40%; flex: 0 0 40%; max-width: 40%; }
+        .fahmean-register-form-shell { width: 100% !important; max-width: 100% !important; margin: 0; position: relative; z-index: 2; padding: 35px 34px; }
+        .fahmean-register-form-header { margin-bottom: 28px; text-align: center; }
+        .fahmean-register-form-header .title { margin-bottom: 10px; }
+        .fahmean-register-form-header p { margin: 0; color: var(--color-body); font-size: 15px; }
+        .freg-section-label { display: flex; align-items: center; gap: 12px; margin: 26px 0 18px; }
+        .freg-section-label::before, .freg-section-label::after { content: ''; flex: 1; height: 1px; background: rgba(69, 98, 155, 0.12); }
+        .freg-section-label span { font-size: 13px; font-weight: 700; color: #45629b; white-space: nowrap; }
+        .freg-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+        .freg-grid-full { grid-column: 1 / -1; }
+        .freg-group { display: flex; flex-direction: column; }
+        .freg-label { font-size: 14px; font-weight: 600; color: #344767; margin-bottom: 10px; }
+        .freg-label-required { color: #ec5b87; }
+        .freg-input-wrap { position: relative; }
+        .freg-input, .bootstrap-select > .dropdown-toggle { width: 100% !important; min-height: 58px; border: 1px solid rgba(69, 98, 155, 0.18) !important; background: #ffffff !important; border-radius: 14px !important; padding: 16px 48px 16px 16px !important; font-size: 15px !important; color: #1f1f25 !important; box-shadow: none !important; }
+        .freg-input:focus, .bootstrap-select > .dropdown-toggle:focus { border-color: #7b61ff !important; box-shadow: 0 0 0 4px rgba(123, 97, 255, 0.08) !important; outline: none; }
+        .bootstrap-select .filter-option, .bootstrap-select .dropdown-toggle .filter-option-inner-inner { text-align: right; color: #1f1f25; }
+        .bootstrap-select .dropdown-menu { border-radius: 14px; border: 1px solid rgba(69, 98, 155, 0.14); box-shadow: 0 18px 35px rgba(31, 31, 37, 0.08); }
+        .bootstrap-select .dropdown-menu li a { color: #1f1f25 !important; text-align: right; }
+        .bootstrap-select .dropdown-menu li a:hover { background: rgba(123, 97, 255, 0.08) !important; }
+        .freg-input-icon { position: absolute; top: 50%; right: 16px; transform: translateY(-50%); color: #7b61ff; font-size: 18px; pointer-events: none; z-index: 3; }
+        .freg-pwd-toggle { position: absolute; top: 50%; left: 14px; transform: translateY(-50%); background: transparent; border: 0; color: #7c8aa5; padding: 0; }
+        .freg-error { display: flex; align-items: center; gap: 6px; color: #d9534f; font-size: 13px; margin-top: 8px; }
+        .freg-academic-group { margin-bottom: 6px; }
+        .freg-academic-cards { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; }
+        .freg-level-card { background: #fff; border: 1px solid rgba(69, 98, 155, 0.16); border-radius: 16px; padding: 16px 12px; text-align: center; cursor: pointer; transition: 0.25s ease; }
+        .freg-level-card:hover, .freg-level-card.active { border-color: #7b61ff; box-shadow: 0 12px 24px rgba(123, 97, 255, 0.12); transform: translateY(-2px); }
+        .freg-level-icon { display: inline-flex; align-items: center; justify-content: center; width: 42px; height: 42px; border-radius: 50%; background: rgba(123, 97, 255, 0.08); color: #7b61ff; font-size: 18px; margin-bottom: 10px; }
+        .freg-level-name { display: block; font-size: 13px; font-weight: 700; color: #344767; line-height: 1.6; }
+        .freg-strength { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-top: 10px; }
+        .freg-strength-bars { display: flex; gap: 8px; flex: 1; }
+        .freg-strength-bar { height: 6px; border-radius: 999px; flex: 1; background: rgba(69, 98, 155, 0.12); }
+        .freg-strength-label { font-size: 13px; font-weight: 700; }
+        .freg-terms { display: flex; align-items: flex-start; gap: 10px; margin-top: 22px; color: #5f6b83; font-size: 14px; line-height: 1.8; }
+        .freg-terms input { margin-top: 5px; }
+        .freg-btn-wrap { margin-top: 24px; }
+        .freg-btn { width: 100%; min-height: 58px; border-radius: 14px; position: relative; justify-content: center; }
+        .freg-btn.loading { pointer-events: none; opacity: 0.8; }
+        .freg-btn.loading .icon-reverse-wrapper { opacity: 0; }
+        .freg-spinner { display: none; width: 22px; height: 22px; border: 3px solid rgba(255, 255, 255, 0.25); border-top-color: #fff; border-radius: 50%; animation: freg-spin 0.8s linear infinite; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); }
+        .freg-btn.loading .freg-spinner { display: block; }
+        .freg-login-link { text-align: center; margin-top: 20px; font-size: 15px; color: #5f6b83; }
+        .freg-login-link a, .freg-terms a { color: #45629b; text-decoration: underline; }
+        .fahmean-register-visual { position: relative; min-height: 760px; display: flex; align-items: flex-start; justify-content: center; padding: 0; }
+        .fahmean-register-visual-card { width: 100%; max-width: 100%; min-height: 700px; border-radius: 24px; background: linear-gradient(180deg, rgba(158, 220, 251, 0.8) 0%, rgba(185, 236, 255, 0.8) 100%); box-shadow: 0 24px 60px rgba(38, 82, 156, 0.12); display: flex; flex-direction: column; align-items: center; justify-content: flex-start; overflow: hidden; position: relative; padding-top: 20px; }
+        .fahmean-register-visual-card::before, .fahmean-register-visual-card::after { content: ''; position: absolute; border-radius: 50%; background: rgba(255, 255, 255, 0.2); }
+        .fahmean-register-visual-card::before { width: 200px; height: 200px; top: 40px; right: 40px; }
+        .fahmean-register-visual-card::after { width: 120px; height: 120px; top: 220px; left: 48px; }
+        .fahmean-register-visual-header { margin-top: 18px; background: #211644; color: #ff9f10; font-size: 48px; font-weight: 800; line-height: 1.1; border-radius: 999px; padding: 18px 48px; position: relative; z-index: 2; }
+        .fahmean-register-visual-copy { position: relative; z-index: 2; margin-top: 16px; max-width: 520px; text-align: center; font-size: 22px; line-height: 1.8; font-weight: 700; color: #22304d; padding: 0 24px; }
+        .fahmean-register-visual-image-wrap { width: 100%; display: flex; align-items: flex-start; justify-content: center; flex: 1; position: relative; z-index: 2; padding: 0 20px 0; margin-top: 8px; }
+        .fahmean-register-visual-image-wrap img { width: 100%; max-width: 560px; max-height: 430px; object-fit: contain; filter: drop-shadow(0 18px 35px rgba(29, 45, 88, 0.16)); }
+        .freg-line-group .freg-input-wrap { position: relative; }
+        .freg-line-input { border: 0 !important; border-bottom: 2px solid var(--color-border) !important; background: transparent !important; border-radius: 0 !important; padding: 24px 0 8px !important; box-shadow: none !important; }
+        .freg-line-input:focus { border-color: transparent !important; box-shadow: none !important; }
+        .freg-floating-label { position: absolute; right: 0; top: 12px; font-size: 18px; line-height: 28px; color: var(--color-body); transition: 0.3s; pointer-events: none; }
+        .freg-line-group .focus-border { position: absolute; right: 0; bottom: 0; width: 0; height: 2px; background-color: var(--color-primary); transition: 0.4s; }
+        .freg-line-group.focused .freg-floating-label { top: -10px; font-size: 12px; color: var(--color-primary); }
+        .freg-line-group.focused .focus-border { width: 100%; }
+        .freg-line-group input[dir="ltr"] { text-align: right !important; }
+        .freg-line-password { padding-left: 32px !important; }
+        .active-dark-mode .freg-label,
+        .active-dark-mode .freg-terms label {
+            color: #ffffff;
+        }
+        .active-dark-mode .freg-input::placeholder,
+        .active-dark-mode .freg-input::-webkit-input-placeholder,
+        .active-dark-mode .freg-input::-moz-placeholder,
+        .active-dark-mode .freg-input:-ms-input-placeholder,
+        .active-dark-mode .freg-input::-ms-input-placeholder {
+            color: #c7d0df !important;
+            opacity: 1;
+        }
+        .active-dark-mode .bootstrap-select > .dropdown-toggle.bs-placeholder .filter-option-inner-inner,
+        .active-dark-mode .bootstrap-select > .dropdown-toggle.bs-placeholder .filter-option {
+            color: #c7d0df !important;
+        }
+        @keyframes freg-spin { to { transform: translate(-50%, -50%) rotate(360deg); } }
+        @media (max-width: 1199px) {
+            .fahmean-register-row { min-height: auto; }
+            .fahmean-register-form-col, .fahmean-register-visual-col { width: 100%; flex: 0 0 100%; max-width: 100%; }
+            .fahmean-register-form-shell { max-width: 100%; padding: 30px 24px; }
+            .fahmean-register-visual { min-height: 620px; padding: 0; }
+            .fahmean-register-visual-card { min-height: 620px; }
+            .fahmean-register-visual-header { font-size: 38px; }
+            .fahmean-register-visual-copy { font-size: 18px; }
+        }
+        @media (max-width: 991px) {
+            .freg-grid { grid-template-columns: 1fr; }
+            .freg-academic-cards { grid-template-columns: 1fr; }
+            .fahmean-register-visual { display: none; }
+            .fahmean-register-form-shell { margin: 0 auto 40px; }
+        }
+    </style>
 
-const strengths = [
-    { color: '#ef4444', label: 'ضعيفة', text_color: '#ef4444' },
-    { color: '#f97316', label: 'مقبولة', text_color: '#f97316' },
-    { color: '#eab308', label: 'جيدة',  text_color: '#eab308' },
-    { color: '#22c55e', label: 'قوية',  text_color: '#22c55e' },
-];
-
-pwdInput.addEventListener('input', function() {
-    const val = this.value;
-    if (!val) { strengthBar.style.display = 'none'; return; }
-    strengthBar.style.display = 'flex';
-
-    let score = 0;
-    if (val.length >= 8) score++;
-    if (/[A-Z]/.test(val)) score++;
-    if (/[0-9]/.test(val)) score++;
-    if (/[^A-Za-z0-9]/.test(val)) score++;
-    score = Math.max(1, score);
-
-    bars.forEach((bar, i) => {
-        bar.style.background = i < score ? strengths[score - 1].color : 'rgba(255,255,255,0.1)';
-    });
-    strengthText.textContent = strengths[score - 1].label;
-    strengthText.style.color = strengths[score - 1].text_color;
-});
-
-// 3. Password Match Check
-document.getElementById('reg_password_confirm').addEventListener('input', function() {
-    const matchErr = document.getElementById('pwd-match-error');
-    if (this.value && this.value !== pwdInput.value) {
-        matchErr.style.display = 'flex';
-    } else {
-        matchErr.style.display = 'none';
-    }
-});
-
-// 4. Dynamic Grades via Card Selection or AJAX
-$(document).ready(function () {
-    // Level Card Click Handler
-    $('.freg-level-card').on('click', function () {
-        const levelId = $(this).data('id');
-        
-        // UI State
-        $('.freg-level-card').removeClass('active');
-        $(this).addClass('active');
-        
-        // Update hidden input
-        $('#hidden_level_id').val(levelId);
-        
-        // Load Grades
-        loadGrades(levelId);
-    });
-
-    function loadGrades(levelId, savedGrade = null) {
-        const gradeSelect = $('#reg_grade');
-        if (!levelId) {
-            gradeSelect.html('<option value="">اختر المرحلة أولاً</option>').prop('disabled', true);
-            if (gradeSelect.hasClass('selectpicker')) gradeSelect.selectpicker('refresh');
-            return;
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        function togglePassword(inputId, btn) {
+            const input = document.getElementById(inputId);
+            const icon = btn.querySelector('i');
+            if (input.type === 'password') {
+                input.type = 'text';
+                icon.className = 'feather-eye-off';
+            } else {
+                input.type = 'password';
+                icon.className = 'feather-eye';
+            }
         }
 
-        gradeSelect.html('<option value="">جاري التحميل...</option>').prop('disabled', true);
-        if (gradeSelect.hasClass('selectpicker')) gradeSelect.selectpicker('refresh');
+        const pwdInput = document.getElementById('reg_password');
+        const strengthBar = document.getElementById('strength-bar');
+        const bars = [document.getElementById('s1'), document.getElementById('s2'), document.getElementById('s3'), document.getElementById('s4')];
+        const strengthText = document.getElementById('strength-text');
 
-        const url = "{{ url('get-grades') }}/" + levelId;
-        $.ajax({
-            url: url,
-            method: 'GET',
-            success: function (data) {
-                gradeSelect.html('<option value="">اختر الصف الدراسي</option>');
-                
-                if (data.length === 0) {
-                    gradeSelect.append('<option value="">لا توجد صفوف لهذه المرحلة</option>');
-                } else {
-                    $.each(data, function (i, grade) {
-                        gradeSelect.append('<option value="' + grade.id + '"' + (grade.id == savedGrade ? ' selected' : '') + '>' + grade.name + '</option>');
-                    });
-                }
-                gradeSelect.prop('disabled', false);
-                if (gradeSelect.hasClass('selectpicker')) gradeSelect.selectpicker('refresh');
-            },
-            error: function (xhr, status, error) {
-                gradeSelect.html('<option value="">حدث خطأ في تحميل البيانات</option>').prop('disabled', false);
-                if (gradeSelect.hasClass('selectpicker')) gradeSelect.selectpicker('refresh');
+        const strengths = [
+            { color: '#ef4444', label: 'ضعيفة', text_color: '#ef4444' },
+            { color: '#f97316', label: 'مقبولة', text_color: '#f97316' },
+            { color: '#eab308', label: 'جيدة', text_color: '#eab308' },
+            { color: '#22c55e', label: 'قوية', text_color: '#22c55e' },
+        ];
+
+        pwdInput.addEventListener('input', function() {
+            const val = this.value;
+            if (!val) { strengthBar.style.display = 'none'; return; }
+            strengthBar.style.display = 'flex';
+            let score = 0;
+            if (val.length >= 8) score++;
+            if (/[A-Z]/.test(val)) score++;
+            if (/[0-9]/.test(val)) score++;
+            if (/[^A-Za-z0-9]/.test(val)) score++;
+            score = Math.max(1, score);
+            bars.forEach((bar, i) => { bar.style.background = i < score ? strengths[score - 1].color : 'rgba(69, 98, 155, 0.12)'; });
+            strengthText.textContent = strengths[score - 1].label;
+            strengthText.style.color = strengths[score - 1].text_color;
+        });
+
+        document.getElementById('reg_password_confirm').addEventListener('input', function() {
+            const matchErr = document.getElementById('pwd-match-error');
+            if (this.value && this.value !== pwdInput.value) {
+                matchErr.style.display = 'flex';
+            } else {
+                matchErr.style.display = 'none';
             }
         });
-    }
 
-    // Restore state if old value exists
-    const oldLevel = $('#hidden_level_id').val();
-    const oldGrade = '{{ old("grade_id") }}';
-    if (oldLevel) {
-        loadGrades(oldLevel, oldGrade);
-    }
-});
+        $(document).ready(function () {
+            $('.freg-line-group .freg-line-input').each(function () {
+                const input = $(this);
+                const group = input.closest('.freg-line-group');
+                const syncState = () => {
+                    if (input.val()) {
+                        group.addClass('focused');
+                    } else {
+                        group.removeClass('focused');
+                    }
+                };
 
-// 5. Submit Loading State
-document.getElementById('freg-form').addEventListener('submit', function(e) {
-    const btn = document.getElementById('freg-submit-btn');
-    const pwd = document.getElementById('reg_password').value;
-    const pwdConfirm = document.getElementById('reg_password_confirm').value;
-    const terms = document.getElementById('reg_terms').checked;
+                input.on('focus', function () {
+                    group.addClass('focused');
+                });
 
-    if (pwd !== pwdConfirm) {
-        document.getElementById('pwd-match-error').style.display = 'flex';
-        e.preventDefault(); return;
-    }
-    if (!terms) {
-        alert('يرجى الموافقة على شروط الاستخدام أولاً');
-        e.preventDefault(); return;
-    }
+                input.on('blur input', syncState);
+                syncState();
+            });
 
-    btn.classList.add('loading');
-    btn.disabled = true;
-});
+            $('.freg-level-card').on('click', function () {
+                const levelId = $(this).data('id');
+                $('.freg-level-card').removeClass('active');
+                $(this).addClass('active');
+                $('#hidden_level_id').val(levelId);
+                loadGrades(levelId);
+            });
 
-// 6. Phone number - numbers only
-['reg_phone', 'reg_parent_phone'].forEach(function(id) {
-    document.getElementById(id).addEventListener('input', function() {
-        this.value = this.value.replace(/[^0-9]/g, '');
-    });
-});
-</script>
+            function loadGrades(levelId, savedGrade = null) {
+                const gradeSelect = $('#reg_grade');
+                if (!levelId) {
+                    gradeSelect.html('<option value="">اختر المرحلة أولاً</option>').prop('disabled', true);
+                    if (gradeSelect.hasClass('selectpicker')) gradeSelect.selectpicker('refresh');
+                    return;
+                }
 
+                gradeSelect.html('<option value="">جاري التحميل...</option>').prop('disabled', true);
+                if (gradeSelect.hasClass('selectpicker')) gradeSelect.selectpicker('refresh');
+
+                const url = "{{ url('get-grades') }}/" + levelId;
+                $.ajax({
+                    url: url,
+                    method: 'GET',
+                    success: function (data) {
+                        gradeSelect.html('<option value="">اختر الصف الدراسي</option>');
+                        if (data.length === 0) {
+                            gradeSelect.append('<option value="">لا توجد صفوف لهذه المرحلة</option>');
+                        } else {
+                            $.each(data, function (i, grade) {
+                                gradeSelect.append('<option value="' + grade.id + '"' + (grade.id == savedGrade ? ' selected' : '') + '>' + grade.name + '</option>');
+                            });
+                        }
+                        gradeSelect.prop('disabled', false);
+                        if (gradeSelect.hasClass('selectpicker')) gradeSelect.selectpicker('refresh');
+                    },
+                    error: function () {
+                        gradeSelect.html('<option value="">حدث خطأ في تحميل البيانات</option>').prop('disabled', false);
+                        if (gradeSelect.hasClass('selectpicker')) gradeSelect.selectpicker('refresh');
+                    }
+                });
+            }
+
+            const oldLevel = $('#hidden_level_id').val();
+            const oldGrade = '{{ old("grade_id") }}';
+            if (oldLevel) {
+                loadGrades(oldLevel, oldGrade);
+            }
+        });
+
+        document.getElementById('freg-form').addEventListener('submit', function(e) {
+            const btn = document.getElementById('freg-submit-btn');
+            const pwd = document.getElementById('reg_password').value;
+            const pwdConfirm = document.getElementById('reg_password_confirm').value;
+            const terms = document.getElementById('reg_terms').checked;
+            if (pwd !== pwdConfirm) {
+                document.getElementById('pwd-match-error').style.display = 'flex';
+                e.preventDefault();
+                return;
+            }
+            if (!terms) {
+                alert('يرجى الموافقة على شروط الاستخدام أولاً');
+                e.preventDefault();
+                return;
+            }
+            btn.classList.add('loading');
+            btn.disabled = true;
+        });
+
+        ['reg_phone', 'reg_parent_phone'].forEach(function(id) {
+            document.getElementById(id).addEventListener('input', function() {
+                this.value = this.value.replace(/[^0-9]/g, '');
+            });
+        });
+    </script>
 @endsection

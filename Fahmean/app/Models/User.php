@@ -2,7 +2,6 @@
 
 namespace App\Models;
 
-// use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -28,7 +27,7 @@ class User extends Authenticatable
     ];
 
     /**
-     * Assistant relationship: A user (assistant) belongs to a teacher.
+     * Assistant relationship: a user (assistant) belongs to a teacher.
      */
     public function teacher()
     {
@@ -36,7 +35,7 @@ class User extends Authenticatable
     }
 
     /**
-     * Teacher relationship: A teacher has many assistants.
+     * Teacher relationship: a teacher has many assistants.
      */
     public function assistants()
     {
@@ -44,13 +43,14 @@ class User extends Authenticatable
     }
 
     /**
-     * Get the User ID responsible for content (Teacher or the Teacher of this Assistant).
+     * Get the user ID responsible for content (teacher or the teacher of this assistant).
      */
     public function getEffectiveTeacherId()
     {
         if ($this->hasRole('assistant_teacher')) {
             return $this->teacher_id;
         }
+
         return $this->id;
     }
 
@@ -76,46 +76,39 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
-	
-	
-	// Student relation
+
+    // Student profile relation.
     public function student()
     {
         return $this->hasOne(Student::class);
     }
 
-    // Parent → Students relation
+    // Parent to students relation.
     public function children()
     {
         return $this->belongsToMany(Student::class, 'parent_student', 'parent_id', 'student_id');
     }
 
-    // Teacher → Education Levels
+    // Teacher to education levels relation.
     public function educationLevels()
     {
         return $this->belongsToMany(EducationLevel::class, 'teacher_education_level', 'teacher_id', 'education_level_id');
     }
 
-    // Teacher → Subjects
+    // Teacher to subjects relation.
     public function subjects()
     {
         return $this->belongsToMany(Subject::class, 'teacher_subject', 'user_id', 'subject_id');
     }
-    // public function subject()
-    // {
-    //     return $this->belongsTo(Subject::class);
-    // }
-   
 
     public function grades()
     {
         return $this->belongsToMany(Grade::class, 'teacher_grade', 'teacher_id', 'grade_id');
     }
 
-
     public function courses()
     {
-        // الكورسات المسجلة للطالب
+        // Courses linked through the student enrollment pivot table.
         return $this->belongsToMany(Course::class, 'course_student', 'student_id', 'course_id')
             ->withTimestamps();
     }
@@ -128,26 +121,23 @@ class User extends Authenticatable
         return $this->courses();
     }
 
-    // App\Models\User.php
-
-  
     public function lessons()
     {
-        // الدروس المنجزة (pivot table ممكن يكون lesson_student)
+        // Lessons linked through the lesson progress pivot table.
         return $this->belongsToMany(Lesson::class, 'lesson_student', 'student_id', 'lesson_id')
-            ->withPivot('completed') // لو عندك completed column
+            ->withPivot('completed')
             ->withTimestamps();
     }
 
     public function quizzes()
     {
-        // الاختبارات المحلولة من قبل الطالب
+        // Quizzes linked through the quiz attempts pivot table.
         return $this->belongsToMany(Quiz::class, 'quiz_student', 'student_id', 'quiz_id')
             ->withPivot('score', 'completed', 'attempt_count', 'user_answers')
             ->withTimestamps();
     }
 
-    // المواد اللي المدرس يدرسها
+    // Recent login activity records for the user.
     public function loginActivities()
     {
         return $this->hasMany(LoginActivity::class)->latest();

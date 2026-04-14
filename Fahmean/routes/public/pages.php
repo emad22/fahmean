@@ -7,7 +7,7 @@ use App\Http\Controllers\PagesController;
 
     //  courses
 Route::prefix('pages')->group(function () {
-    Route::controller(pagesController::class)->group(function () {
+    Route::controller(PagesController::class)->group(function () {
         Route::get('/page-error' ,'pageError')->name('pageError');
         Route::get('/aboutus-01' ,'aboutus01')->name('aboutus01');
         Route::get('/aboutus-02' ,'aboutus02')->name('aboutus02');

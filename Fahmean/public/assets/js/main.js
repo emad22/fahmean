@@ -1149,7 +1149,7 @@
         var $this = $(this);
         setInterval(function () {
           t += i;
-          $this.css("background-position-x", -t + "px");
+          $this.css("background-position-x", t + "px");
         }, 10);
       });
     },

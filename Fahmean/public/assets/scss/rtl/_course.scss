@@ -239,6 +239,10 @@ input[type=radio]~label::after {
     .rbt-btn.hover-icon-reverse .btn-icon {
         transform: rotate(180deg) translateX(124px);
     }
+.rbt-contact-form.contact-form-style-2 {
+    .rbt-btn.hover-icon-reverse .btn-icon {
+        transform: rotate(180deg);
+    }    
 
     .rbt-btn:hover.hover-icon-reverse .btn-icon+.btn-icon {
         transform: rotate(180deg) translateX(-78px);
@@ -259,8 +263,17 @@ input[type=radio]~label::after {
         transform: rotate(180deg) translateX(0px);
     }
 }
+.rbt-contact-form.contact-form-style-2.max-width-auto {
+    .rbt-btn:hover.hover-icon-reverse .btn-icon+.btn-icon {
+        transform: rotate(180deg);
+    }
+}
 
 .rbt-contact-form.contact-form-style-1.max-width-auto .rbt-btn.hover-icon-reverse .btn-text {
+    margin-inline-end: -23px;
+    margin-inline-start: 0;
+}
+.rbt-contact-form.contact-form-style-2.max-width-auto .rbt-btn.hover-icon-reverse .btn-text {
     margin-inline-end: -23px;
     margin-inline-start: 0;
 }
@@ -268,9 +281,16 @@ input[type=radio]~label::after {
 .rbt-contact-form.contact-form-style-1 .rbt-btn.hover-icon-reverse .btn-icon {
     transform: rotate(180deg) translateX(100px);
 }
+.rbt-contact-form.contact-form-style-2 .rbt-btn.hover-icon-reverse .btn-icon {
+    transform: rotate(180deg);
+}
 
 .rbt-contact-form.contact-form-style-1.max-width-auto .rbt-btn:hover.hover-icon-reverse .btn-icon+.btn-icon {
     transform: rotate(180deg) translateX(-98px);
+}
+
+.rbt-contact-form.contact-form-style-2.max-width-auto .rbt-btn:hover.hover-icon-reverse .btn-icon+.btn-icon {
+    transform: rotate(180deg);
 }
 
 @keyframes fadeInLeft {
@@ -422,6 +442,10 @@ div#tutor-course-details-tab-info .tutor-course-benefits-content ul.rbt-list-sty
 }
 
 .rbt-contact-form.contact-form-style-1 .form-submit-group {
+    display: flex;
+    justify-content: end;
+}
+.rbt-contact-form.contact-form-style-2 .form-submit-group {
     display: flex;
     justify-content: end;
 }
