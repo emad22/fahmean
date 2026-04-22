@@ -1509,6 +1509,7 @@
           "current-time",
           "mute",
           "volume",
+          "settings",
           "fullscreen",
         ],
       });

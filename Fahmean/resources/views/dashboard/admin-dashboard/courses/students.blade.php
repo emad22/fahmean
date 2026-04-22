@@ -175,7 +175,7 @@
                                     <td class="text-end pe-4">
                                         <div class="btn-group">
                                             <a href="#" class="btn btn-sm btn-outline-primary radius-10 me-1" title="مراسلة الطالب"><i class="feather-mail"></i></a>
-                                            <form action="#" method="POST" class="d-inline">
+                                            <form action="{{ route('admin.enrollment-requests.unenroll', [$course->id, $student->id]) }}" method="POST" class="d-inline" onsubmit="return confirm('هل أنت متأكد من إلغاء تسجيل هذا الطالب؟ سوف يتم الاحتفاظ بنتائجه في الاختبارات ولكن لن يتمكن من دخول الكورس حالياً.')">
                                                 @csrf
                                                 @method('DELETE')
                                                 <button type="submit" class="btn btn-sm btn-outline-danger radius-10" title="إزالة من الكورس"><i class="feather-user-minus"></i></button>

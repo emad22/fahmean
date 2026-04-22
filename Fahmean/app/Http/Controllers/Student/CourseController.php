@@ -4,47 +4,60 @@ namespace App\Http\Controllers\Student;
 
 use App\Http\Controllers\Controller;
 use App\Models\Course;
-use App\Models\Student;
 use Illuminate\Support\Facades\Auth;
 
 class CourseController extends Controller
 {
+    /**
+     * عرض الكورسات التي سجّل فيها الطالب بعد موافقة الأدمن/المدرس.
+     */
     public function index()
     {
-        $student = Student::with('courses')->where('user_id', auth()->id())->first();
+        $user = Auth::user();
 
-        // dd($student);
-
-        // لو فيه احتمال إن الطالب مش موجود
-        if (!$student) {
-            // Allow Admins to view empty page instead of 404
-            if (auth()->user()->hasRole(['admin', 'teacher'])) {
-                 return view('dashboard.admin-dashboard.student-enrolled-courses', [
-                    'student' => null,
-                    'enrolled' => collect(),
-                    'active' => collect(),
-                    'completed' => collect()
-                 ]);
-            }
-            abort(404, "Student profile not found. Please contact support.");
+        // للأدمن والمدرس عند الاختبار — لا يملكون student profile
+        if (! $user->student && $user->hasRole(['admin', 'teacher', 'assistant_teacher'])) {
+            return view('dashboard.student.enrolled-courses', [
+                'enrolled'  => collect(),
+                'active'    => collect(),
+                'completed' => collect(),
+            ]);
         }
 
-        $enrolled = $student->courses;
-        // dd($enrolled);
+        if (! $user->student) {
+            abort(404, 'Student profile not found.');
+        }
 
-        $active = $student->courses()->wherePivot('status', 'active')->get();
+        // استخدام activeCourses() — التي تفلتر status = active ✅
+        $enrolled  = $user->activeCourses()->with(['teacher', 'subject'])->withCount('sections')->get();
+        $active    = $user->activeCourses()->wherePivot('status', 'active')->get();
+        $completed = $user->activeCourses()->wherePivot('status', 'completed')->get();
 
-
-
-        $completed = $student->courses()->wherePivot('status', 'completed')->get();
-
-        return view('dashboard.admin-dashboard.student-enrolled-courses', compact('student', 'enrolled', 'active', 'completed'));
+        return view('dashboard.student.enrolled-courses', compact('enrolled', 'active', 'completed'));
     }
 
+    /**
+     * عرض محتوى كورس محدد للطالب.
+     */
     public function show($id)
     {
-        $course = Course::with(['sections.lessons.quizzes', 'sections.quizzes', 'teacher'])->findOrFail($id);
-       
-        return view('dashboard.admin-dashboard.student-course-show' ,compact('course'));
+        $user = Auth::user();
+
+        $course = Course::with([
+            'sections.lessons',
+            'sections.quizzes',
+            'teacher',
+        ])->findOrFail($id);
+
+        // التحقق من أن الطالب مسجّل في الكورس (بشكل نشط)
+        if ($user->hasRole('student')) {
+            $isEnrolled = $user->activeCourses()->where('courses.id', $id)->exists();
+            if (! $isEnrolled) {
+                return redirect()->route('student.available-courses')
+                    ->with('info', 'يجب أن تكون مسجّلاً في هذا الكورس للوصول إليه.');
+            }
+        }
+
+        return view('dashboard.student.course-show', compact('course'));
     }
 }

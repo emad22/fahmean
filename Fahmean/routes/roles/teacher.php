@@ -11,15 +11,6 @@ Route::prefix('dashboard')->middleware(['auth', 'role:teacher|assistant_teacher|
         Route::get('/profile', 'teacherProfile')->name('profile');
         Route::get('/settings', 'teacherSettings')->name('settings');
         
-        // Student-like features for teachers (maybe they enrolled in other courses)
-        Route::get('/announcements', 'teacherAnnouncements')->name('announcements');
-        Route::get('/assignments', 'teacherAssignments')->name('assignments');
-        Route::get('/enrolled-courses', 'teacherEnrolledCourses')->name('enrolled-courses');
-        Route::get('/my-quiz-attempts', 'teacherMyQuizAttempts')->name('my-quiz-attempts');
-        Route::get('/order-history', 'teacherOrderHistory')->name('order-history');
-        Route::get('/quiz-attempts', 'teacherQuizAttempts')->name('quiz-attempts');
-        Route::get('/reviews', 'teacherReviews')->name('reviews');
-        Route::get('/wishlist', 'teacherWishlist')->name('wishlist');
     });
 
 

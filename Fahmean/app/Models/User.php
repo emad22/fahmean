@@ -110,7 +110,16 @@ class User extends Authenticatable
     {
         // Courses linked through the student enrollment pivot table.
         return $this->belongsToMany(Course::class, 'course_student', 'student_id', 'course_id')
+            ->withPivot('status')
             ->withTimestamps();
+    }
+
+    /**
+     * Get the courses that the student is actively enrolled in.
+     */
+    public function activeCourses()
+    {
+        return $this->courses()->wherePivot('status', 'active');
     }
 
     /**

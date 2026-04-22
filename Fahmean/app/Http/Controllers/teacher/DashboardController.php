@@ -54,13 +54,4 @@ class DashboardController extends Controller
         return view('dashboard.admin-dashboard.users.show', compact('user'));
     }
 
-    // Placeholders for other routes to prevent errors
-    public function teacherAnnouncements() { return view('dashboard.admin-dashboard.users.show', ['user' => auth()->user()]); }
-    public function teacherAssignments() { return view('dashboard.admin-dashboard.users.show', ['user' => auth()->user()]); }
-    public function teacherEnrolledCourses() { return view('dashboard.admin-dashboard.users.show', ['user' => auth()->user()]); }
-    public function teacherMyQuizAttempts() { return view('dashboard.admin-dashboard.users.show', ['user' => auth()->user()]); }
-    public function teacherOrderHistory() { return view('dashboard.admin-dashboard.users.show', ['user' => auth()->user()]); }
-    public function teacherQuizAttempts() { return view('dashboard.admin-dashboard.users.show', ['user' => auth()->user()]); }
-    public function teacherReviews() { return view('dashboard.admin-dashboard.users.show', ['user' => auth()->user()]); }
-    public function teacherWishlist() { return view('dashboard.admin-dashboard.users.show', ['user' => auth()->user()]); }
 }

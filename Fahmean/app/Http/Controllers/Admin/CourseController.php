@@ -74,14 +74,15 @@ class CourseController extends Controller implements HasMiddleware
             $subjectId = $teacher->subjects()->first()?->id;
 
             $course = Course::create([
-                'title'        => $request->title,
-                'description'  => $request->description,
-                'price'        => $request->price,
-                'teacher_id'   => $teacher->id,
-                'subject_id'   => $subjectId,
-                'video_source' => $request->video_source,
-                'video_url'    => $request->video_url,
-                'status'       => 'draft',
+                'title'         => $request->title,
+                'description'   => $request->description,
+                'price'         => $request->price,
+                'teacher_id'    => $teacher->id,
+                'subject_id'    => $subjectId,
+                'video_source'  => $request->video_source,
+                'video_url'     => $request->video_url,
+                'academic_year' => $request->academic_year,
+                'status'        => 'draft',
             ]);
 
             if ($request->hasFile('image')) {
@@ -121,9 +122,10 @@ class CourseController extends Controller implements HasMiddleware
         DB::beginTransaction();
         try {
             $rules = [
-                'title'       => 'required',
-                'price'       => 'required|numeric',
-                'image'       => 'nullable|image',
+                'title'          => 'required',
+                'price'          => 'required|numeric',
+                'image'          => 'nullable|image',
+                'academic_year'  => 'nullable|string',
             ];
 
             if (auth()->user()->hasRole(['admin'])) {
@@ -138,13 +140,14 @@ class CourseController extends Controller implements HasMiddleware
             }
 
             $updateData = [
-                'title'        => $request->title,
-                'description'  => $request->description,
-                'price'        => $request->price,
-                'image'        => $image,
-                'video_source' => $request->video_source,
-                'video_url'    => $request->video_url,
-                'status'       => $request->status ?? 'draft',
+                'title'         => $request->title,
+                'description'   => $request->description,
+                'price'         => $request->price,
+                'image'         => $image,
+                'video_source'  => $request->video_source,
+                'video_url'     => $request->video_url,
+                'academic_year' => $request->academic_year,
+                'status'        => $request->status ?? 'draft',
             ];
 
             if (auth()->user()->hasRole('admin')) {

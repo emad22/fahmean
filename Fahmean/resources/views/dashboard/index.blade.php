@@ -110,6 +110,12 @@
             border-color: #667eea;
         }
 
+        a:has(.dashboard-stat-card):hover .dashboard-stat-card {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-hover);
+            border-color: #667eea;
+        }
+
         .stat-icon {
             width: 60px;
             height: 60px;
@@ -374,7 +380,8 @@
     @role('student')
         <!-- Stats Row -->
         <div class="row g-4 mb-5">
-            <div class="col-lg-4 col-md-6 col-12">
+            <div class="col-lg-3 col-md-6 col-12">
+                <a href="{{ route('courses.index') }}" class="text-decoration-none">
                 <div class="dashboard-stat-card">
                     <div class="stat-icon icon-primary">
                         <i class="feather-book-open"></i>
@@ -382,8 +389,34 @@
                     <div class="stat-count">{{ $enrolledCoursesCount ?? 0 }}</div>
                     <div class="stat-label">كورسات مسجلة</div>
                 </div>
+                </a>
             </div>
-            <div class="col-lg-4 col-md-6 col-12">
+            <div class="col-lg-3 col-md-6 col-12">
+                <a href="{{ route('student.available-courses') }}" class="text-decoration-none">
+                <div class="dashboard-stat-card">
+                    <div class="stat-icon icon-purple">
+                        <i class="feather-grid"></i>
+                    </div>
+                    @php
+                        $availableCount = 0;
+                        $studentProfile = auth()->user()->student;
+                        if ($studentProfile) {
+                            $enrolledIds  = $studentProfile->activeCourses()->pluck('courses.id')->toArray();
+                            $requestedIds = \App\Models\EnrollmentRequest::where('student_id', auth()->id())->pluck('course_id')->toArray();
+                            $availableCount = \App\Models\Course::where('status','published')
+                                ->where('academic_year', $studentProfile->academic_year)
+                                ->whereHas('subject', fn($q) => $q->where('grade_id', $studentProfile->grade_id))
+                                ->whereNotIn('id', $enrolledIds)
+                                ->count();
+                        }
+                    @endphp
+                    <div class="stat-count">{{ $availableCount }}</div>
+                    <div class="stat-label">كورسات متاحة</div>
+                </div>
+                </a>
+            </div>
+            <div class="col-lg-3 col-md-6 col-12">
+                <a href="{{ route('student.my-enrollment-requests') }}" class="text-decoration-none">
                 <div class="dashboard-stat-card">
                     <div class="stat-icon icon-warning">
                         <i class="feather-clock"></i>
@@ -391,8 +424,9 @@
                     <div class="stat-count">{{ $activeCoursesCount ?? 0 }}</div>
                     <div class="stat-label">قيد الدراسة</div>
                 </div>
+                </a>
             </div>
-            <div class="col-lg-4 col-md-6 col-12">
+            <div class="col-lg-3 col-md-6 col-12">
                 <div class="dashboard-stat-card">
                     <div class="stat-icon icon-success">
                         <i class="feather-award"></i>
@@ -408,7 +442,7 @@
             <div class="col-lg-7">
                 <div class="section-header">
                     <h4><i class="feather-play-circle"></i> استكمل التعلم</h4>
-                    <a href="{{ route('courseFilterOneToggle') }}" class="view-all-btn">
+                    <a href="{{ route('student.available-courses') }}" class="view-all-btn">
                         تصفح الكل <i class="feather-arrow-left"></i>
                     </a>
                 </div>
@@ -440,7 +474,7 @@
                             <i class="feather-book-open display-4 text-muted opacity-25 mb-3"></i>
                             <h5 class="mb-2">لا توجد كورسات نشطة</h5>
                             <p class="text-muted">ابدأ بتصفح الكورسات وسجل الآن</p>
-                            <a href="{{ route('courseFilterOneToggle') }}" class="rbt-btn btn-sm btn-gradient mt-3">تصفح الكورسات</a>
+                            <a href="{{ route('student.available-courses') }}" class="rbt-btn btn-sm btn-gradient mt-3">تصفح الكورسات</a>
                         </div>
                     @endforelse
                 </div>

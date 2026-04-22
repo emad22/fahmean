@@ -5,6 +5,7 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\Student\CourseController;
 use App\Http\Controllers\Student\DashboardController as StudentDashboardController;
 use App\Http\Controllers\Student\AssignmentController;
+use App\Http\Controllers\Student\EnrollmentRequestController;
 
 Route::prefix('dashboard')->middleware(['auth', 'role:student|admin'])->name('student.')->group(function () {
     
@@ -21,13 +22,13 @@ Route::prefix('dashboard')->middleware(['auth', 'role:student|admin'])->name('st
     Route::get('/assignments/{assignment}', [AssignmentController::class, 'show'])->name('assignments.show');
     Route::post('/assignments/{assignment}/submit', [AssignmentController::class, 'submit'])->name('assignments.submit');
 
+    // Enrollment Requests
+    Route::get('/available-courses', [EnrollmentRequestController::class, 'availableCourses'])->name('available-courses');
+    Route::post('/courses/{course}/request-enrollment', [EnrollmentRequestController::class, 'store'])->name('enrollment-requests.store');
+    Route::get('/my-enrollment-requests', [EnrollmentRequestController::class, 'myRequests'])->name('my-enrollment-requests');
+
     Route::controller(DashboardController::class)->group(function () {
-        Route::get('/student-profile', 'studentProfile')->name('profile');
-        Route::get('/student-wishlist', 'studentWishlist')->name('wishlist');
-        Route::get('/student-reviews', 'studentReviews')->name('reviews');
         Route::get('/student-my-quiz-attempts', 'studentMyQuizAttempts')->name('my-quiz-attempts');
-        Route::get('/student-order-history', 'studentOrderHistory')->name('order-history');
-        Route::get('/student-settings', 'studentSettings')->name('settings');
     });
 
     // Quiz Routes

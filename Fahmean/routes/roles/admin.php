@@ -6,6 +6,7 @@ use App\Http\Controllers\Admin\GradeController;
 use App\Http\Controllers\Admin\StudentController;
 use App\Http\Controllers\Admin\SubjectController;
 use App\Http\Controllers\Admin\TeacherSubjectController;
+use App\Http\Controllers\Admin\EnrollmentRequestController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\DashboardController;
@@ -64,6 +65,12 @@ Route::prefix('dashboard')->middleware(['auth', 'role:admin|teacher|assistant_te
     Route::resource('assignments', AssignmentController::class);
     Route::get('/assignments/{assignment}/submissions', [AssignmentController::class, 'submissions'])->name('assignments.submissions');
     Route::post('/assignment-submissions/{submission}/grade', [AssignmentController::class, 'grade'])->name('assignment-submissions.grade');
+
+    // 📋 Enrollment Requests
+    Route::get('/enrollment-requests', [EnrollmentRequestController::class, 'index'])->name('enrollment-requests.index');
+    Route::post('/enrollment-requests/{enrollmentRequest}/enroll', [EnrollmentRequestController::class, 'enroll'])->name('enrollment-requests.enroll');
+    Route::post('/enrollment-requests/{enrollmentRequest}/reject', [EnrollmentRequestController::class, 'reject'])->name('enrollment-requests.reject');
+    Route::delete('/courses/{course}/students/{user}/unenroll', [EnrollmentRequestController::class, 'unenroll'])->name('enrollment-requests.unenroll');
 
     // 8️⃣ Roles & Permissions
     Route::resource('roles', RoleController::class);

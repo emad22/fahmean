@@ -195,7 +195,7 @@
                                                     <textarea name="description" class="form-control premium-input" rows="4" placeholder="اكتب وصفاً جذاباً يشجع الطلاب على الالتحاق..."></textarea>
                                                 </div>
                                                 @role('admin')
-                                                <div class="col-12">
+                                                <div class="col-md-6">
                                                     <label>المعلم المحاضر</label>
                                                     <select name="teacher_id" class="form-select premium-input">
                                                         <option value="">اختر المعلم من القائمة</option>
@@ -205,6 +205,15 @@
                                                     </select>
                                                 </div>
                                                 @endrole
+                                                <div class="col-md-{{ auth()->user()->hasRole('admin') ? '6' : '12' }}">
+                                                    <label>السنة الدراسية *</label>
+                                                    <select name="academic_year" class="form-select premium-input" required>
+                                                        <option value="">اختر السنة الدراسية</option>
+                                                        <option value="2023/2024">2023/2024</option>
+                                                        <option value="2024/2025" selected>2024/2025</option>
+                                                        <option value="2025/2026">2025/2026</option>
+                                                    </select>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>

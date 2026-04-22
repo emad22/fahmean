@@ -67,6 +67,26 @@
                         </li>
                         @endcan
 
+                        @if(auth()->user()->hasRole(['admin','teacher','assistant_teacher']))
+                        <li>
+                            <a href="{{ route('admin.enrollment-requests.index') }}" class="d-flex align-items-center justify-content-between">
+                                <span class="d-flex align-items-center gap-2">
+                                    <i class="feather-users"></i>
+                                    <span>طلبات التسجيل</span>
+                                </span>
+                                @php
+                                    $pendingBadge = \App\Models\EnrollmentRequest::pending()
+                                        ->when(auth()->user()->hasRole(['teacher','assistant_teacher']), function($q){
+                                            $q->whereHas('course', fn($qq) => $qq->where('teacher_id', auth()->user()->getEffectiveTeacherId()));
+                                        })->count();
+                                @endphp
+                                @if($pendingBadge > 0)
+                                    <span class="badge bg-danger rounded-pill">{{ $pendingBadge }}</span>
+                                @endif
+                            </a>
+                        </li>
+                        @endif
+
                         @can('view lesson')
                         <li>
                             <a href="{{ route('lessons.index') }}">
@@ -132,15 +152,29 @@
                             </a>
                         </li>
                         <li>
-                            <a href="{{ route('student.my-quizzes') }}">
-                                <i class="feather-check-square"></i>
-                                <span>اختباراتي</span>
+                            <a href="{{ route('student.available-courses') }}">
+                                <i class="feather-grid"></i>
+                                <span>الكورسات المتاحة</span>
                             </a>
                         </li>
                         <li>
-                            <a href="{{ route('student.order-history') }}">
-                                <i class="feather-shopping-bag"></i>
-                                <span>سجل الطلبات</span>
+                            <a href="{{ route('student.my-enrollment-requests') }}" class="d-flex align-items-center justify-content-between">
+                                <span class="d-flex align-items-center gap-2">
+                                    <i class="feather-send"></i>
+                                    <span>طلباتي للتسجيل</span>
+                                </span>
+                                @php
+                                    $myPending = \App\Models\EnrollmentRequest::where('student_id', auth()->id())->where('status','pending')->count();
+                                @endphp
+                                @if($myPending > 0)
+                                    <span class="badge bg-warning text-dark rounded-pill">{{ $myPending }}</span>
+                                @endif
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{{ route('student.my-quizzes') }}">
+                                <i class="feather-check-square"></i>
+                                <span>اختباراتي</span>
                             </a>
                         </li>
                     </ul>

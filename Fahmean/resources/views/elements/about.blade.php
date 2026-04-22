@@ -1108,7 +1108,7 @@
             <div class="row gy-5 align-items-center row--30">
                 <div class="col-lg-7">
                     <div class="content radius-6 overflow-hidden">
-                        <div class="plyr__video-embed rbtplayer">
+                        <div class="plyr__video-embed rbtplayer" dir="ltr">
                             <iframe class="radius-6 overflow-hidden" src="{{ asset('https://www.youtube.com/embed/qKzhrXqT6oE') }}" allowfullscreen allow="autoplay"></iframe>
                         </div>
                     </div>

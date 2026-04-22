@@ -3,62 +3,67 @@
 namespace App\Http\Controllers\Student;
 
 use App\Http\Controllers\Controller;
-use App\Models\Course;
-use App\Models\Lesson;
-use App\Models\Order;
-use App\Models\Quiz;
-use App\Models\Wishlist;
-use Illuminate\Http\Request;
+use App\Models\EnrollmentRequest;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class DashboardController extends Controller
 {
     public function index()
     {
-        $student = auth()->user()->student; // Resolve the related student profile for the logged-in user.
+        $user    = Auth::user();
+        $student = $user->student;
 
         if (! $student) {
             return view('dashboard.index', [
                 'enrolledCoursesCount' => 0,
-                'activeCoursesCount' => 0,
-                'completedCoursesCount' => 0,
-                'recentCourses' => collect(),
-                'quizAttempts' => collect(),
-            ])->with('warning', 'You are viewing this page as Admin without a Student profile.');
+                'activeCoursesCount'   => 0,
+                'completedCoursesCount'=> 0,
+                'pendingRequestsCount' => 0,
+                'recentCourses'        => collect(),
+                'quizAttempts'         => collect(),
+            ]);
         }
 
-        $enrolledCoursesCount = $student->courses()->count();
+        // ---- استخدام activeCourses() الصحيحة ----
+        $enrolledCoursesCount = $user->activeCourses()->count();
 
-        // Count courses that still contain lessons not completed by the student.
-        $activeCoursesCount = $student->courses()->whereHas('lessons', function ($q) use ($student) {
-            $q->whereDoesntHave('completedStudents', function ($qq) use ($student) {
-                $qq->where('student_id', $student->id);
-            });
-        })->count();
+        // كورسات فيها درس لم يُكمله بعد
+        $activeCoursesCount = $user->activeCourses()
+            ->whereHas('lessons', function ($q) use ($user) {
+                $q->whereDoesntHave('completedStudents', function ($qq) use ($user) {
+                    $qq->where('student_id', $user->id);
+                });
+            })->count();
 
-        // Count courses that include completed lessons for this student.
-        $completedCoursesCount = $student->courses()->whereHas('lessons', function ($q) use ($student) {
-            $q->whereHas('completedStudents', function ($qq) use ($student) {
-                $qq->where('student_id', $student->id);
-            });
-        })->count();
+        // كورسات أكمل فيها درساً واحداً على الأقل
+        $completedCoursesCount = $user->activeCourses()
+            ->whereHas('lessons', function ($q) use ($user) {
+                $q->whereHas('completedStudents', function ($qq) use ($user) {
+                    $qq->where('student_id', $user->id);
+                });
+            })->count();
 
-        // Fetch the latest 5 enrolled courses.
-        $recentCourses = $student->courses()->latest()->take(5)->get();
+        // آخر 5 كورسات مسجّل فيها
+        $recentCourses = $user->activeCourses()
+            ->with(['teacher', 'subject'])
+            ->latest('course_student.created_at')
+            ->take(5)
+            ->get();
 
-        // Fetch the latest 5 quiz attempts.
+        // آخر 5 محاولات اختبار — quiz_student.student_id = students.id
         $quizAttempts = $student->quizzes()->latest()->take(5)->get();
 
-        // Wishlist placeholder.
-        // $wishlist = Wishlist::where('student_id', $student->id)->latest()->take(5)->get();
-
-        // Order history placeholder.
-        // $orders = Order::where('student_id', $student->id)->latest()->take(5)->get();
+        // طلبات التسجيل المعلّقة
+        $pendingRequestsCount = EnrollmentRequest::where('student_id', $user->id)
+            ->where('status', 'pending')
+            ->count();
 
         return view('dashboard.index', compact(
             'enrolledCoursesCount',
             'activeCoursesCount',
             'completedCoursesCount',
+            'pendingRequestsCount',
             'recentCourses',
             'quizAttempts',
         ));

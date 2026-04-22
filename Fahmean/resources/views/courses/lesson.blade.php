@@ -246,7 +246,22 @@
                     </div>
                 </div>
                 <div class="inner">
-                    <div class="plyr__video-embed rbtplayer">
+                    <style>
+                        /* Force LTR for Plyr controls even in RTL page */
+                        .plyr {
+                            direction: ltr !important;
+                        }
+                        .plyr__controls {
+                            direction: ltr !important;
+                        }
+                        /* Hide unwanted icons just in case */
+                        .plyr__control[data-plyr="captions"],
+                        .plyr__control[data-plyr="pip"],
+                        .plyr__control[data-plyr="airplay"] {
+                            display: none !important;
+                        }
+                    </style>
+                    <div class="plyr__video-embed rbtplayer" dir="ltr">
                         <iframe src="{{ asset('https://www.youtube.com/embed/qKzhrXqT6oE') }}" allowfullscreen allow="autoplay"></iframe>
                     </div>
                     <div class="content">

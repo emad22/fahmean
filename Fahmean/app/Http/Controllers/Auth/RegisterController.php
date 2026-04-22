@@ -62,7 +62,7 @@ class RegisterController extends Controller
                 'user_id'              => $user->id,
                 'education_level_id'   => $request->education_level_id,
                 'grade_id'             => $request->grade_id,
-                'status'               => 'pending',
+                'status'               => 'approved',
                 'student_phone_number' => $request->phone_number,
                 'parent_phone_number'  => $request->parent_phone,
                 'academic_year'        => $request->academic_year,

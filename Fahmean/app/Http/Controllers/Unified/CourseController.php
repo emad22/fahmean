@@ -27,6 +27,7 @@ class CourseController extends Controller
         }
 
         if ($user->hasRole('student')) {
+            // /dashboard/courses = كورساتي المسجّلة بعد الموافقة
             return app(StudentCourseController::class)->index();
         }
 

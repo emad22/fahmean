@@ -18,6 +18,7 @@ class Course extends Model
         'video_url',
         'teacher_id',
         'subject_id',
+        'academic_year',
         'status'
     ];
 
