@@ -89,7 +89,15 @@ class HomeController extends Controller
 
     public function home()
     {
-        return view('home.home');
+        $teachers = \App\Models\User::role('teacher')->take(3)->get();
+        $courses = \App\Models\Course::with(['teacher', 'subject'])->where('status', 'active')->take(6)->get();
+        
+        $studentsCount = \App\Models\Student::count();
+        $lessonsCount = \App\Models\Lesson::count();
+        $questionsCount = \App\Models\Question::count();
+        $coursesCount = \App\Models\Course::count();
+
+        return view('home.home', compact('teachers', 'courses', 'studentsCount', 'lessonsCount', 'questionsCount', 'coursesCount'));
     }
 
     public function marketplace()

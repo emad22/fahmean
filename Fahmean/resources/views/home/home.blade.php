@@ -785,7 +785,7 @@
                                     <img src="{{ asset('assets/images/icons/counter-01.png') }}" alt="Icons Images">
                                 </div>
                                 <div class="content">
-                                    <h3 class="counter"><span class="odometer" data-count="500">00</span>
+                                    <h3 class="counter"><span class="odometer" data-count="{{ $studentsCount ?? 500 }}">00</span>
                                     </h3>
                                     <span class="subtitle">طالب مشترك</span>
                                 </div>
@@ -803,9 +803,9 @@
                                     <img src="{{ asset('assets/images/icons/counter-02.png') }}" alt="Icons Images">
                                 </div>
                                 <div class="content">
-                                    <h3 class="counter"><span class="odometer" data-count="800">00</span>
+                                    <h3 class="counter"><span class="odometer" data-count="{{ $lessonsCount ?? 800 }}">00</span>
                                     </h3>
-                                    <span class="subtitle">ساعة شرح مسجلة</span>
+                                    <span class="subtitle">درس مشروح</span>
                                 </div>
                             </div>
                         </div>
@@ -821,7 +821,7 @@
                                     <img src="{{ asset('assets/images/icons/counter-03.png') }}" alt="Icons Images">
                                 </div>
                                 <div class="content">
-                                    <h3 class="counter"><span class="odometer" data-count="1000">00</span>
+                                    <h3 class="counter"><span class="odometer" data-count="{{ $questionsCount ?? 1000 }}">00</span>
                                     </h3>
                                     <span class="subtitle">سؤال في بنك الأسئلة</span>
                                 </div>
@@ -839,9 +839,9 @@
                                     <img src="{{ asset('assets/images/category/infographic.png') }}" alt="Icons Images">
                                 </div>
                                 <div class="content">
-                                    <h3 class="counter"><span class="odometer" data-count="100">00</span>
+                                    <h3 class="counter"><span class="odometer" data-count="{{ $coursesCount ?? 100 }}">00</span>
                                     </h3>
-                                    <span class="subtitle">تقرير متابعة</span>
+                                    <span class="subtitle">دورة تدريبية</span>
                                 </div>
                             </div>
                         </div>
@@ -1031,6 +1031,28 @@
                     </div>
                 </div>
                 <div class="row row--15 mt_dec--30">
+                    @forelse($teachers as $teacher)
+                    <!-- Start Single Team  -->
+                    <div class="col-lg-4 col-md-6 col-12 mt--30">
+                        <div class="rbt-team team-style-default style-three rbt-hover">
+                            <div class="inner">
+                                <div class="thumbnail"><img src="{{ $teacher->profile_image ? asset($teacher->profile_image) : asset('assets/images/team/team-07.jpg') }}"
+                                        alt="{{ $teacher->name }}"></div>
+                                <div class="content">
+                                    <a href="{{ route('courseFilterOneToggle') }}">
+                                        <h2 class="title">أ. {{ $teacher->name }}</h2>
+                                    </a>
+                                    <h6 class="subtitle theme-gradient">{{ $teacher->subjects->first()->name ?? 'مدرس' }}</h6>
+                                    <span class="team-form">
+                                        <i class="feather-map-pin"></i>
+                                        <span class="location">القاهرة، ج.م.ع</span>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- End Single Team  -->
+                    @empty
                     <!-- Start Single Team  -->
                     <div class="col-lg-4 col-md-6 col-12 mt--30">
                         <div class="rbt-team team-style-default style-three rbt-hover">
@@ -1051,44 +1073,7 @@
                         </div>
                     </div>
                     <!-- End Single Team  -->
-
-                    <!-- Start Single Team  -->
-                    <div class="col-lg-4 col-md-6 col-12 mt--30">
-                        <div class="rbt-team team-style-default style-three rbt-hover">
-                            <div class="inner">
-                                <div class="thumbnail"><img src="{{ asset('assets/images/team/team-08.jpg') }}"
-                                        alt="Corporate Template"></div>
-                                <div class="content">
-                                    <h2 class="title">أ. سامح أحمد</h2>
-                                    <h6 class="subtitle theme-gradient">مدرس التاريخ</h6>
-                                    <span class="team-form">
-                                        <i class="feather-map-pin"></i>
-                                        <span class="location">القاهرة، ج.م.ع</span>
-                                    </span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- End Single Team  -->
-
-                    <!-- Start Single Team  -->
-                    <div class="col-lg-4 col-md-6 col-12 mt--30">
-                        <div class="rbt-team team-style-default style-three rbt-hover">
-                            <div class="inner">
-                                <div class="thumbnail"><img src="{{ asset('assets/images/team/team-09.jpg') }}"
-                                        alt="Corporate Template"></div>
-                                <div class="content">
-                                    <h2 class="title">أ. عايدة رياض</h2>
-                                    <h6 class="subtitle theme-gradient">مدرس الرياضيات</h6>
-                                    <span class="team-form">
-                                        <i class="feather-map-pin"></i>
-                                        <span class="location">القاهرة، ج.م.ع</span>
-                                    </span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- End Single Team  -->
+                    @endforelse
                 </div>
 
                 <div class="row">
@@ -1131,6 +1116,43 @@
                 </div>
                 <!-- Start Card Area -->
                 <div class="row g-5">
+                    @forelse($courses as $course)
+                    <!-- Start Single Course  -->
+                    <div class="col-lg-4 col-md-6 col-12">
+                        <div class="rbt-card variation-01 rbt-hover">
+                            <div class="rbt-card-img">
+                                <a href="{{ route('courseDetails') }}">
+                                    <img src="{{ $course->image ? asset($course->image) : asset('assets/images/course/course-01.jpg') }}" alt="{{ $course->title }}">
+                                </a>
+                            </div>
+                            <div class="rbt-card-body">
+                                <h4 class="rbt-card-title"><a href="{{ route('courseDetails') }}">{{ $course->title }}</a></h4>
+                                <ul class="rbt-meta">
+                                    <li><i class="feather-book"></i>{{ $course->lessons_count ?? 0 }} درس</li>
+                                    <li><i class="feather-users"></i>{{ $course->students_count ?? 0 }} طالب</li>
+                                </ul>
+                                <p class="rbt-card-text">{{ \Illuminate\Support\Str::limit($course->description, 80) }}</p>
+                                <div class="rbt-author-meta mb--20">
+                                    <div class="rbt-avater">
+                                        <a href="#">
+                                            <img src="{{ optional($course->teacher)->profile_image ? asset(optional($course->teacher)->profile_image) : asset('assets/images/client/avater-01.png') }}"
+                                                alt="{{ optional($course->teacher)->name }}">
+                                        </a>
+                                    </div>
+                                    <div class="rbt-author-info">
+                                        أستاذ <a href="{{ route('profile') }}">{{ optional($course->teacher)->name ?? 'غير محدد' }}</a> مادة <a href="#">{{ optional($course->subject)->name ?? 'غير محدد' }}</a>
+                                    </div>
+                                </div>
+
+                                <div class="rbt-card-bottom">
+                                    <a class="rbt-btn-link" href="{{ route('courseDetails') }}">احجز الدورة<i
+                                            class="feather-arrow-right"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- End Single Course  -->
+                    @empty
                     <!-- Start Single Course  -->
                     <div class="col-lg-4 col-md-6 col-12">
                         <div class="rbt-card variation-01 rbt-hover">
@@ -1144,23 +1166,6 @@
                                 </a>
                             </div>
                             <div class="rbt-card-body">
-
-                                {{--<div class="rbt-card-top">
-                                    <div class="rbt-review">
-                                        <div class="rating">
-                                            <i class="fas fa-star"></i>
-                                            <i class="fas fa-star"></i>
-                                            <i class="fas fa-star"></i>
-                                            <i class="fas fa-star"></i>
-                                            <i class="fas fa-star"></i>
-                                        </div>
-                                        <span class="rating-count"> (15 Reviews)</span>
-                                    </div>
-                                    <div class="rbt-bookmark-btn">
-                                        <a class="rbt-round-btn" title="Bookmark" href="#"><i
-                                                class="feather-bookmark"></i></a>
-                                    </div>
-                                </div>--}}
 
                                 <h4 class="rbt-card-title"><a href="{{ route('courseDetails') }}">اللغة العربية أولى
                                         ثانوي</a>
@@ -1185,10 +1190,6 @@
                                 </div>
 
                                 <div class="rbt-card-bottom">
-                                    {{-- <div class="rbt-price">
-                                        <span class="current-price">$60</span>
-                                        <span class="off-price">$120</span>
-                                    </div>--}}
                                     <a class="rbt-btn-link" href="{{ route('courseDetails') }}">احجز الدورة<i
                                             class="feather-arrow-right"></i></a>
                                 </div>
@@ -1196,138 +1197,7 @@
                         </div>
                     </div>
                     <!-- End Single Course  -->
-
-                    <!-- Start Single Course  -->
-                    <div class="col-lg-4 col-md-6 col-12">
-                        <div class="rbt-card variation-01 rbt-hover">
-                            <div class="rbt-card-img">
-                                <a href="{{ route('courseDetails') }}">
-                                    <img src="{{ asset('assets/images/course/course-01.jpg') }}" alt="Card image">
-                                    <div class="rbt-badge-3">
-                                        <span>-50%</span>
-                                        <span>خصم</span>
-                                    </div>
-                                </a>
-                            </div>
-                            <div class="rbt-card-body">
-
-                                {{--<div class="rbt-card-top">
-                                    <div class="rbt-review">
-                                        <div class="rating">
-                                            <i class="fas fa-star"></i>
-                                            <i class="fas fa-star"></i>
-                                            <i class="fas fa-star"></i>
-                                            <i class="fas fa-star"></i>
-                                            <i class="fas fa-star"></i>
-                                        </div>
-                                        <span class="rating-count"> (15 Reviews)</span>
-                                    </div>
-                                    <div class="rbt-bookmark-btn">
-                                        <a class="rbt-round-btn" title="Bookmark" href="#"><i
-                                                class="feather-bookmark"></i></a>
-                                    </div>
-                                </div>--}}
-
-                                <h4 class="rbt-card-title"><a href="{{ route('courseDetails') }}">اللغة العربية أولى
-                                        ثانوي</a>
-                                </h4>
-                                <ul class="rbt-meta">
-                                    <li><i class="feather-book"></i>20 درس</li>
-                                    <li><i class="feather-users"></i>40 طالب</li>
-                                </ul>
-                                <p class="rbt-card-text">اللغة العربية للصف الأول الثانوي متعة تعلم العربية والتعامل مع
-                                    أسئلة قواعد النحو والبلاغة</p>
-                                <div class="rbt-author-meta mb--20">
-                                    <div class="rbt-avater">
-                                        <a href="#">
-                                            <img src="{{ asset('assets/images/client/avater-01.png') }}"
-                                                alt="Sophia Jaymes">
-                                        </a>
-                                    </div>
-                                    <div class="rbt-author-info">
-                                        أستاذ <a href="{{ route('profile') }}">سامح أحمد</a> مادة <a href="#">اللغة
-                                            العربية</a>
-                                    </div>
-                                </div>
-
-                                <div class="rbt-card-bottom">
-                                    {{-- <div class="rbt-price">
-                                        <span class="current-price">$60</span>
-                                        <span class="off-price">$120</span>
-                                    </div>--}}
-                                    <a class="rbt-btn-link" href="{{ route('courseDetails') }}">احجز الدورة<i
-                                            class="feather-arrow-right"></i></a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- End Single Course  -->
-
-                    <!-- Start Single Course  -->
-                    <div class="col-lg-4 col-md-6 col-12">
-                        <div class="rbt-card variation-01 rbt-hover">
-                            <div class="rbt-card-img">
-                                <a href="{{ route('courseDetails') }}">
-                                    <img src="{{ asset('assets/images/course/course-01.jpg') }}" alt="Card image">
-                                    <div class="rbt-badge-3">
-                                        <span>-50%</span>
-                                        <span>خصم</span>
-                                    </div>
-                                </a>
-                            </div>
-                            <div class="rbt-card-body">
-
-                                {{--<div class="rbt-card-top">
-                                    <div class="rbt-review">
-                                        <div class="rating">
-                                            <i class="fas fa-star"></i>
-                                            <i class="fas fa-star"></i>
-                                            <i class="fas fa-star"></i>
-                                            <i class="fas fa-star"></i>
-                                            <i class="fas fa-star"></i>
-                                        </div>
-                                        <span class="rating-count"> (15 Reviews)</span>
-                                    </div>
-                                    <div class="rbt-bookmark-btn">
-                                        <a class="rbt-round-btn" title="Bookmark" href="#"><i
-                                                class="feather-bookmark"></i></a>
-                                    </div>
-                                </div>--}}
-
-                                <h4 class="rbt-card-title"><a href="{{ route('courseDetails') }}">اللغة العربية أولى
-                                        ثانوي</a>
-                                </h4>
-                                <ul class="rbt-meta">
-                                    <li><i class="feather-book"></i>20 درس</li>
-                                    <li><i class="feather-users"></i>40 طالب</li>
-                                </ul>
-                                <p class="rbt-card-text">اللغة العربية للصف الأول الثانوي متعة تعلم العربية والتعامل مع
-                                    أسئلة قواعد النحو والبلاغة</p>
-                                <div class="rbt-author-meta mb--20">
-                                    <div class="rbt-avater">
-                                        <a href="#">
-                                            <img src="{{ asset('assets/images/client/avater-01.png') }}"
-                                                alt="Sophia Jaymes">
-                                        </a>
-                                    </div>
-                                    <div class="rbt-author-info">
-                                        أستاذ <a href="{{ route('profile') }}">سامح أحمد</a> مادة <a href="#">اللغة
-                                            العربية</a>
-                                    </div>
-                                </div>
-
-                                <div class="rbt-card-bottom">
-                                    {{-- <div class="rbt-price">
-                                        <span class="current-price">$60</span>
-                                        <span class="off-price">$120</span>
-                                    </div>--}}
-                                    <a class="rbt-btn-link" href="{{ route('courseDetails') }}">احجز الدورة<i
-                                            class="feather-arrow-right"></i></a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- End Single Course  -->
+                    @endforelse
                 </div>
                 <!-- End Card Area -->
 
