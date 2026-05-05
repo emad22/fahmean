@@ -81,10 +81,9 @@
                     <div class="footer-widget">
                         <h5 class="ft-title">معلومات الاتصال</h5>
                         <ul class="ft-link">
-                            <li><span>الهاتف:</span> <a href="#">(406) 555-0120</a></li>
-                            <li><span>البريد الإلكتروني:</span> <a href="mailto:hr@example.com">pixcels@example.com</a>
-                            </li>
-                            <li><span>العنوان:</span> أمريكا الشمالية، الولايات المتحدة</li>
+                            <li><span>الهاتف والواتس:</span> <a href="tel:01007358554">01007358554</a></li>
+                            <li><span>البريد الإلكتروني:</span> <a href="mailto:info@ustazy.com">info@ustazy.com</a></li>
+                            <li><span>العنوان:</span> القاهرة، ج.م.ع</li>
                         </ul>
                         <ul class="social-icon social-default icon-naked justify-content-start mt--20">
                             <li><a href="https://www.facebook.com/">

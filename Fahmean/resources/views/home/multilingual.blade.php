@@ -3578,9 +3578,9 @@
                             <div class="footer-widget">
                                 <h5 class="ft-title">Get Contact</h5>
                                 <ul class="ft-link">
-                                    <li><span>Phone:</span> <a href="#">(406) 555-0120</a></li>
-                                    <li><span>E-mail:</span> <a href="mailto:hr@example.com">admin@example.com</a></li>
-                                    <li><span>Address:</span> <a href="#">15205 North Kierland Blvd.</a></li>
+                                    <li><span>Phone & WhatsApp:</span> <a href="tel:01007358554">01007358554</a></li>
+                                    <li><span>E-mail:</span> <a href="mailto:info@ustazy.com">info@ustazy.com</a></li>
+                                    <li><span>Address:</span> Cairo, Egypt</li>
                                 </ul>
 
                                 <h6 class="w-600 mt--25">Newsletter</h6>

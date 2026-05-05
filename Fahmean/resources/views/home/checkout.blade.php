@@ -1198,8 +1198,9 @@
                         <div class="footer-widget">
                             <h5 class="ft-title">Get Contact</h5>
                             <ul class="ft-link">
-                                <li><span>Phone:</span> <a href="#">(406) 555-0120</a></li>
-                                <li><span>E-mail:</span> <a href="mailto:hr@example.com">admin@example.com</a></li>
+                                <li><span>Phone & WhatsApp:</span> <a href="tel:01007358554">01007358554</a></li>
+                                <li><span>E-mail:</span> <a href="mailto:info@ustazy.com">info@ustazy.com</a></li>
+                                <li><span>Location:</span> Cairo, Egypt</li>
                             </ul>
 
                             <form class="newsletter-form mt--20" action="#">
