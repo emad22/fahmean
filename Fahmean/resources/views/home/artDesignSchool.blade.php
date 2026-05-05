@@ -3749,7 +3749,7 @@
                                 </p>
 
                                 <div class="contact-btn mt--30">
-                                    <a class="rbt-btn hover-icon-reverse btn-border-gradient radius-round" href="#">
+                                    <a class="rbt-btn hover-icon-reverse btn-border-gradient radius-round" href="{{ route('contact.show') }}">
                                         <div class="icon-reverse-wrapper">
                                             <span class="btn-text">Contact With Us</span>
                                             <span class="btn-icon"><i class="feather-arrow-right"></i></span>

@@ -191,7 +191,7 @@
     <div class="rbt-sticky-placeholder"></div>
 
     <!-- Start Header Top  -->
-     <div class="rbt-header-top rbt-header-top-1 header-space-betwween bg-not-transparent bg-color-darker top-expended-activation">
+     <div class="rbt-header-top rbt-header-top-1 header-space-betwween bg-not-transparent bg-color-darker top-expended-activation d-none">
         <div class="container-fluid">
             <div class="top-expended-wrapper">
                 <div class="top-expended-inner rbt-header-sec align-items-center ">

@@ -32,6 +32,11 @@ Route::prefix('pages')->group(function () {
         Route::get('/shop' ,'shop')->name('shop');
         Route::get('/single-product' ,'singleProduct')->name('singleProduct');
         Route::get('/subscription' ,'subscription')->name('subscription');
-        Route::get('/wishlist-2' ,'wishlist2')->name('wishlist2');
+        // Contact Us page routes
+        Route::get('/contact-us', function () {
+            return view('contact-us');
+        })->name('contact.show');
+        Route::post('/contact-us', [\App\Http\Controllers\ContactController::class, 'send'])->name('contact.send');
+
     });
 });

@@ -235,7 +235,7 @@
                             <div class="logo d-none logo-light"><a href="#"><img src="{{ asset('assets/images/dark/logo/logo-light.png') }}" alt="Edu-cause"></a></div>
                             <p class="description mt--20">نحن دائمًا نبحث عن الأشخاص الموهوبين والمتحمسين. لا تتردد قدم نفسك!</p>
                             <div class="contact-btn mt--30">
-                                <a class="rbt-btn hover-icon-reverse btn-border-gradient radius-round" href="#">
+                                <a class="rbt-btn hover-icon-reverse btn-border-gradient radius-round" href="{{ route('contact.show') }}">
                                     <div class="icon-reverse-wrapper">
                                         <span class="btn-text">تواصل معنا</span>
                                         <span class="btn-icon"><i class="feather-arrow-right"></i></span>
