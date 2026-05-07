@@ -72,6 +72,9 @@ Route::prefix('dashboard')->middleware(['auth', 'role:admin|teacher|assistant_te
     Route::post('/enrollment-requests/{enrollmentRequest}/reject', [EnrollmentRequestController::class, 'reject'])->name('enrollment-requests.reject');
     Route::delete('/courses/{course}/students/{user}/unenroll', [EnrollmentRequestController::class, 'unenroll'])->name('enrollment-requests.unenroll');
 
+    // 📋 Teacher Requests
+    Route::get('/teacher-requests', [\App\Http\Controllers\TeacherRequestController::class, 'index'])->name('teacher-requests.index');
+
     // 8️⃣ Roles & Permissions
     Route::resource('roles', RoleController::class);
     Route::resource('permissions', PermissionController::class);

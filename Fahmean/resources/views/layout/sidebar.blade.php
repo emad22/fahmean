@@ -87,6 +87,23 @@
                         </li>
                         @endif
 
+                        @role('admin')
+                        <li>
+                            <a href="{{ route('admin.teacher-requests.index') }}" class="d-flex align-items-center justify-content-between">
+                                <span class="d-flex align-items-center gap-2">
+                                    <i class="feather-user-plus"></i>
+                                    <span>طلبات المعلمين</span>
+                                </span>
+                                @php
+                                    $teacherReqCount = \App\Models\TeacherRequest::count();
+                                @endphp
+                                @if($teacherReqCount > 0)
+                                    <span class="badge bg-primary rounded-pill">{{ $teacherReqCount }}</span>
+                                @endif
+                            </a>
+                        </li>
+                        @endrole
+
                         @can('view lesson')
                         <li>
                             <a href="{{ route('lessons.index') }}">
