@@ -42,4 +42,11 @@ class TeacherRequestController extends Controller
 
         return back()->with('success', 'تم إرسال طلبك بنجاح، سنقوم بالتواصل معك قريباً.');
     }
+
+    public function markAsRead($id)
+    {
+        $request = \App\Models\TeacherRequest::findOrFail($id);
+        $request->update(['is_read' => true]);
+        return response()->json(['success' => true]);
+    }
 }

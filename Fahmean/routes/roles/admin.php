@@ -74,6 +74,7 @@ Route::prefix('dashboard')->middleware(['auth', 'role:admin|teacher|assistant_te
 
     // 📋 Teacher Requests
     Route::get('/teacher-requests', [\App\Http\Controllers\TeacherRequestController::class, 'index'])->name('teacher-requests.index');
+    Route::post('/teacher-requests/{id}/mark-as-read', [\App\Http\Controllers\TeacherRequestController::class, 'markAsRead'])->name('teacher-requests.mark-as-read');
 
     // 8️⃣ Roles & Permissions
     Route::resource('roles', RoleController::class);

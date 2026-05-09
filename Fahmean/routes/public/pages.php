@@ -39,8 +39,8 @@ Route::prefix('pages')->group(function () {
         Route::post('/contact-us', [\App\Http\Controllers\ContactController::class, 'send'])->name('contact.send');
 
         // Teacher Request routes
-        Route::get('/techer-request', [\App\Http\Controllers\TeacherRequestController::class, 'create'])->name('teacher.request.create');
-        Route::post('/techer-request', [\App\Http\Controllers\TeacherRequestController::class, 'store'])->name('teacher.request.store');
+        Route::get('/teacher-request', [\App\Http\Controllers\TeacherRequestController::class, 'create'])->name('teacher.request.create');
+        Route::post('/teacher-request', [\App\Http\Controllers\TeacherRequestController::class, 'store'])->name('teacher.request.store');
 
     });
 });

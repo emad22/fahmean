@@ -89,7 +89,11 @@ class HomeController extends Controller
 
     public function home()
     {
-        $teachers = \App\Models\User::role('teacher')->take(3)->get();
+        try {
+            $teachers = \App\Models\User::role('teacher')->take(3)->get();
+        } catch (\Exception $e) {
+            $teachers = collect();
+        }
         $courses = \App\Models\Course::with(['teacher', 'subject'])->where('status', 'active')->take(6)->get();
         
         $studentsCount = \App\Models\Student::count();

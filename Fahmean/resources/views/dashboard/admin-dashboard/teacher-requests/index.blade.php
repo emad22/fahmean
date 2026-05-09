@@ -3,6 +3,7 @@
 @php
     $header = 'false';
     $footer = 'false';
+    $topToBottom = 'true';
 @endphp
 
 @section('dashboard-content')
@@ -25,6 +26,37 @@
     .main-table thead th { background: #f8f9ff; font-weight: 700; color: #4a5568; border: none; padding: 18px 16px; font-size: 0.88rem; }
     .main-table tbody td { padding: 15px 16px; border-bottom: 1px solid #f0f0f8; vertical-align: middle; }
     .main-table tbody tr:hover { background: #fafbff; }
+
+    .modal-backdrop {
+        position: fixed;
+        top: 0;
+        right: 0;
+        z-index: 1 !important;
+        width: 100vw;
+        height: 100vh;
+        background-color: rgba(0,0,0,0.5) !important;
+    }
+
+    /* Dark Mode Support for Modals */
+    .active-dark-mode .modal-content {
+        background-color: #1a1a2e !important;
+        color: #e2e8f0 !important;
+        border: 1px solid rgba(255,255,255,0.1) !important;
+    }
+    .active-dark-mode .modal-header .modal-title,
+    .active-dark-mode .modal-body .fw-600 {
+        color: #ffffff !important;
+    }
+    .active-dark-mode .modal-body .text-muted {
+        color: #a0aec0 !important;
+    }
+    .active-dark-mode .modal-body .bg-light {
+        background-color: rgba(255,255,255,0.05) !important;
+        color: #cbd5e0 !important;
+    }
+    .active-dark-mode .btn-close {
+        filter: invert(1) grayscale(100%) brightness(200%);
+    }
 </style>
 
 <div class="hero-header">
@@ -64,40 +96,6 @@
                     <button class="btn btn-sm btn-primary rounded-pill px-3" data-bs-toggle="modal" data-bs-target="#detailModal{{ $req->id }}">
                         <i class="feather-eye me-1"></i> التفاصيل
                     </button>
-
-                    <!-- Details Modal -->
-                    <div class="modal fade" id="detailModal{{ $req->id }}" tabindex="-1" aria-hidden="true">
-                        <div class="modal-dialog modal-dialog-centered">
-                            <div class="modal-content" style="border-radius: 20px; border: none;">
-                                <div class="modal-header border-bottom-0 pt-4 px-4">
-                                    <h5 class="modal-title fw-800">تفاصيل الطلب: {{ $req->frist_name }}</h5>
-                                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-                                </div>
-                                <div class="modal-body px-4 pb-4">
-                                    <div class="mb-3">
-                                        <label class="text-muted small d-block mb-1">العنوان</label>
-                                        <div class="fw-600">{{ $req->address }}</div>
-                                    </div>
-                                    <div class="mb-3">
-                                        <label class="text-muted small d-block mb-1">الخبرة السابقة</label>
-                                        <div class="p-3 bg-light rounded-3" style="white-space: pre-line;">{{ $req->work_experience }}</div>
-                                    </div>
-                                    @if($req->facebook_link)
-                                    <div class="mb-3">
-                                        <label class="text-muted small d-block mb-1">رابط الفيسبوك</label>
-                                        <a href="{{ $req->facebook_link }}" target="_blank" class="text-primary fw-600">{{ $req->facebook_link }}</a>
-                                    </div>
-                                    @endif
-                                    @if($req->students_num)
-                                    <div>
-                                        <label class="text-muted small d-block mb-1">عدد الطلاب المتوقع</label>
-                                        <div class="fw-600">{{ $req->students_num }} طالب</div>
-                                    </div>
-                                    @endif
-                                </div>
-                            </div>
-                        </div>
-                    </div>
                 </td>
             </tr>
             @empty
@@ -117,4 +115,107 @@
     {{ $requests->links() }}
 </div>
 @endif
+
+@foreach($requests as $req)
+<div class="modal fade" id="detailModal{{ $req->id }}" tabindex="-1" aria-hidden="true" style="z-index: 9999;">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content" style="border-radius: 20px; border: none; box-shadow: 0 15px 50px rgba(0,0,0,0.15);">
+            <div class="modal-header border-bottom-0 pt-4 px-4">
+                <h5 class="modal-title fw-800">تفاصيل الطلب: {{ $req->frist_name }}</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" data-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body px-4 pb-4">
+                <div class="mb-3">
+                    <label class="text-muted small d-block mb-1">العنوان</label>
+                    <div class="fw-600">{{ $req->address }}</div>
+                </div>
+                <div class="mb-3">
+                    <label class="text-muted small d-block mb-1">الخبرة السابقة</label>
+                    <div class="p-3 bg-light rounded-3" style="white-space: pre-line; font-size: 0.95rem; line-height: 1.6;">{{ $req->work_experience }}</div>
+                </div>
+                @if($req->facebook_link)
+                <div class="mb-3">
+                    <label class="text-muted small d-block mb-1">رابط الفيسبوك</label>
+                    <a href="{{ $req->facebook_link }}" target="_blank" class="text-primary fw-600 text-break">{{ $req->facebook_link }}</a>
+                </div>
+                @endif
+                @if($req->students_num)
+                <div>
+                    <label class="text-muted small d-block mb-1">عدد الطلاب المتوقع</label>
+                    <div class="fw-600">{{ $req->students_num }} طالب</div>
+                </div>
+                @endif
+            </div>
+            <div class="modal-footer border-top-0 px-4 pb-4">
+                <button type="button" class="btn btn-secondary rounded-pill px-4" data-bs-dismiss="modal" data-dismiss="modal">إغلاق</button>
+            </div>
+        </div>
+    </div>
+</div>
+@endforeach
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Handle all close buttons
+        const closeButtons = document.querySelectorAll('[data-bs-dismiss="modal"], [data-dismiss="modal"]');
+        closeButtons.forEach(btn => {
+            btn.addEventListener('click', function() {
+                const modal = this.closest('.modal');
+                if (modal) {
+                    // Try Bootstrap 5 way
+                    if (window.bootstrap && bootstrap.Modal) {
+                        const modalInstance = bootstrap.Modal.getInstance(modal);
+                        if (modalInstance) modalInstance.hide();
+                    }
+                    // Fallback: manual cleanup
+                    setTimeout(() => {
+                        modal.classList.remove('show');
+                        modal.style.display = 'none';
+                        document.querySelectorAll('.modal-backdrop').forEach(b => b.remove());
+                        document.body.classList.remove('modal-open');
+                        document.body.style.overflow = '';
+                        document.body.style.paddingRight = '';
+                    }, 100);
+                }
+            });
+        });
+
+        // Mark as read when clicking details
+        document.querySelectorAll('[data-bs-target^="#detailModal"]').forEach(btn => {
+            btn.addEventListener('click', function() {
+                const modalId = this.getAttribute('data-bs-target').replace('#detailModal', '');
+                
+                fetch(`/dashboard/teacher-requests/${modalId}/mark-as-read`, {
+                    method: 'POST',
+                    headers: {
+                        'X-CSRF-TOKEN': '{{ csrf_token() }}',
+                        'Accept': 'application/json'
+                    }
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        // Hide the badge in the sidebar
+                        const sidebarBadge = document.querySelector('.badge.bg-primary');
+                        if (sidebarBadge && sidebarBadge.closest('a').getAttribute('href').includes('teacher-requests')) {
+                            // Only hide if it's the teacher requests badge
+                            // We can use a more specific selector if needed
+                            sidebarBadge.style.display = 'none';
+                        }
+                    }
+                });
+            });
+        });
+
+        // Also fix the backdrop issue if it persists
+        document.querySelectorAll('.modal').forEach(modal => {
+            modal.addEventListener('click', function(e) {
+                if (e.target === modal) {
+                    const btn = modal.querySelector('[data-bs-dismiss="modal"]');
+                    if (btn) btn.click();
+                }
+            });
+        });
+    });
+</script>
 @endsection

@@ -17,5 +17,6 @@ class TeacherRequest extends Model
         'subject_name',
         'facebook_link',
         'work_experience',
+        'is_read',
     ];
 }

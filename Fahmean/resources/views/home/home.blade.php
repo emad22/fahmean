@@ -418,8 +418,8 @@
                                         صح وهتوصل لما تريد</span>
                                 </div>
                                 <!--  <h1 class="title">
-                                                                                                                                                                                                            فاهمين<img src="{{ asset('assets/images/banner/title-h-1.png') }}" style="vertical-align: bottom;"> وحط خط <br> تحت كلمة <img src="{{ asset('assets/images/banner/title-h-2.png') }}">
-                                                                                                                                                                                                        </h1> -->
+                                                                                                                                                                                                                                            فاهمين<img src="{{ asset('assets/images/banner/title-h-1.png') }}" style="vertical-align: bottom;"> وحط خط <br> تحت كلمة <img src="{{ asset('assets/images/banner/title-h-2.png') }}">
+                                                                                                                                                                                                                                        </h1> -->
                                 <h1 class="title">
                                     فاهمين
                                     <span class="highlight-text">
@@ -765,12 +765,12 @@
         </div>
         <!-- End Banner Area -->
         <!-- Start Counterup Area  -->
-        <div class="rbt-counterup-area rbt-section-gapBottom rbt-section-gapTop bg-color-white">
+        {{--<div class="rbt-counterup-area rbt-section-gapBottom rbt-section-gapTop bg-color-white">
             <div class="container">
                 <div class="row mb--60">
                     <div class="col-lg-12">
                         <div class="section-title text-center">
-                            {{--<span class="subtitle bg-primary-opacity">ما لدينا</span>--}}
+                            <!--<span class="subtitle bg-primary-opacity">ما لدينا</span>-->
                             <h2 class="title">إنشاء مجتمع من المتعلمين <br /> مدى الحياة.</h2>
                         </div>
                     </div>
@@ -854,13 +854,13 @@
                 </div>
             </div>
         </div>
-        <!-- End Counterup Area  -->
-        <div class="rbt-categories-area bg-color-white rbt-section-gapBottom">
+        <!-- End Counterup Area  -->--}}
+        <div class="rbt-categories-area bg-color-white rbt-section-gapBottom rbt-section-gapTop">
             <div class="container">
                 <div class="row">
                     <div class="col-lg-12">
                         <div class="section-title text-center">
-                            {{--<span class="subtitle bg-primary-opacity">الدورات التعليمية</span>--}}
+                            <!--<span class="subtitle bg-primary-opacity">الدورات التعليمية</span>-->
                             <h2 class="title">المواد الدراسية</h2>
                         </div>
                     </div>

@@ -95,7 +95,7 @@
                                     <span>طلبات المعلمين</span>
                                 </span>
                                 @php
-                                    $teacherReqCount = \App\Models\TeacherRequest::count();
+                                    $teacherReqCount = \App\Models\TeacherRequest::where('is_read', false)->count();
                                 @endphp
                                 @if($teacherReqCount > 0)
                                     <span class="badge bg-primary rounded-pill">{{ $teacherReqCount }}</span>
