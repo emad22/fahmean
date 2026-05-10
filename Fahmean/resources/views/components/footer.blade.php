@@ -46,9 +46,7 @@
                             <li>
                                 <a href="{{ route('universityClassic') }}">الجامعة</a>
                             </li>
-                            <li>
-                                <a href="{{ route('gymCoaching') }}">تدريب الجيم</a>
-                            </li>
+
                             <li>
                                 <a href="{{ route('faqs') }}">الأسئلة الشائعة</a>
                             </li>
@@ -58,7 +56,7 @@
 
                 <div class="col-lg-2 col-md-6 col-sm-6 col-12 mt--30">
                     <div class="footer-widget">
-                        <h3 class="ft-title">شركتنا</h3>
+                        <h3 class="ft-title">منصة فاهمين</h3>
                         <ul class="ft-link">
                             <li>
                                 <a href="{{ route('contact.show') }}">اتصل بنا</a>
@@ -72,9 +70,7 @@
                             <li>
                                 <a href="#">المحاضر</a>
                             </li>
-                            <li>
-                                <a href="{{ route('eventList') }}">الأحداث</a>
-                            </li>
+
                         </ul>
                     </div>
                 </div>
