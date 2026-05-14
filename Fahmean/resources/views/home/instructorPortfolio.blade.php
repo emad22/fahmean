@@ -33,7 +33,7 @@
             <div class="row g-5 align-items-center">
                 <div class="col-lg-6">
                     <div class="thumbnail">
-                        <img class="w-100 radius-10" src="{{ $teacher->profile_image ? asset($teacher->profile_image) : asset('assets/images/about/about-12.jpg') }}" alt="Teacher Images">
+                        <img class="w-100 radius-10" src="{{ $teacher->profile_image ? asset('uploads/'.$teacher->profile_image) : asset('assets/images/about/about-12.jpg') }}" alt="Teacher Images">
                     </div>
                 </div>
                 <div class="col-lg-6">

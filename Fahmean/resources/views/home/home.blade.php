@@ -721,7 +721,7 @@
                                 <div class="inner">
                                     <div class="thumbnail">
                                         <a href="{{ route('instructorPortfolio', $teacher->id) }}">
-                                            <img src="{{ $teacher->profile_image ? asset($teacher->profile_image) : asset('assets/images/team/team-07.jpg') }}"
+                                            <img src="{{ $teacher->profile_image ? asset('uploads/'.$teacher->profile_image) : asset('assets/images/team/team-07.jpg') }}"
                                                  alt="{{ $teacher->name }}">
                                         </a>
                                     </div>
