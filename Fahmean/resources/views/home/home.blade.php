@@ -14,15 +14,8 @@
                 <div class="content">
                     <div class="logo">
                         <div class="logo logo-dark">
-                            <a href="#">
+                            <a href="/">
                                 <img src="{{ asset('assets/images/logo/logo.png') }}" alt="Education Logo Images">
-                            </a>
-                        </div>
-
-                        <div class="logo d-none logo-light">
-                            <a href="#">
-                                <img src="{{ asset('assets/images/dark/logo/logo-light.png') }}"
-                                    alt="Education Logo Images">
                             </a>
                         </div>
                     </div>
@@ -43,326 +36,24 @@
 
             <nav class="mainmenu-nav">
                 <ul class="mainmenu">
-                    <li class="with-megamenu position-static">
-                        <a href="#">الرئيسية <i class="feather-chevron-down"></i></a>
-
+                    <li>
+                        <a href="{{ route('home') }}">Home</a>
                     </li>
 
-                    <li class="with-megamenu has-menu-child-item">
-                        <a href="#">Courses <i class="feather-chevron-down"></i></a>
-                        <!-- Start Mega Menu  -->
-                        <div class="rbt-megamenu grid-item-2">
-                            <div class="wrapper">
-                                <div class="row">
-                                    <div class="col-lg-12">
-                                        <div class="mega-top-banner">
-                                            <div class="content">
-                                                <h4 class="title">Developer hub</h4>
-                                                <p class="description">Start building fast, with code samples, key resources
-                                                    and more.</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row row--15">
-                                    <div class="col-lg-12 col-xl-6 col-xxl-6 single-mega-item">
-                                        <h3 class="rbt-short-title">Course Layout</h3>
-                                        <ul class="mega-menu-item">
-                                            <li><a href="{{ route('courseFilterOneToggle') }}">Filter One Toggle</a></li>
-                                            <li><a href="{{ route('courseFilterOneOpen') }}">Filter One Open</a></li>
-                                            <li><a href="{{ route('courseFilterTwoToggle') }}">Filter Two Toggle</a></li>
-                                            <li><a href="{{ route('courseFilterTwoOpen') }}">Filter Two Open</a></li>
-                                            <li><a href="{{ route('courseWithTab') }}">Course With Tab</a></li>
-                                            <li><a href="{{ route('courseWithTabTwo') }}">Course With Tab Two</a></li>
-                                            <li><a href="{{ route('courseCard2') }}">Course Card Two</a></li>
-                                        </ul>
-                                    </div>
-                                    <div class="col-lg-12 col-xl-6 col-xxl-6 single-mega-item">
-                                        <h3 class="rbt-short-title">Course Layout</h3>
-                                        <ul class="mega-menu-item">
-                                            <li><a href="{{ route('courseCard3') }}">Course Card Three</a></li>
-                                            <li><a href="{{ route('courseMasonry') }}">Course Masonry</a></li>
-                                            <li><a href="{{ route('courseWithSidebar') }}">Course With Sidebar</a></li>
-                                            <li><a href="{{ route('courseDetails') }}">Course Details</a></li>
-                                            <li><a href="{{ route('courseDetails2') }}">Course Details Two</a></li>
-                                            <li><a href="{{ route('lesson') }}">Course Lesson <span
-                                                        class="rbt-badge-card">New</span></a></li>
-                                            <li><a href="{{ route('createCourse') }}">Create Course <span
-                                                        class="rbt-badge-card">New</span></a></li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-lg-12">
-                                        <ul class="nav-quick-access">
-                                            <li><a href="#"><i class="feather-folder-minus"></i> Quick Start Guide</a></li>
-                                            <li><a href="#"><i class="feather-folder-minus"></i> For Open Source</a></li>
-                                            <li><a href="#"><i class="feather-folder-minus"></i> API Status</a></li>
-                                            <li><a href="#"><i class="feather-folder-minus"></i> Support</a></li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- End Mega Menu  -->
+                    <li>
+                        <a href="{{ route('courseFilterOneToggle') }}">Courses</a>
                     </li>
 
-                    <li class="has-dropdown has-menu-child-item">
-                        <a href="#">Dashboard
-                            <i class="feather-chevron-down"></i>
-                        </a>
-                        <ul class="submenu">
-                            <li class="has-dropdown"><a href="#">teacher Dashboard</a>
-
-                            </li>
-                            <li class="has-dropdown"><a href="#">Student Dashboard</a>
-
-                            </li>
-                        </ul>
+                    <li>
+                        <a href="{{ route('dashboard.index') }}">Dashboard</a>
                     </li>
 
-                    <li class="with-megamenu has-menu-child-item position-static">
-                        <a href="#">Pages <i class="feather-chevron-down"></i></a>
-                        <!-- Start Mega Menu  -->
-                        <div class="rbt-megamenu grid-item-4">
-                            <div class="wrapper">
-                                <div class="row row--15">
-                                    <div class="col-lg-12 col-xl-3 col-xxl-3 single-mega-item">
-                                        <h3 class="rbt-short-title">Get Started</h3>
-                                        <ul class="mega-menu-item">
-                                            <li><a href="{{ route('aboutus01') }}">About Us</a></li>
-                                            <li><a href="{{ route('aboutus02') }}">About Us 02</a></li>
-                                            <li><a href="{{ route('eventGrid') }}">Event Grid</a></li>
-                                            <li><a href="{{ route('eventList') }}">Event List</a></li>
-                                            <li><a href="{{ route('eventSidebar') }}">Event Sidebar</a></li>
-                                            <li><a href="{{ route('eventDetails') }}">Event Details</a></li>
-                                            <li><a href="{{ route('academyGallery') }}">Academy Gallery</a></li>
-                                            <li><a href="{{ route('admissionGuide') }}">Admission Guide</a></li>
-                                        </ul>
-                                    </div>
-
-                                    <div class="col-lg-12 col-xl-3 col-xxl-3 single-mega-item">
-                                        <h3 class="rbt-short-title">Get Started</h3>
-                                        <ul class="mega-menu-item">
-                                            <li><a href="{{ route('profile') }}">Profile</a></li>
-                                            <li><a href="{{ route('contact') }}">Contact Us</a></li>
-                                            <li><a href="{{ route('becomeTeacher') }}">Become a Teacher</a></li>
-
-                                            <li><a href="{{ route('faqs') }}">FAQS</a></li>
-                                            <li><a href="{{ route('privacyPolicy') }}">Privacy Policy</a></li>
-                                            <li><a href="{{ route('pageError') }}">404 Page</a></li>
-                                            <li><a href="{{ route('maintenance') }}">Maintenance</a></li>
-                                        </ul>
-                                    </div>
-
-                                    <div class="col-lg-12 col-xl-3 col-xxl-3 single-mega-item">
-                                        <h3 class="rbt-short-title">Shop Pages</h3>
-                                        <ul class="mega-menu-item">
-                                            <li><a href="{{ route('shop') }}">Shop <span class="rbt-badge-card">Sale
-                                                        Anything</span></a></li>
-                                            <li><a href="{{ route('singleProduct') }}">Single Product</a></li>
-                                            <li><a href="{{ route('cart') }}">Cart Page</a></li>
-                                            <li><a href="{{ route('checkout') }}">Checkout</a></li>
-                                            <li><a href="{{ route('wishlist') }}">Wishlist Page</a></li>
-                                            <li><a href="{{ route('myAccount') }}">My Acount</a></li>
-                                            <li><a href="{{ route('login') }}">Login</a></li>
-                                            <li><a href="{{ route('register') }}">Register</a></li>
-                                            <li><a href="{{ route('subscription') }}">Subscription</a></li>
-                                        </ul>
-                                    </div>
-                                    <div class="col-lg-12 col-xl-3 col-xxl-3 single-mega-item">
-                                        <div class="mega-category-item">
-                                            <!-- Start Single Category  -->
-                                            <div class="nav-category-item">
-                                                <div class="thumbnail">
-                                                    <div class="image"><img
-                                                            src="{{ asset('assets/images/course/category-2.png') }}"
-                                                            alt="Course images"></div>
-                                                    <a href="{{ route('courseFilterOneToggle') }}">
-                                                        <span>Online Education</span>
-                                                        <i class="feather-chevron-right"></i>
-                                                    </a>
-                                                </div>
-                                            </div>
-                                            <!-- End Single Category  -->
-
-                                            <!-- Start Single Category  -->
-                                            <div class="nav-category-item">
-                                                <div class="thumbnail">
-                                                    <div class="image"><img
-                                                            src="{{ asset('assets/images/course/category-1.png') }}"
-                                                            alt="Course images"></div>
-                                                    <a href="{{ route('courseFilterOneToggle') }}">
-                                                        <span>Language Club</span>
-                                                        <i class="feather-chevron-right"></i>
-                                                    </a>
-                                                </div>
-                                            </div>
-                                            <!-- End Single Category  -->
-
-                                            <!-- Start Single Category  -->
-                                            <div class="nav-category-item">
-                                                <div class="thumbnail">
-                                                    <div class="image"><img
-                                                            src="{{ asset('assets/images/course/category-4.png') }}"
-                                                            alt="Course images"></div>
-                                                    <a href="{{ route('courseFilterOneToggle') }}">
-                                                        <span>University Status</span>
-                                                        <i class="feather-chevron-right"></i>
-                                                    </a>
-                                                </div>
-                                            </div>
-                                            <!-- End Single Category  -->
-
-                                            <!-- Start Single Category  -->
-                                            <div class="nav-category-item">
-                                                <div class="thumbnail">
-                                                    <a href="{{ route('courseFilterOneToggle') }}">
-                                                        <span>Course School</span>
-                                                        <i class="feather-chevron-right"></i>
-                                                    </a>
-                                                </div>
-                                            </div>
-                                            <!-- End Single Category  -->
-
-                                            <!-- Start Single Category  -->
-                                            <div class="nav-category-item">
-                                                <div class="thumbnail">
-                                                    <div class="image"><img
-                                                            src="{{ asset('assets/images/course/category-9.png') }}"
-                                                            alt="Course images"></div>
-                                                    <a href="{{ route('courseFilterOneToggle') }}">
-                                                        <span>Academy</span>
-                                                        <i class="feather-chevron-right"></i>
-                                                    </a>
-                                                </div>
-                                            </div>
-                                            <!-- End Single Category  -->
-
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- End Mega Menu  -->
+                    <li>
+                        <a href="{{ route('aboutus01') }}">About Us</a>
                     </li>
 
-                    <li class="with-megamenu has-menu-child-item position-static">
-                        <a href="#">Elements <i class="feather-chevron-down"></i></a>
-                        <!-- Start Mega Menu  -->
-                        <div class="rbt-megamenu grid-item-3">
-                            <div class="wrapper">
-                                <div class="row row--15 single-dropdown-menu-presentation">
-                                    <div class="col-lg-4 col-xxl-4 single-mega-item">
-                                        <ul class="mega-menu-item">
-                                            <li><a href="{{ route('styleGuide') }}">Style Guide <span
-                                                        class="rbt-badge-card">Hot</span></a></li>
-                                            <li><a href="{{ route('accordion') }}">Accordion</a></li>
-                                            <li><a href="{{ route('advancetab') }}">Advance Tab</a></li>
-                                            <li><a href="{{ route('about') }}">About <span
-                                                        class="rbt-badge-card">New</span></a></li>
-                                            <li><a href="{{ route('brand') }}">Brand</a></li>
-                                            <li><a href="{{ route('button') }}">Button</a></li>
-                                            <li><a href="{{ route('badge') }}">Badge</a></li>
-                                            <li><a href="{{ route('card') }}">Card</a></li>
-                                            <li><a href="#">& More Coming</a></li>
-                                        </ul>
-                                    </div>
-
-                                    <div class="col-lg-4 col-xxl-4 single-mega-item">
-                                        <ul class="mega-menu-item">
-                                            <li><a href="{{ route('callToAction') }}">Call To Action</a></li>
-                                            <li><a href="{{ route('counterup') }}">Counter</a></li>
-                                            <li><a href="{{ route('category') }}">Categories</a></li>
-                                            <li><a href="{{ route('header') }}">Header Style</a></li>
-                                            <li><a href="{{ route('newsletter') }}">Newsletter</a></li>
-                                            <li><a href="{{ route('team') }}">Team</a></li>
-                                            <li><a href="{{ route('social') }}">Social</a></li>
-                                            <li><a href="{{ route('listStyle') }}">List Style</a></li>
-                                            <li><a href="#">& More Coming</a></li>
-                                        </ul>
-                                    </div>
-
-                                    <div class="col-lg-4 col-xxl-4 single-mega-item">
-                                        <ul class="mega-menu-item">
-                                            <li><a href="{{ route('gallery') }}">Gallery</a></li>
-                                            <li><a href="{{ route('pricing') }}">Pricing</a></li>
-                                            <li><a href="{{ route('progressbar') }}">Progressbar</a></li>
-                                            <li><a href="{{ route('testimonial') }}">Testimonial</a></li>
-                                            <li><a href="{{ route('service') }}">Service</a></li>
-                                            <li><a href="{{ route('split') }}">Split Area</a></li>
-                                            <li><a href="{{ route('search') }}">Search Style</a></li>
-                                            <li><a href="{{ route('instagram') }}">Instagram Style</a></li>
-                                            <li><a href="#">& More Coming</a></li>
-                                        </ul>
-                                    </div>
-
-                                </div>
-                                <div class="row">
-                                    <div class="col-lg-12">
-                                        <div class="btn-wrapper">
-                                            <a class="rbt-btn btn-gradient hover-icon-reverse square btn-xl w-100 text-center mt--30 hover-transform-none"
-                                                href="#">
-                                                <span class="icon-reverse-wrapper">
-                                                    <span class="btn-text">Visit Histudy Template</span>
-                                                    <span class="btn-icon"><i class="feather-arrow-right"></i></span>
-                                                    <span class="btn-icon"><i class="feather-arrow-right"></i></span>
-                                                </span>
-                                            </a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- End Mega Menu  -->
-                    </li>
-
-                    <li class="with-megamenu has-menu-child-item position-static">
-                        <a href="#">Blog <i class="feather-chevron-down"></i></a>
-                        <!-- Start Mega Menu  -->
-                        <div class="rbt-megamenu grid-item-3">
-                            <div class="wrapper">
-                                <div class="row row--15">
-                                    <div class="col-lg-12 col-xl-4 col-xxl-4 single-mega-item">
-                                        <h3 class="rbt-short-title">Blog Styles</h3>
-                                        <ul class="mega-menu-item">
-                                            <li><a href="{{ route('blogList') }}">Blog List</a></li>
-                                            <li><a href="{{ route('blog') }}">Blog Grid</a></li>
-                                            <li><a href="{{ route('blogGridMinimal') }}">Blog Grid Minimal</a></li>
-                                            <li><a href="{{ route('blogWithSidebar') }}">Blog With Sidebar</a></li>
-                                            <li><a href="{{ route('blogDetails') }}">Blog Details</a></li>
-                                            <li><a href="{{ route('postFormatStandard') }}">Post Format Standard</a></li>
-                                            <li><a href="{{ route('postFormatGallery') }}">Post Format Gallery</a></li>
-                                        </ul>
-                                    </div>
-
-                                    <div class="col-lg-12 col-xl-4 col-xxl-4 single-mega-item">
-                                        <h3 class="rbt-short-title">Get Started</h3>
-                                        <ul class="mega-menu-item">
-                                            <li><a href="{{ route('postFormatQuote') }}">Post Format Quote</a></li>
-                                            <li><a href="{{ route('postFormatAudio') }}">Post Format Audio</a></li>
-                                            <li><a href="{{ route('postFormatVideo') }}">Post Format Video</a></li>
-                                            <li><a href="#">Media Under Title <span class="rbt-badge-card">Coming</span></a>
-                                            </li>
-                                            <li><a href="#">Sticky Sidebar <span class="rbt-badge-card">Coming</span></a>
-                                            </li>
-                                            <li><a href="#">Auto Masonry <span class="rbt-badge-card">Coming</span></a></li>
-                                            <li><a href="#">Meta Overlaid <span class="rbt-badge-card">Coming</span></a>
-                                            </li>
-                                        </ul>
-                                    </div>
-
-                                    <div class="col-lg-12 col-xl-4 col-xxl-4 single-mega-item">
-                                        <div class="rbt-ads-wrapper">
-                                            <a class="d-block" href="#"><img
-                                                    src="{{ asset('assets/images/service/mobile-cat.jpg') }}"
-                                                    alt="Education Images"></a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- End Mega Menu  -->
+                    <li>
+                        <a href="{{ route('contact.show') }}">Contact Us</a>
                     </li>
                 </ul>
             </nav>
@@ -378,26 +69,13 @@
                 <div class="social-share-wrapper">
                     <span class="rbt-short-title d-block">Find With Us</span>
                     <ul class="social-icon social-default transparent-with-border justify-content-start mt--20">
-                        <li><a href="https://www.facebook.com/">
-                                <i class="feather-facebook"></i>
-                            </a>
-                        </li>
-                        <li><a href="https://www.twitter.com">
-                                <i class="feather-twitter"></i>
-                            </a>
-                        </li>
-                        <li><a href="https://www.instagram.com/">
-                                <i class="feather-instagram"></i>
-                            </a>
-                        </li>
-                        <li><a href="https://www.linkdin.com/">
-                                <i class="feather-linkedin"></i>
-                            </a>
-                        </li>
+                        <li><a href="https://www.facebook.com/"><i class="feather-facebook"></i></a></li>
+                        <li><a href="https://www.twitter.com"><i class="feather-twitter"></i></a></li>
+                        <li><a href="https://www.instagram.com/"><i class="feather-instagram"></i></a></li>
+                        <li><a href="https://www.linkdin.com/"><i class="feather-linkedin"></i></a></li>
                     </ul>
                 </div>
             </div>
-
         </div>
     </div>
 
@@ -1041,11 +719,14 @@
                         <div class="col-lg-4 col-md-6 col-12 mt--30">
                             <div class="rbt-team team-style-default style-three rbt-hover">
                                 <div class="inner">
-                                    <div class="thumbnail"><img
-                                            src="{{ $teacher->profile_image ? asset($teacher->profile_image) : asset('assets/images/team/team-07.jpg') }}"
-                                            alt="{{ $teacher->name }}"></div>
+                                    <div class="thumbnail">
+                                        <a href="{{ route('instructorPortfolio', $teacher->id) }}">
+                                            <img src="{{ $teacher->profile_image ? asset($teacher->profile_image) : asset('assets/images/team/team-07.jpg') }}"
+                                                 alt="{{ $teacher->name }}">
+                                        </a>
+                                    </div>
                                     <div class="content">
-                                        <a href="{{ route('courseFilterOneToggle') }}">
+                                        <a href="{{ route('instructorPortfolio', $teacher->id) }}">
                                             <h2 class="title">أ. {{ $teacher->name }}</h2>
                                         </a>
                                         <h6 class="subtitle theme-gradient">{{ $teacher->subjects->first()->name ?? 'مدرس' }}
@@ -1150,7 +831,7 @@
                                         </div>
                                         <div class="rbt-author-info">
                                             أستاذ <a
-                                                href="{{ route('profile') }}">{{ optional($course->teacher)->name ?? 'غير محدد' }}</a>
+                                                href="{{ optional($course->teacher)->id ? route('instructorPortfolio', $course->teacher->id) : '#' }}">{{ optional($course->teacher)->name ?? 'غير محدد' }}</a>
                                             مادة <a href="#">{{ optional($course->subject)->name ?? 'غير محدد' }}</a>
                                         </div>
                                     </div>
@@ -1195,7 +876,7 @@
                                             </a>
                                         </div>
                                         <div class="rbt-author-info">
-                                            أستاذ <a href="{{ route('profile') }}">سامح أحمد</a> مادة <a href="#">اللغة
+                                            أستاذ <a href="#">سامح أحمد</a> مادة <a href="#">اللغة
                                                 العربية</a>
                                         </div>
                                     </div>
@@ -1958,7 +1639,7 @@
                                     <div class="single-slide">
                                         <div class="rbt-card event-grid-card variation-01 rbt-hover">
                                             <div class="rbt-card-img">
-                                                <a href="{{ route('eventDetails') }}">
+                                                <a href="{{ '#' }}">
                                                     <img src="{{ asset('assets/images/event/grid-type-02.jpg') }}"
                                                         alt="Card image">
                                                     <div class="rbt-badge-3">
@@ -1972,13 +1653,13 @@
                                                     <li><i class="feather-map-pin"></i>Vancouver</li>
                                                     <li><i class="feather-clock"></i>8:00 am - 5:00 pm</li>
                                                 </ul>
-                                                <h4 class="rbt-card-title"><a href="{{ route('eventDetails') }}">Painting
+                                                <h4 class="rbt-card-title"><a href="{{ '#' }}">Painting
                                                         Art Contest 2020 for histudy
                                                         Clud</a></h4>
 
                                                 <div class="read-more-btn">
                                                     <a class="rbt-btn btn-border hover-icon-reverse btn-sm radius-round"
-                                                        href="{{ route('eventDetails') }}">
+                                                        href="{{ '#' }}">
                                                         <span class="icon-reverse-wrapper">
                                                             <span class="btn-text">Get Ticket</span>
                                                             <span class="btn-icon"><i
@@ -1998,7 +1679,7 @@
                                     <div class="single-slide">
                                         <div class="rbt-card event-grid-card variation-01 rbt-hover">
                                             <div class="rbt-card-img">
-                                                <a href="{{ route('eventDetails') }}">
+                                                <a href="{{ '#' }}">
                                                     <img src="{{ asset('assets/images/event/grid-type-04.jpg') }}"
                                                         alt="Card image">
                                                     <div class="rbt-badge-3">
@@ -2012,13 +1693,13 @@
                                                     <li><i class="feather-map-pin"></i>IAC Building</li>
                                                     <li><i class="feather-clock"></i>8:00 am - 5:00 pm</li>
                                                 </ul>
-                                                <h4 class="rbt-card-title"><a href="{{ route('eventDetails') }}">Elegant
+                                                <h4 class="rbt-card-title"><a href="{{ '#' }}">Elegant
                                                         Light Box Paper Cut Dioramas in
                                                         UK</a></h4>
 
                                                 <div class="read-more-btn">
                                                     <a class="rbt-btn btn-border hover-icon-reverse btn-sm radius-round"
-                                                        href="{{ route('eventDetails') }}">
+                                                        href="{{ '#' }}">
                                                         <span class="icon-reverse-wrapper">
                                                             <span class="btn-text">Get Ticket</span>
                                                             <span class="btn-icon"><i
@@ -2039,7 +1720,7 @@
                                     <div class="single-slide">
                                         <div class="rbt-card event-grid-card variation-01 rbt-hover">
                                             <div class="rbt-card-img">
-                                                <a href="{{ route('eventDetails') }}">
+                                                <a href="{{ '#' }}">
                                                     <img src="{{ asset('assets/images/event/grid-type-05.jpg') }}"
                                                         alt="Card image">
                                                     <div class="rbt-badge-3">
@@ -2053,13 +1734,13 @@
                                                     <li><i class="feather-map-pin"></i>Vancouver</li>
                                                     <li><i class="feather-clock"></i>8:00 am - 5:00 pm</li>
                                                 </ul>
-                                                <h4 class="rbt-card-title"><a href="{{ route('eventDetails') }}">Most
+                                                <h4 class="rbt-card-title"><a href="{{ '#' }}">Most
                                                         Effective Ways for Education's
                                                         Problem</a></h4>
 
                                                 <div class="read-more-btn">
                                                     <a class="rbt-btn btn-border hover-icon-reverse btn-sm radius-round"
-                                                        href="{{ route('eventDetails') }}">
+                                                        href="{{ '#' }}">
                                                         <span class="icon-reverse-wrapper">
                                                             <span class="btn-text">Get Ticket</span>
                                                             <span class="btn-icon"><i
@@ -2080,7 +1761,7 @@
                                     <div class="single-slide">
                                         <div class="rbt-card event-grid-card variation-01 rbt-hover">
                                             <div class="rbt-card-img">
-                                                <a href="{{ route('eventDetails') }}">
+                                                <a href="{{ '#' }}">
                                                     <img src="{{ asset('assets/images/event/grid-type-01.jpg') }}"
                                                         alt="Card image">
                                                     <div class="rbt-badge-3">
@@ -2095,13 +1776,13 @@
                                                     <li><i class="feather-clock"></i>8:00 am - 5:00 pm</li>
                                                 </ul>
                                                 <h4 class="rbt-card-title"><a
-                                                        href="{{ route('eventDetails') }}">International Education Fair
+                                                        href="{{ '#' }}">International Education Fair
                                                         2024</a>
                                                 </h4>
 
                                                 <div class="read-more-btn">
                                                     <a class="rbt-btn btn-border hover-icon-reverse btn-sm radius-round"
-                                                        href="{{ route('eventDetails') }}">
+                                                        href="{{ '#' }}">
                                                         <span class="icon-reverse-wrapper">
                                                             <span class="btn-text">Get Ticket</span>
                                                             <span class="btn-icon"><i

@@ -41,7 +41,7 @@
                                         <ul class="rbt-course-main-content liststyle">
 
                                             <li>
-                                                <a href="{{ route('lesson') }}">
+                                                <a href="{{ '#' }}">
                                                     <div class="course-content-left">
                                                         <i class="feather-play-circle"></i> <span class="text">Course
                                             Intro</span>
@@ -80,7 +80,7 @@
                                         <ul class="rbt-course-main-content liststyle">
 
                                             <li>
-                                                <a href="{{ route('lesson') }}">
+                                                <a href="{{ '#' }}">
                                                     <div class="course-content-left">
                                                         <i class="feather-play-circle"></i> <span class="text">Hello World!
                                         </span>
@@ -307,3 +307,4 @@
     </div>
 
 @endsection
+

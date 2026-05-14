@@ -57,9 +57,15 @@ class HomeController extends Controller
         return view('home/instructorCourse');
     }
 
-    public function instructorPortfolio()
+    public function teacherProfile($id)
     {
-        return view('home/instructorPortfolio');
+        $teacher = \App\Models\User::role('teacher')->findOrFail($id);
+        $relatedTeachers = \App\Models\User::role('teacher')
+            ->where('id', '!=', $id)
+            ->take(3)
+            ->get();
+            
+        return view('home/instructorPortfolio', compact('teacher', 'relatedTeachers'));
     }
 
     public function instructorsCoaches()

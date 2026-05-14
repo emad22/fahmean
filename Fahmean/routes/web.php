@@ -16,6 +16,39 @@ Route::post('/temp-upload', [LessonController::class, 'tempUpload'])
     ->middleware(['auth'])
     ->name('temp.upload');
 
+// Legacy Route Aliases (to maintain compatibility with older views)
+Route::middleware(['auth'])->group(function () {
+    // Dashboards
+    Route::get('/dashboard/instructor', [\App\Http\Controllers\DashboardController::class, 'index'])->name('instructorDashboard');
+    Route::get('/dashboard/student', [\App\Http\Controllers\DashboardController::class, 'index'])->name('studentDashboard');
+    
+    // Profiles & Settings
+    Route::get('/dashboard/profile', [\App\Http\Controllers\ProfileController::class, 'edit'])->name('instructorProfile');
+    Route::get('/dashboard/profile/student', [\App\Http\Controllers\ProfileController::class, 'edit'])->name('studentProfile');
+    Route::get('/dashboard/settings', [\App\Http\Controllers\ProfileController::class, 'edit'])->name('instructorSettings');
+    Route::get('/dashboard/settings/student', [\App\Http\Controllers\ProfileController::class, 'edit'])->name('studentSettings');
+
+    // Courses
+    Route::get('/dashboard/instructor/courses', [\App\Http\Controllers\Unified\CourseController::class, 'index'])->name('instructorEnrolledCourses');
+    Route::get('/dashboard/student/courses', [\App\Http\Controllers\Unified\CourseController::class, 'index'])->name('studentEnrolledCourses');
+    Route::get('/dashboard/instructor/my-courses', [\App\Http\Controllers\Unified\CourseController::class, 'index'])->name('instructorCourse');
+
+    // Quizzes & Assignments
+    Route::get('/dashboard/quizzes/my-attempts', [\App\Http\Controllers\DashboardController::class, 'index'])->name('instructorMyQuizAttempts');
+    Route::get('/dashboard/student/quizzes/my-attempts', [\App\Http\Controllers\DashboardController::class, 'index'])->name('studentMyQuizAttempts');
+    Route::get('/dashboard/quizzes/attempts', [\App\Http\Controllers\DashboardController::class, 'index'])->name('instructorQuizAttempts');
+    Route::get('/dashboard/assignments', [\App\Http\Controllers\DashboardController::class, 'index'])->name('instructorAssignments');
+    
+    // Other (Wishlist, Reviews, History, Announcements)
+    Route::get('/dashboard/wishlist', [\App\Http\Controllers\DashboardController::class, 'index'])->name('instructorWishlist');
+    Route::get('/dashboard/wishlist/student', [\App\Http\Controllers\DashboardController::class, 'index'])->name('studentWishlist');
+    Route::get('/dashboard/reviews', [\App\Http\Controllers\DashboardController::class, 'index'])->name('instructorReviews');
+    Route::get('/dashboard/reviews/student', [\App\Http\Controllers\DashboardController::class, 'index'])->name('studentReviews');
+    Route::get('/dashboard/order-history', [\App\Http\Controllers\DashboardController::class, 'index'])->name('instructorOrderHistory');
+    Route::get('/dashboard/order-history/student', [\App\Http\Controllers\DashboardController::class, 'index'])->name('studentOrderHistory');
+    Route::get('/dashboard/announcements', [\App\Http\Controllers\DashboardController::class, 'index'])->name('instructorAnnouncements');
+});
+
 // Unified Routes (Courses, Assignments, etc.)
 Route::middleware(['auth'])->prefix('dashboard')->group(function () {
     // This handles /dashboard/courses for ALL roles

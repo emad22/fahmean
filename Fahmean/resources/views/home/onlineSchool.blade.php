@@ -286,7 +286,7 @@
                                     </a>
                                 </div>
                                 <div class="rbt-author-info">
-                                    By <a href="{{ route('profile') }}">Patrick</a> In <a href="#">Languages</a>
+                                    By <a href="{{ route('dashboard.index') }}">Patrick</a> In <a href="#">Languages</a>
                                 </div>
                             </div>
 
@@ -347,7 +347,7 @@
                                     </a>
                                 </div>
                                 <div class="rbt-author-info">
-                                    By <a href="{{ route('profile') }}">Angela</a> In <a href="#">Development</a>
+                                    By <a href="{{ route('dashboard.index') }}">Angela</a> In <a href="#">Development</a>
                                 </div>
                             </div>
                             <div class="rbt-card-bottom">
@@ -408,7 +408,7 @@
                                     </a>
                                 </div>
                                 <div class="rbt-author-info">
-                                    By <a href="{{ route('profile') }}">Slaughter</a> In <a href="#">Languages</a>
+                                    By <a href="{{ route('dashboard.index') }}">Slaughter</a> In <a href="#">Languages</a>
                                 </div>
                             </div>
                             <div class="rbt-card-bottom">
@@ -1660,7 +1660,7 @@
                 <div class="col-lg-6 col-md-6 col-sm-6 col-12">
                     <div class="rbt-card card-list-2 event-list-card variation-01 rbt-hover">
                         <div class="rbt-card-img">
-                            <a href="{{ route('eventDetails') }}">
+                            <a href="{{ '#' }}">
                                 <img src="{{ asset('assets/images/event/grid-type-01.jpg') }}" alt="Card image">
                             </a>
                         </div>
@@ -1669,9 +1669,9 @@
                                 <li><i class="feather-calendar"></i>11 Jan, 2024</li>
                                 <li><i class="feather-map-pin"></i>IAC Building</li>
                             </ul>
-                            <h4 class="rbt-card-title"><a href="{{ route('eventDetails') }}">International Education Fair 2024</a></h4>
+                            <h4 class="rbt-card-title"><a href="{{ '#' }}">International Education Fair 2024</a></h4>
                             <div class="read-more-btn">
-                                <a class="rbt-btn btn-border hover-icon-reverse btn-sm radius-round" href="{{ route('eventDetails') }}">
+                                <a class="rbt-btn btn-border hover-icon-reverse btn-sm radius-round" href="{{ '#' }}">
                                     <span class="icon-reverse-wrapper">
                             <span class="btn-text">Get Ticket</span>
                                     <span class="btn-icon"><i class="feather-arrow-right"></i></span>
@@ -1688,7 +1688,7 @@
                 <div class="col-lg-6 col-md-6 col-sm-6 col-12">
                     <div class="rbt-card card-list-2 event-list-card variation-01 rbt-hover">
                         <div class="rbt-card-img">
-                            <a href="{{ route('eventDetails') }}">
+                            <a href="{{ '#' }}">
                                 <img src="{{ asset('assets/images/event/grid-type-02.jpg') }}" alt="Card image">
                             </a>
                         </div>
@@ -1697,10 +1697,10 @@
                                 <li><i class="feather-map-pin"></i>Vancouver</li>
                                 <li><i class="feather-clock"></i>8:00 am - 5:00 pm</li>
                             </ul>
-                            <h4 class="rbt-card-title"><a href="{{ route('eventDetails') }}">Painting Art Contest 2020</a></h4>
+                            <h4 class="rbt-card-title"><a href="{{ '#' }}">Painting Art Contest 2020</a></h4>
 
                             <div class="read-more-btn">
-                                <a class="rbt-btn btn-border hover-icon-reverse btn-sm radius-round" href="{{ route('eventDetails') }}">
+                                <a class="rbt-btn btn-border hover-icon-reverse btn-sm radius-round" href="{{ '#' }}">
                                     <span class="icon-reverse-wrapper">
                             <span class="btn-text">Get Ticket</span>
                                     <span class="btn-icon"><i class="feather-arrow-right"></i></span>
@@ -1717,7 +1717,7 @@
                 <div class="col-lg-6 col-md-6 col-sm-6 col-12">
                     <div class="rbt-card card-list-2 event-list-card variation-01 rbt-hover">
                         <div class="rbt-card-img">
-                            <a href="{{ route('eventDetails') }}">
+                            <a href="{{ '#' }}">
                                 <img src="{{ asset('assets/images/event/grid-type-03.jpg') }}" alt="Card image">
                             </a>
                         </div>
@@ -1726,10 +1726,10 @@
                                 <li><i class="feather-map-pin"></i>Paris</li>
                                 <li><i class="feather-clock"></i>8:00 am - 5:00 pm</li>
                             </ul>
-                            <h4 class="rbt-card-title"><a href="{{ route('eventDetails') }}">Histudy Education Fair 2024</a></h4>
+                            <h4 class="rbt-card-title"><a href="{{ '#' }}">Histudy Education Fair 2024</a></h4>
 
                             <div class="read-more-btn">
-                                <a class="rbt-btn btn-border hover-icon-reverse btn-sm radius-round" href="{{ route('eventDetails') }}">
+                                <a class="rbt-btn btn-border hover-icon-reverse btn-sm radius-round" href="{{ '#' }}">
                                     <span class="icon-reverse-wrapper">
                             <span class="btn-text">Get Ticket</span>
                                     <span class="btn-icon"><i class="feather-arrow-right"></i></span>
@@ -1746,7 +1746,7 @@
                 <div class="col-lg-6 col-md-6 col-sm-6 col-12">
                     <div class="rbt-card card-list-2 event-list-card variation-01 rbt-hover">
                         <div class="rbt-card-img">
-                            <a href="{{ route('eventDetails') }}">
+                            <a href="{{ '#' }}">
                                 <img src="{{ asset('assets/images/event/grid-type-04.jpg') }}" alt="Card image">
                             </a>
                         </div>
@@ -1755,10 +1755,10 @@
                                 <li><i class="feather-map-pin"></i>IAC Building</li>
                                 <li><i class="feather-clock"></i>8:00 am - 5:00 pm</li>
                             </ul>
-                            <h4 class="rbt-card-title"><a href="{{ route('eventDetails') }}"> Elegant Light Box Paper Cut Dioramas</a></h4>
+                            <h4 class="rbt-card-title"><a href="{{ '#' }}"> Elegant Light Box Paper Cut Dioramas</a></h4>
 
                             <div class="read-more-btn">
-                                <a class="rbt-btn btn-border hover-icon-reverse btn-sm radius-round" href="{{ route('eventDetails') }}">
+                                <a class="rbt-btn btn-border hover-icon-reverse btn-sm radius-round" href="{{ '#' }}">
                                     <span class="icon-reverse-wrapper">
                             <span class="btn-text">Get Ticket</span>
                                     <span class="btn-icon"><i class="feather-arrow-right"></i></span>
