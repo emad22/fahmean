@@ -41,7 +41,7 @@ class AssignmentController extends Controller
 
         Assignment::create($validated);
 
-        return redirect()->route('admin.assignments.index')->with('success', 'تم إنشاء الواجب بنجاح');
+        return redirect()->route('instructorAssignments')->with('success', 'تم إنشاء الواجب بنجاح');
     }
 
     public function edit(Assignment $assignment)
@@ -72,7 +72,7 @@ class AssignmentController extends Controller
 
         $assignment->update($validated);
 
-        return redirect()->route('admin.assignments.index')->with('success', 'تم تحديث الواجب بنجاح');
+        return redirect()->route('instructorAssignments')->with('success', 'تم تحديث الواجب بنجاح');
     }
 
     public function destroy(Assignment $assignment)
@@ -83,7 +83,7 @@ class AssignmentController extends Controller
         
         $assignment->delete();
 
-        return redirect()->route('admin.assignments.index')->with('success', 'تم حذف الواجب بنجاح');
+        return redirect()->route('instructorAssignments')->with('success', 'تم حذف الواجب بنجاح');
     }
 
     /**
