@@ -117,7 +117,7 @@
                                             <select id="reg_academic_year" name="academic_year"
                                                 class="freg-input selectpicker" required>
                                                 <option value="">اختر العام الدراسي</option>
-                                                <option value="2024-2025" {{ old('academic_year') == '2024-2025' ? 'selected' : '' }}>2024 - 2025 (الحالي)</option>
+                                                <option value="2026-2027" {{ old('academic_year') == '2026-2027' ? 'selected' : '' }}>2026 - 2027 (الحالي)</option>
                                                 <option value="2025-2026" {{ old('academic_year') == '2025-2026' ? 'selected' : '' }}>2025 - 2026</option>
                                             </select>
                                             <i class="feather-calendar freg-input-icon"></i>
