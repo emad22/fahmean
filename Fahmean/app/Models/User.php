@@ -24,6 +24,15 @@ class User extends Authenticatable
         'teacher_id',
         'profile_image',
         'phone_number',
+        'headline',
+        'bio',
+        'about_me',
+        'video_url',
+        'facebook_url',
+        'twitter_url',
+        'instagram_url',
+        'linkedin_url',
+        'experience_years',
     ];
 
     /**

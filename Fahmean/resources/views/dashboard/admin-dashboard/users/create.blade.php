@@ -268,6 +268,63 @@
                         </div>
                     </div>
 
+                    <!-- Section: Instructor Profile (Hidden by default) -->
+                    <div id="teacherProfileFields" class="d-none">
+                        <h5 class="form-section-title">بيانات السيرة الذاتية (للمعلم فقط)</h5>
+                        <div class="row g-4 mb--40">
+                            <div class="col-lg-6">
+                                <label class="form-label fw-bold">المسمى الوظيفي / التخصص</label>
+                                <input type="text" name="headline" class="form-control" placeholder="مثال: خبير اللغة العربية للمرحلة الثانوية">
+                            </div>
+                            <div class="col-lg-6">
+                                <label class="form-label fw-bold">سنوات الخبرة</label>
+                                <input type="number" name="experience_years" class="form-control" placeholder="مثال: 10">
+                            </div>
+                            <div class="col-lg-12">
+                                <label class="form-label fw-bold">نبذة مختصرة (تظهر في أعلى الصفحة)</label>
+                                <textarea name="bio" class="form-control" rows="2" placeholder="اكتب جملة تسويقية قصيرة..."></textarea>
+                            </div>
+                            <div class="col-lg-12">
+                                <label class="form-label fw-bold">عن المعلم (التفاصيل الكاملة)</label>
+                                <textarea name="about_me" class="form-control" rows="4" placeholder="اشرح طريقتك في التدريس وخبراتك بالتفصيل..."></textarea>
+                            </div>
+                            <div class="col-lg-12">
+                                <label class="form-label fw-bold">رابط فيديو تعريفي (YouTube / Vimeo)</label>
+                                <input type="url" name="video_url" class="form-control" placeholder="https://www.youtube.com/watch?v=...">
+                            </div>
+                            
+                            <div class="col-lg-12 mt--20">
+                                <h6 class="fw-bold mb--15">روابط التواصل الاجتماعي</h6>
+                                <div class="row g-3">
+                                    <div class="col-md-6">
+                                        <div class="input-group">
+                                            <span class="input-group-text"><i class="feather-facebook"></i></span>
+                                            <input type="url" name="facebook_url" class="form-control" placeholder="رابط فيسبوك">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="input-group">
+                                            <span class="input-group-text"><i class="feather-twitter"></i></span>
+                                            <input type="url" name="twitter_url" class="form-control" placeholder="رابط تويتر">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="input-group">
+                                            <span class="input-group-text"><i class="feather-instagram"></i></span>
+                                            <input type="url" name="instagram_url" class="form-control" placeholder="رابط انستجرام">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="input-group">
+                                            <span class="input-group-text"><i class="feather-linkedin"></i></span>
+                                            <input type="url" name="linkedin_url" class="form-control" placeholder="رابط لينكد إن">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
                     <div class="text-end border-top pt--30">
                         <button type="submit" class="rbt-btn btn-gradient w-100 radius-10">
                             <i class="feather-check-circle me-2"></i> تأكيد وإنشاء الحساب
@@ -282,7 +339,7 @@
     <script>
         function handleRoleChange(role) {
             // Reset visibility
-            $('#eduFields, #assistantField, #parentFields, #subjectsField').addClass('d-none');
+            $('#eduFields, #assistantField, #parentFields, #subjectsField, #teacherProfileFields').addClass('d-none');
             
             var $eduSelect = $('#educationLevel');
             var $gradeSelect = $('#grade');
@@ -301,7 +358,7 @@
                 }
             } 
             else if (role === 'teacher') {
-                $('#eduFields, #subjectsField').removeClass('d-none');
+                $('#eduFields, #subjectsField, #teacherProfileFields').removeClass('d-none');
                 
                 // Force Multi Select for Teacher
                 $eduSelect.attr('multiple', 'multiple');

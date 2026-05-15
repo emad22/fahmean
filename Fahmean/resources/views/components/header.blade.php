@@ -295,6 +295,14 @@
                                 <i class="feather-search"></i>
                             </a>
                         </div>
+
+                        <div class="header-info d-block d-xl-none">
+                            <div class="ham-menu">
+                                <button class="hamberger-button rbt-round-btn">
+                                    <i class="feather-menu"></i>
+                                </button>
+                            </div>
+                        </div>
                     </div>
 
                 </div>
@@ -322,15 +330,31 @@
         <!-- End Search Dropdown  -->
     </div>
     <!-- Start Side Vav -->
-    <div class="rbt-offcanvas-side-menu rbt-category-sidemenu">
+    <div class="popup-mobile-menu">
         <div class="inner-wrapper">
             <div class="inner-top">
-                <div class="inner-title">
-                    <h4 class="title">Menu</h4>
+                <div class="content">
+                    <div class="logo">
+                        <div class="logo logo-dark">
+                            <a href="/">
+                                <img src="{{ asset('assets/images/logo/logo.png') }}" alt="Education Logo Images">
+                            </a>
+                        </div>
+                        <div class="logo d-none logo-light">
+                            <a href="/">
+                                <img src="{{ asset('assets/images/dark/logo/logo-light.png') }}" alt="Education Logo Images">
+                            </a>
+                        </div>
+                    </div>
+                    <div class="rbt-btn-close">
+                        <button class="rbt-close-offcanvas rbt-round-btn"><i class="feather-x"></i></button>
+                    </div>
                 </div>
-                <div class="rbt-btn-close">
-                    <button class="rbt-close-offcanvas rbt-round-btn"><i class="feather-x"></i></button>
-                </div>
+                <p class="description">أكاديمية فهيمين - منصة التعليم عبر الإنترنت</p>
+                <ul class="navbar-top-left rbt-information-list justify-content-start">
+                    <li><a href="mailto:info@fahmean.com"><i class="feather-mail"></i>info@fahmean.com</a></li>
+                    <li><a href="#"><i class="feather-phone"></i>(010) 735-8555</a></li>
+                </ul>
             </div>
             <nav class="side-nav w-100">
                 <ul class="mainmenu">
@@ -344,14 +368,22 @@
 
                 <div class="read-more-btn">
                     <div class="rbt-btn-wrapper mt--20">
-                        <a class="rbt-btn btn-border-gradient radius-round btn-sm hover-transform-none w-100 justify-content-center text-center" href="#">
-                            <span>Learn More</span>
+                        <a class="rbt-btn btn-border-gradient radius-round btn-sm hover-transform-none w-100 justify-content-center text-center" href="{{ route('register') }}">
+                            <span>ابدأ الآن</span>
                         </a>
                     </div>
                 </div>
             </nav>
             <div class="rbt-offcanvas-footer">
-
+                <div class="social-share-wrapper">
+                    <span class="rbt-short-title d-block">Find With Us</span>
+                    <ul class="social-icon social-default transparent-with-border justify-content-start mt--20">
+                        <li><a href="#"><i class="feather-facebook"></i></a></li>
+                        <li><a href="#"><i class="feather-twitter"></i></a></li>
+                        <li><a href="#"><i class="feather-instagram"></i></a></li>
+                        <li><a href="#"><i class="feather-linkedin"></i></a></li>
+                    </ul>
+                </div>
             </div>
         </div>
     </div>

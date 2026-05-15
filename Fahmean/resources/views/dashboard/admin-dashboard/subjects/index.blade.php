@@ -127,7 +127,7 @@
                         </div>
                         
                         <div class="text-muted small mt-2">
-                             <i class="feather-calendar me-1"></i> {{ $sub->created_at->format('Y-m-d') }}
+                             <i class="feather-calendar me-1"></i> {{ optional($sub->created_at)->format('Y-m-d') ?? '-' }}
                         </div>
                     </div>
 

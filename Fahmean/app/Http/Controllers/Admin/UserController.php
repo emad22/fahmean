@@ -101,6 +101,15 @@ class UserController extends Controller implements HasMiddleware
             'password'      => bcrypt($request->password),
             'profile_image' => $imagePath,
             'teacher_id'    => $request->role === 'assistant_teacher' ? $request->teacher_id : null,
+            'headline'      => $request->headline,
+            'bio'           => $request->bio,
+            'about_me'      => $request->about_me,
+            'video_url'     => $request->video_url,
+            'facebook_url'  => $request->facebook_url,
+            'twitter_url'   => $request->twitter_url,
+            'instagram_url' => $request->instagram_url,
+            'linkedin_url'  => $request->linkedin_url,
+            'experience_years' => $request->experience_years,
         ]);
 
         // 4) Assign role (Spatie)
@@ -268,6 +277,16 @@ class UserController extends Controller implements HasMiddleware
         } else {
             $user->teacher_id = null;
         }
+
+        $user->headline = $request->headline;
+        $user->bio = $request->bio;
+        $user->about_me = $request->about_me;
+        $user->video_url = $request->video_url;
+        $user->facebook_url = $request->facebook_url;
+        $user->twitter_url = $request->twitter_url;
+        $user->instagram_url = $request->instagram_url;
+        $user->linkedin_url = $request->linkedin_url;
+        $user->experience_years = $request->experience_years;
 
         $user->save();
 

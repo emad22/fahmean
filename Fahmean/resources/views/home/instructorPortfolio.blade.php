@@ -19,6 +19,14 @@
                             </div>
                             <h1 class="title">أ. <span class="theme-gradient">{{ $teacher->name }}</span></h1>
                             <p class="description">{{ $teacher->headline ?? 'نخبة من كبار معجمي المواد التعليمية في مصر' }}</p>
+                            @if($teacher->video_url)
+                                <div class="video-btn mt--30">
+                                    <a class="rbt-btn btn-white btn-md popup-video" href="{{ $teacher->video_url }}">
+                                        <span class="btn-icon"><i class="feather-play"></i></span>
+                                        <span class="btn-text">شاهد الفيديو التعريفي</span>
+                                    </a>
+                                </div>
+                            @endif
                         </div>
                     </div>
                 </div>
@@ -43,8 +51,24 @@
                             <h2 class="title">رحلة نجاح مع <br /> أ. <span class="theme-gradient">{{ $teacher->name }}</span></h2>
                         </div>
                         <p class="description mt--30">
-                            {{ $teacher->headline ?? 'معلم خبير يسعى دائماً لتبسيط المعلومة ووصول الطالب لأقصى درجات الفهم والإتقان في المادة العلمية، من خلال أحدث الوسائل التعليمية والمتابعة الدقيقة.' }}
+                            {{ $teacher->bio ?? ($teacher->headline ?? 'معلم خبير يسعى دائماً لتبسيط المعلومة ووصول الطالب لأقصى درجات الفهم والإتقان في المادة العلمية، من خلال أحدث الوسائل التعليمية والمتابعة الدقيقة.') }}
                         </p>
+                        @if($teacher->about_me)
+                             <div class="about-me-content mt--20">
+                                 {!! nl2br(e($teacher->about_me)) !!}
+                             </div>
+                         @endif
+                         
+                         <!-- Social Share -->
+                         <div class="rbt-social-area mt--40">
+                             <h6 class="subtitle bg-secondary-opacity d-inline-block p-2 radius-10 mb-3">تواصل مع المعلم</h6>
+                             <ul class="social-icon social-default transparent-with-border justify-content-start">
+                                 @if($teacher->facebook_url) <li><a href="{{ $teacher->facebook_url }}"><i class="feather-facebook"></i></a></li> @endif
+                                 @if($teacher->twitter_url) <li><a href="{{ $teacher->twitter_url }}"><i class="feather-twitter"></i></a></li> @endif
+                                 @if($teacher->instagram_url) <li><a href="{{ $teacher->instagram_url }}"><i class="feather-instagram"></i></a></li> @endif
+                                 @if($teacher->linkedin_url) <li><a href="{{ $teacher->linkedin_url }}"><i class="feather-linkedin"></i></a></li> @endif
+                             </ul>
+                         </div>
                         <!-- Start Feature List  -->
                         <div class="rbt-feature-wrapper mt--40">
                             <div class="rbt-feature feature-style-2 rbt-radius">

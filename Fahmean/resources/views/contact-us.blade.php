@@ -6,38 +6,7 @@
 @endphp
 
 @section('content')
-    <div class="popup-mobile-menu">
-        <div class="inner-wrapper">
-            <div class="inner-top">
-                <div class="content">
-                    <div class="logo">
-                        <div class="logo logo-dark">
-                            <a href="/">
-                                <img src="{{ asset('assets/images/logo/logo.png') }}" alt="Education Logo Images">
-                            </a>
-                        </div>
-                        <div class="logo d-none logo-light">
-                            <a href="/">
-                                <img src="{{ asset('assets/images/dark/logo/logo-light.png') }}"
-                                    alt="Education Logo Images">
-                            </a>
-                        </div>
-                    </div>
-                    <div class="rbt-btn-close">
-                        <button class="close-button rbt-round-btn"><i class="feather-x"></i></button>
-                    </div>
-                </div>
-                <p class="description">منصة فهيمن التعليمية طريقك الأمثل للوصول لما تريد</p>
-                <ul class="navbar-top-left rbt-information-list justify-content-start">
-                    <li><a href="mailto:info@fahmean.com"><i class="feather-mail"></i>info@fahmean.com</a></li>
-                    <li><a href="#"><i class="feather-phone"></i>(010) 735-8555</a></li>
-                </ul>
-            </div>
-        </div>
-    </div>
 
-    <x-sideVav />
-    <a class="close_side_menu" href="javascript:void(0);"></a>
 
     <div class="rbt-banner-area rbt-banner-3 header-transperent-spacer fahmean-contact-page">
         <div class="wrapper">
