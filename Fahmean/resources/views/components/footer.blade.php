@@ -38,13 +38,13 @@
                         <h3 class="ft-title">روابط مفيدة</h3>
                         <ul class="ft-link">
                             <li>
-                                <a href="{{ route('marketplace') }}">المتجر</a>
+                                <a href="#">المتجر</a>
                             </li>
                             <li>
-                                <a href="{{ route('kindergarten') }}">روضة أطفال</a>
+                                <a href="#">روضة أطفال</a>
                             </li>
                             <li>
-                                <a href="{{ route('universityClassic') }}">الجامعة</a>
+                                <a href="#">الجامعة</a>
                             </li>
 
                             <li>
@@ -65,7 +65,7 @@
                                 <a href="{{ route('teacher.request.create') }}">كن معلمًا</a>
                             </li>
                             <li>
-                                <a href="{{ route('blog') }}">المدونة</a>
+                                <a href="#">المدونة</a>
                             </li>
                             <li>
                                 <a href="#">المحاضر</a>
@@ -129,7 +129,7 @@
                     class="copyright-link rbt-link-hover justify-content-center justify-content-lg-end mt_sm--10 mt_md--10">
                     <li><a href="#">شروط الخدمة</a></li>
                     <li><a href="{{ route('privacyPolicy') }}">سياسة الخصوصية</a></li>
-                    <li><a href="{{ route('subscription') }}">الاشتراك</a></li>
+                    <li><a href="#">الاشتراك</a></li>
                     <li><a href="{{ route('login') }}">تسجيل الدخول والتسجيل</a></li>
                 </ul>
             </div>

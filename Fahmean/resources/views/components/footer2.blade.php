@@ -36,16 +36,16 @@
                         <h5 class="ft-title">روابط مفيدة</h5>
                         <ul class="ft-link">
                             <li>
-                                <a href="{{ route('marketplace') }} ">المتجر</a>
+                                <a href="{{ '#' }} ">المتجر</a>
                             </li>
                             <li>
-                                <a href="{{ route('kindergarten') }}">روضة أطفال</a>
+                                <a href="{{ '#' }}">روضة أطفال</a>
                             </li>
                             <li>
-                                <a href="{{ route('universityClassic') }}">الجامعة</a>
+                                <a href="{{ '#' }}">الجامعة</a>
                             </li>
                             <li>
-                                <a href="{{ route('gymCoaching') }}">تدريب الجيم</a>
+                                <a href="{{ '#' }}">تدريب الجيم</a>
                             </li>
                             <li>
                                 <a href="{{ route('faqs') }}">الأسئلة الشائعة</a>
@@ -59,19 +59,19 @@
                         <h5 class="ft-title">شركتنا</h5>
                         <ul class="ft-link">
                             <li>
-                                <a href="{{ route('contact') }}">اتصل بنا</a>
+                                <a href="{{ route('contact.show') }}">اتصل بنا</a>
                             </li>
                             <li>
-                                <a href="{{ route('becomeTeacher') }}">كن معلمًا</a>
+                                <a href="{{ '#' }}">كن معلمًا</a>
                             </li>
                             <li>
                                 <a href="{{ route('blog') }}">المدونة</a>
                             </li>
                             <li>
-                                <a href="{{ route('instructor') }}">المحاضر</a>
+                                <a href="{{ '#' }}">المحاضر</a>
                             </li>
                             <li>
-                                <a href="{{ route('eventList') }}">الأحداث</a>
+                                <a href="{{ '#' }}">الأحداث</a>
                             </li>
                         </ul>
                     </div>
@@ -109,3 +109,4 @@
         </div>
     </div>
 </footer>
+

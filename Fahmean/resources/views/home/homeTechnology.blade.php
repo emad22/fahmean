@@ -1888,7 +1888,7 @@
                     <ul class="copyright-link rbt-link-hover justify-content-center justify-content-lg-end mt_sm--10 mt_md--10">
                         <li><a href="#">Terms of service</a></li>
                         <li><a href="{{ route('privacyPolicy') }}">Privacy policy</a></li>
-                        <li><a href="{{ route('subscription') }}">Subscription</a></li>
+                        <li><a href="{{ '#' }}">Subscription</a></li>
                         <li><a href="{{ route('login') }}">Login & Register</a></li>
                     </ul>
                 </div>

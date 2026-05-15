@@ -51,9 +51,9 @@
                         <div class="rbt-header-content">
                             <div class="header-info">
                                 <ul class="rbt-secondary-menu">
-                                    <li><a href="{{ route('myAccount') }}">My Account</a></li>
+                                    <li><a href="{{ '#' }}">My Account</a></li>
                                     <li><a href="#">FAQ</a></li>
-                                    <li><a href="{{ route('contact') }}">Contact Us</a></li>
+                                    <li><a href="{{ route('contact.show') }}">Contact Us</a></li>
                                     <li><a href="{{ route('privacyPolicy') }}">Privacy Policy</a></li>
                                     <li><a href="#">Terms & Condition</a></li>
                                 </ul>
@@ -104,10 +104,10 @@
                                                     <div class="demo-single">
                                                         <div class="inner">
                                                             <div class="thumbnail">
-                                                                <a href="{{ route('mainDemo') }}"><img src="{{ asset('assets/images/splash/demo/h1.jpg') }}" alt="Demo Images"></a>
+                                                                <a href="{{ route('home') }}"><img src="{{ asset('assets/images/splash/demo/h1.jpg') }}" alt="Demo Images"></a>
                                                             </div>
                                                             <div class="content">
-                                                                <h4 class="title"><a href="{{ route('mainDemo') }}">Home Demo <span class="btn-icon"><i class="feather-arrow-right"></i></span></a></h4>
+                                                                <h4 class="title"><a href="{{ route('home') }}">Home Demo <span class="btn-icon"><i class="feather-arrow-right"></i></span></a></h4>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -119,10 +119,10 @@
                                                     <div class="demo-single">
                                                         <div class="inner">
                                                             <div class="thumbnail">
-                                                                <a href="{{ route('marketplace') }}"><img src="{{ asset('assets/images/splash/demo/h12.jpg') }}" alt="Demo Images"></a>
+                                                                <a href="{{ '#' }}"><img src="{{ asset('assets/images/splash/demo/h12.jpg') }}" alt="Demo Images"></a>
                                                             </div>
                                                             <div class="content">
-                                                                <h4 class="title"><a href="{{ route('marketplace') }}">Marketplace <span class="btn-icon"><i class="feather-arrow-right"></i></span></a></h4>
+                                                                <h4 class="title"><a href="{{ '#' }}">Marketplace <span class="btn-icon"><i class="feather-arrow-right"></i></span></a></h4>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -134,10 +134,10 @@
                                                     <div class="demo-single">
                                                         <div class="inner">
                                                             <div class="thumbnail">
-                                                                <a href="{{ route('kindergarten') }}"><img src="{{ asset('assets/images/splash/demo/h4.jpg') }}" alt="Demo Images"></a>
+                                                                <a href="{{ '#' }}"><img src="{{ asset('assets/images/splash/demo/h4.jpg') }}" alt="Demo Images"></a>
                                                             </div>
                                                             <div class="content">
-                                                                <h4 class="title"><a href="{{ route('kindergarten') }}">kindergarten <span class="btn-icon"><i class="feather-arrow-right"></i></span></a></h4>
+                                                                <h4 class="title"><a href="{{ '#' }}">kindergarten <span class="btn-icon"><i class="feather-arrow-right"></i></span></a></h4>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -149,10 +149,10 @@
                                                     <div class="demo-single">
                                                         <div class="inner">
                                                             <div class="thumbnail">
-                                                                <a href="{{ route('universityClassic') }}"><img src="{{ asset('assets/images/splash/demo/h13.jpg') }}" alt="Demo Images"></a>
+                                                                <a href="{{ '#' }}"><img src="{{ asset('assets/images/splash/demo/h13.jpg') }}" alt="Demo Images"></a>
                                                             </div>
                                                             <div class="content">
-                                                                <h4 class="title"><a href="{{ route('universityClassic') }}">University Classic <span class="btn-icon"><i class="feather-arrow-right"></i></span></a></h4>
+                                                                <h4 class="title"><a href="{{ '#' }}">University Classic <span class="btn-icon"><i class="feather-arrow-right"></i></span></a></h4>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -164,10 +164,10 @@
                                                     <div class="demo-single">
                                                         <div class="inner">
                                                             <div class="thumbnail">
-                                                                <a href="{{ route('homeElegant') }}"><img src="{{ asset('assets/images/splash/demo/h14.jpg') }}" alt="Demo Images"></a>
+                                                                <a href="{{ '#' }}"><img src="{{ asset('assets/images/splash/demo/h14.jpg') }}" alt="Demo Images"></a>
                                                             </div>
                                                             <div class="content">
-                                                                <h4 class="title"><a href="{{ route('homeElegant') }}">Home Elegant <span class="btn-icon"><i class="feather-arrow-right"></i></span></a></h4>
+                                                                <h4 class="title"><a href="{{ '#' }}">Home Elegant <span class="btn-icon"><i class="feather-arrow-right"></i></span></a></h4>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -179,10 +179,10 @@
                                                     <div class="demo-single">
                                                         <div class="inner">
                                                             <div class="thumbnail">
-                                                                <a href="{{ route('gymCoaching') }}"><img src="{{ asset('assets/images/splash/demo/h9.jpg') }}" alt="Demo Images"></a>
+                                                                <a href="{{ '#' }}"><img src="{{ asset('assets/images/splash/demo/h9.jpg') }}" alt="Demo Images"></a>
                                                             </div>
                                                             <div class="content">
-                                                                <h4 class="title"><a href="{{ route('gymCoaching') }}">Gym Coaching <span class="btn-icon"><i class="feather-arrow-right"></i></span></a></h4>
+                                                                <h4 class="title"><a href="{{ '#' }}">Gym Coaching <span class="btn-icon"><i class="feather-arrow-right"></i></span></a></h4>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -194,10 +194,10 @@
                                                     <div class="demo-single">
                                                         <div class="inner">
                                                             <div class="thumbnail">
-                                                                <a href="{{ route('onlineSchool') }}"><img src="{{ asset('assets/images/splash/demo/h3.jpg') }}" alt="Demo Images"></a>
+                                                                <a href="{{ '#' }}"><img src="{{ asset('assets/images/splash/demo/h3.jpg') }}" alt="Demo Images"></a>
                                                             </div>
                                                             <div class="content">
-                                                                <h4 class="title"><a href="{{ route('onlineSchool') }}">Online School <span class="btn-icon"><i class="feather-arrow-right"></i></span></a></h4>
+                                                                <h4 class="title"><a href="{{ '#' }}">Online School <span class="btn-icon"><i class="feather-arrow-right"></i></span></a></h4>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -209,10 +209,10 @@
                                                     <div class="demo-single">
                                                         <div class="inner">
                                                             <div class="thumbnail">
-                                                                <a href="{{ route('universityStatus') }}"><img src="{{ asset('assets/images/splash/demo/h6.jpg') }}" alt="Demo Images"></a>
+                                                                <a href="{{ '#' }}"><img src="{{ asset('assets/images/splash/demo/h6.jpg') }}" alt="Demo Images"></a>
                                                             </div>
                                                             <div class="content">
-                                                                <h4 class="title"><a href="{{ route('universityStatus') }}">University Status <span class="btn-icon"><i class="feather-arrow-right"></i></span></a></h4>
+                                                                <h4 class="title"><a href="{{ '#' }}">University Status <span class="btn-icon"><i class="feather-arrow-right"></i></span></a></h4>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -224,10 +224,10 @@
                                                     <div class="demo-single">
                                                         <div class="inner">
                                                             <div class="thumbnail">
-                                                                <a href="{{ route('homeTechnology') }}"><img src="{{ asset('assets/images/splash/demo/h15.jpg') }}" alt="Demo Images"></a>
+                                                                <a href="{{ '#' }}"><img src="{{ asset('assets/images/splash/demo/h15.jpg') }}" alt="Demo Images"></a>
                                                             </div>
                                                             <div class="content">
-                                                                <h4 class="title"><a href="{{ route('homeTechnology') }}">Home Technology <span class="btn-icon"><i class="feather-arrow-right"></i></span></a></h4>
+                                                                <h4 class="title"><a href="{{ '#' }}">Home Technology <span class="btn-icon"><i class="feather-arrow-right"></i></span></a></h4>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -239,10 +239,10 @@
                                                     <div class="demo-single">
                                                         <div class="inner">
                                                             <div class="thumbnail">
-                                                                <a href="{{ route('instructorPortfolio') }}"><img src="{{ asset('assets/images/splash/demo/h7.jpg') }}" alt="Demo Images"></a>
+                                                                <a href="{{ route('instructorPortfolio', 1) }}"><img src="{{ asset('assets/images/splash/demo/h7.jpg') }}" alt="Demo Images"></a>
                                                             </div>
                                                             <div class="content">
-                                                                <h4 class="title"><a href="{{ route('instructorPortfolio') }}">Instructor Portfolio <span class="btn-icon"><i class="feather-arrow-right"></i></span></a></h4>
+                                                                <h4 class="title"><a href="{{ route('instructorPortfolio', 1) }}">Instructor Portfolio <span class="btn-icon"><i class="feather-arrow-right"></i></span></a></h4>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -254,10 +254,10 @@
                                                     <div class="demo-single">
                                                         <div class="inner">
                                                             <div class="thumbnail">
-                                                                <a href="{{ route('languageAcademy') }}"><img src="{{ asset('assets/images/splash/demo/h8.jpg') }}" alt="Demo Images"></a>
+                                                                <a href="{{ '#' }}"><img src="{{ asset('assets/images/splash/demo/h8.jpg') }}" alt="Demo Images"></a>
                                                             </div>
                                                             <div class="content">
-                                                                <h4 class="title"><a href="{{ route('languageAcademy') }}">Language Academy <span class="btn-icon"><i class="feather-arrow-right"></i></span></a></h4>
+                                                                <h4 class="title"><a href="{{ '#' }}">Language Academy <span class="btn-icon"><i class="feather-arrow-right"></i></span></a></h4>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -269,10 +269,10 @@
                                                     <div class="demo-single">
                                                         <div class="inner">
                                                             <div class="thumbnail">
-                                                                <a href="{{ route('singleCourse') }}"><img src="{{ asset('assets/images/splash/demo/h11.jpg') }}" alt="Demo Images"></a>
+                                                                <a href="{{ '#' }}"><img src="{{ asset('assets/images/splash/demo/h11.jpg') }}" alt="Demo Images"></a>
                                                             </div>
                                                             <div class="content">
-                                                                <h4 class="title"><a href="{{ route('singleCourse') }}">Single Course <span class="btn-icon"><i class="feather-arrow-right"></i></span></a></h4>
+                                                                <h4 class="title"><a href="{{ '#' }}">Single Course <span class="btn-icon"><i class="feather-arrow-right"></i></span></a></h4>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -284,10 +284,10 @@
                                                     <div class="demo-single">
                                                         <div class="inner">
                                                             <div class="thumbnail">
-                                                                <a href="{{ route('onlineCourse') }}"><img src="{{ asset('assets/images/splash/demo/h10.jpg') }}" alt="Demo Images"></a>
+                                                                <a href="{{ '#' }}"><img src="{{ asset('assets/images/splash/demo/h10.jpg') }}" alt="Demo Images"></a>
                                                             </div>
                                                             <div class="content">
-                                                                <h4 class="title"><a href="{{ route('onlineCourse') }}">Online Course <span class="btn-icon"><i class="feather-arrow-right"></i></span></a></h4>
+                                                                <h4 class="title"><a href="{{ '#' }}">Online Course <span class="btn-icon"><i class="feather-arrow-right"></i></span></a></h4>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -299,10 +299,10 @@
                                                     <div class="demo-single">
                                                         <div class="inner">
                                                             <div class="thumbnail">
-                                                                <a href="{{ route('classicLms') }}"><img src="{{ asset('assets/images/splash/demo/h5.jpg') }}" alt="Demo Images"></a>
+                                                                <a href="{{ '#' }}"><img src="{{ asset('assets/images/splash/demo/h5.jpg') }}" alt="Demo Images"></a>
                                                             </div>
                                                             <div class="content">
-                                                                <h4 class="title"><a href="{{ route('classicLms') }}">Classic Lms <span class="btn-icon"><i class="feather-arrow-right"></i></span></a></h4>
+                                                                <h4 class="title"><a href="{{ '#' }}">Classic Lms <span class="btn-icon"><i class="feather-arrow-right"></i></span></a></h4>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -314,10 +314,10 @@
                                                     <div class="demo-single">
                                                         <div class="inner">
                                                             <div class="thumbnail">
-                                                                <a href="{{ route('courseSchool') }}"><img src="{{ asset('assets/images/splash/demo/h2.jpg') }}" alt="Demo Images"></a>
+                                                                <a href="{{ '#' }}"><img src="{{ asset('assets/images/splash/demo/h2.jpg') }}" alt="Demo Images"></a>
                                                             </div>
                                                             <div class="content">
-                                                                <h4 class="title"><a href="{{ route('courseSchool') }}">Course School <span class="btn-icon"><i class="feather-arrow-right"></i></span></a></h4>
+                                                                <h4 class="title"><a href="{{ '#' }}">Course School <span class="btn-icon"><i class="feather-arrow-right"></i></span></a></h4>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -329,10 +329,10 @@
                                                     <div class="demo-single">
                                                         <div class="inner">
                                                             <div class="thumbnail">
-                                                                <a href="{{ route('udemyAffiliate') }}"><img src="{{ asset('assets/images/splash/demo/h16.jpg') }}" alt="Demo Images"></a>
+                                                                <a href="{{ '#' }}"><img src="{{ asset('assets/images/splash/demo/h16.jpg') }}" alt="Demo Images"></a>
                                                             </div>
                                                             <div class="content">
-                                                                <h4 class="title"><a href="{{ route('udemyAffiliate') }}">Udemy Affiliate <span class="btn-icon"><i class="feather-arrow-right"></i></span></a></h4>
+                                                                <h4 class="title"><a href="{{ '#' }}">Udemy Affiliate <span class="btn-icon"><i class="feather-arrow-right"></i></span></a></h4>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -344,10 +344,10 @@
                                                     <div class="demo-single">
                                                         <div class="inner">
                                                             <div class="thumbnail">
-                                                                <a href="{{ route('onlineAcademy') }}"><img src="{{ asset('assets/images/splash/demo/h17.jpg') }}" alt="Demo Images"></a>
+                                                                <a href="{{ '#' }}"><img src="{{ asset('assets/images/splash/demo/h17.jpg') }}" alt="Demo Images"></a>
                                                             </div>
                                                             <div class="content">
-                                                                <h4 class="title"><a href="{{ route('onlineAcademy') }}">Online Academy <span class="btn-icon"><i class="feather-arrow-right"></i></span></a></h4>
+                                                                <h4 class="title"><a href="{{ '#' }}">Online Academy <span class="btn-icon"><i class="feather-arrow-right"></i></span></a></h4>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -359,10 +359,10 @@
                                                     <div class="demo-single">
                                                         <div class="inner">
                                                             <div class="thumbnail">
-                                                                <a href="{{ route('instructorsCoaches') }}"><img src="{{ asset('assets/images/splash/demo/h18.jpg') }}" alt="Demo Images"></a>
+                                                                <a href="{{ '#' }}"><img src="{{ asset('assets/images/splash/demo/h18.jpg') }}" alt="Demo Images"></a>
                                                             </div>
                                                             <div class="content">
-                                                                <h4 class="title"><a href="{{ route('instructorsCoaches') }}">Instructor Coaches <span class="btn-icon"><i class="feather-arrow-right"></i></span></a></h4>
+                                                                <h4 class="title"><a href="{{ '#' }}">Instructor Coaches <span class="btn-icon"><i class="feather-arrow-right"></i></span></a></h4>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -374,10 +374,10 @@
                                                     <div class="demo-single">
                                                         <div class="inner">
                                                             <div class="thumbnail">
-                                                                <a href="{{ route('modernUniversity') }}"><img src="{{ asset('assets/images/splash/demo/h19.jpg') }}" alt="Demo Images"></a>
+                                                                <a href="{{ '#' }}"><img src="{{ asset('assets/images/splash/demo/h19.jpg') }}" alt="Demo Images"></a>
                                                             </div>
                                                             <div class="content">
-                                                                <h4 class="title"><a href="{{ route('modernUniversity') }}">Modern University <span class="btn-icon"><i class="feather-arrow-right"></i></span></a></h4>
+                                                                <h4 class="title"><a href="{{ '#' }}">Modern University <span class="btn-icon"><i class="feather-arrow-right"></i></span></a></h4>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -389,10 +389,10 @@
                                                     <div class="demo-single">
                                                         <div class="inner">
                                                             <div class="thumbnail">
-                                                                <a href="{{ route('multilingual') }}"><img src="{{ asset('assets/images/splash/demo/h20.jpg') }}" alt="Demo Images"></a>
+                                                                <a href="{{ '#' }}"><img src="{{ asset('assets/images/splash/demo/h20.jpg') }}" alt="Demo Images"></a>
                                                             </div>
                                                             <div class="content">
-                                                                <h4 class="title"><a href="{{ route('multilingual') }}">Multilingual <span class="btn-icon"><i class="feather-arrow-right"></i></span></a></h4>
+                                                                <h4 class="title"><a href="{{ '#' }}">Multilingual <span class="btn-icon"><i class="feather-arrow-right"></i></span></a></h4>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -404,10 +404,10 @@
                                                     <div class="demo-single">
                                                         <div class="inner">
                                                             <div class="thumbnail">
-                                                                <a href="{{ route('artDesignSchool') }}"><img src="{{ asset('assets/images/splash/demo/h21.jpg') }}" alt="Demo Images"></a>
+                                                                <a href="{{ '#' }}"><img src="{{ asset('assets/images/splash/demo/h21.jpg') }}" alt="Demo Images"></a>
                                                             </div>
                                                             <div class="content">
-                                                                <h4 class="title"><a href="{{ route('artDesignSchool') }}">Art Design School <span class="btn-icon"><i class="feather-arrow-right"></i></span></a></h4>
+                                                                <h4 class="title"><a href="{{ '#' }}">Art Design School <span class="btn-icon"><i class="feather-arrow-right"></i></span></a></h4>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -434,10 +434,10 @@
                                                     <div class="demo-single">
                                                         <div class="inner">
                                                             <div class="thumbnail">
-                                                                <a href="{{ route('coaching') }}"><img src="{{ asset('assets/images/splash/demo/h23.jpg') }}" alt="Demo Images"></a>
+                                                                <a href="{{ '#' }}"><img src="{{ asset('assets/images/splash/demo/h23.jpg') }}" alt="Demo Images"></a>
                                                             </div>
                                                             <div class="content">
-                                                                <h4 class="title"><a href="{{ route('coaching') }}">Coaching <span class="btn-icon"><i class="feather-arrow-right"></i></span></a></h4>
+                                                                <h4 class="title"><a href="{{ '#' }}">Coaching <span class="btn-icon"><i class="feather-arrow-right"></i></span></a></h4>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -449,10 +449,10 @@
                                                     <div class="demo-single">
                                                         <div class="inner">
                                                             <div class="thumbnail">
-                                                                <a href="{{ route('healthWellnessInstitute') }}"><img src="{{ asset('assets/images/splash/demo/h24.jpg') }}" alt="Demo Images"></a>
+                                                                <a href="{{ '#' }}"><img src="{{ asset('assets/images/splash/demo/h24.jpg') }}" alt="Demo Images"></a>
                                                             </div>
                                                             <div class="content">
-                                                                <h4 class="title"><a href="{{ route('healthWellnessInstitute') }}">Health Institute <span class="btn-icon"><i class="feather-arrow-right"></i></span></a></h4>
+                                                                <h4 class="title"><a href="{{ '#' }}">Health Institute <span class="btn-icon"><i class="feather-arrow-right"></i></span></a></h4>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -464,10 +464,10 @@
                                                     <div class="demo-single">
                                                         <div class="inner">
                                                             <div class="thumbnail">
-                                                                <a href="{{ route('lifeCoach') }}"><img src="{{ asset('assets/images/splash/demo/h25.jpg') }}" alt="Demo Images"></a>
+                                                                <a href="{{ '#' }}"><img src="{{ asset('assets/images/splash/demo/h25.jpg') }}" alt="Demo Images"></a>
                                                             </div>
                                                             <div class="content">
-                                                                <h4 class="title"><a href="{{ route('lifeCoach') }}">Life Coach <span class="btn-icon"><i class="feather-arrow-right"></i></span></a></h4>
+                                                                <h4 class="title"><a href="{{ '#' }}">Life Coach <span class="btn-icon"><i class="feather-arrow-right"></i></span></a></h4>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -479,10 +479,10 @@
                                                     <div class="demo-single">
                                                         <div class="inner">
                                                             <div class="thumbnail">
-                                                                <a href="{{ route('islamicCenter') }}"><img src="{{ asset('assets/images/splash/demo/h26.jpg') }}" alt="Demo Images"></a>
+                                                                <a href="{{ '#' }}"><img src="{{ asset('assets/images/splash/demo/h26.jpg') }}" alt="Demo Images"></a>
                                                             </div>
                                                             <div class="content">
-                                                                <h4 class="title"><a href="{{ route('islamicCenter') }}">Islamic Center <span class="btn-icon"><i class="feather-arrow-right"></i></span></a></h4>
+                                                                <h4 class="title"><a href="{{ '#' }}">Islamic Center <span class="btn-icon"><i class="feather-arrow-right"></i></span></a></h4>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -523,24 +523,24 @@
                                                     <h3 class="rbt-short-title">Course Layout</h3>
                                                     <ul class="mega-menu-item">
                                                         <li><a href="{{ route('courseFilterOneToggle') }}">Filter One Toggle</a></li>
-                                                        <li><a href="{{ route('courseFilterOneOpen') }}">Filter One Open</a></li>
-                                                        <li><a href="{{ route('courseFilterTwoToggle') }}">Filter Two Toggle</a></li>
-                                                        <li><a href="{{ route('courseFilterTwoOpen') }}">Filter Two Open</a></li>
-                                                        <li><a href="{{ route('courseWithTab') }}">Course With Tab</a></li>
-                                                        <li><a href="{{ route('courseWithTabTwo') }}">Course With Tab Two</a></li>
-                                                        <li><a href="{{ route('courseCard2') }}">Course Card Two</a></li>
+                                                        <li><a href="{{ route('courseFilterOneToggle') }}">Filter One Open</a></li>
+                                                        <li><a href="{{ '#' }}">Filter Two Toggle</a></li>
+                                                        <li><a href="{{ '#' }}">Filter Two Open</a></li>
+                                                        <li><a href="{{ '#' }}">Course With Tab</a></li>
+                                                        <li><a href="{{ '#' }}">Course With Tab Two</a></li>
+                                                        <li><a href="{{ '#' }}">Course Card Two</a></li>
                                                     </ul>
                                                 </div>
                                                 <div class="col-lg-12 col-xl-6 col-xxl-6 single-mega-item">
                                                     <h3 class="rbt-short-title">Course Layout</h3>
                                                     <ul class="mega-menu-item">
-                                                        <li><a href="{{ route('courseCard3') }}">Course Card Three</a></li>
-                                                        <li><a href="{{ route('courseMasonry') }}">Course Masonry</a></li>
-                                                        <li><a href="{{ route('courseWithSidebar') }}">Course With Sidebar</a></li>
+                                                        <li><a href="{{ '#' }}">Course Card Three</a></li>
+                                                        <li><a href="{{ '#' }}">Course Masonry</a></li>
+                                                        <li><a href="{{ '#' }}">Course With Sidebar</a></li>
                                                         <li><a href="{{ route('courseDetails') }}">Course Details</a></li>
-                                                        <li><a href="{{ route('courseDetails2') }}">Course Details Two</a></li>
-                                                        <li><a href="{{ route('lesson') }}">Course Lesson <span class="rbt-badge-card">New</span></a></li>
-                                                        <li><a href="{{ route('createCourse') }}">Create Course <span class="rbt-badge-card">New</span></a></li>
+                                                        <li><a href="{{ '#' }}">Course Details Two</a></li>
+                                                        <li><a href="{{ '#' }}">Course Lesson <span class="rbt-badge-card">New</span></a></li>
+                                                        <li><a href="{{ '#' }}">Create Course <span class="rbt-badge-card">New</span></a></li>
                                                     </ul>
                                                 </div>
                                             </div>
@@ -566,30 +566,30 @@
                                     <ul class="submenu">
                                         <li class="has-dropdown"><a href="#">Instructor Dashboard</a>
                                             <ul class="submenu">
-                                                <li><a href="{{ route('instructorDashboard') }}">Dashboard</a></li>
-                                                <li><a href="{{ route('instructorProfile') }}">Profile</a></li>
-                                                <li><a href="{{ route('instructorEnrolledCourses') }}">Enrolled Courses</a></li>
-                                                <li><a href="{{ route('instructorWishlist') }}">Wishlist</a></li>
-                                                <li><a href="{{ route('instructorReviews') }}">Reviews</a></li>
-                                                <li><a href="{{ route('instructorMyQuizAttempts') }}">My Quiz Attempts</a></li>
-                                                <li><a href="{{ route('instructorOrderHistory') }}">Order History</a></li>
-                                                <li><a href="{{ route('instructorCourse') }}">My Course</a></li>
-                                                <li><a href="{{ route('instructorAnnouncements') }}">Announcements</a></li>
+                                                <li><a href="{{ '#' }}">Dashboard</a></li>
+                                                <li><a href="{{ '#' }}">Profile</a></li>
+                                                <li><a href="{{ '#' }}">Enrolled Courses</a></li>
+                                                <li><a href="{{ '#' }}">Wishlist</a></li>
+                                                <li><a href="{{ '#' }}">Reviews</a></li>
+                                                <li><a href="{{ '#' }}">My Quiz Attempts</a></li>
+                                                <li><a href="{{ '#' }}">Order History</a></li>
+                                                <li><a href="{{ '#' }}">My Course</a></li>
+                                                <li><a href="{{ '#' }}">Announcements</a></li>
                                                 <li><a href="{{ route('instructorQuizAttempts') }}">Quiz Attempts</a></li>
                                                 <li><a href="{{ route('instructorAssignments') }}">Assignments</a></li>
-                                                <li><a href="{{ route('instructorSettings') }}">Settings</a></li>
+                                                <li><a href="{{ '#' }}">Settings</a></li>
                                             </ul>
                                         </li>
                                         <li class="has-dropdown"><a href="#">Student Dashboard</a>
                                             <ul class="submenu">
-                                                <li><a href="{{ route('studentDashboard') }}">Dashboard</a></li>
-                                                <li><a href="{{ route('studentProfile') }}">Profile</a></li>
-                                                <li><a href="{{ route('studentEnrolledCourses') }}">Enrolled Courses</a></li>
-                                                <li><a href="{{ route('studentWishlist') }}">Wishlist</a></li>
-                                                <li><a href="{{ route('studentReviews') }}">Reviews</a></li>
-                                                <li><a href="{{ route('studentMyQuizAttempts') }}">My Quiz Attempts</a></li>
-                                                <li><a href="{{ route('studentOrderHistory') }}">Order History</a></li>
-                                                <li><a href="{{ route('studentSettings') }}">Settings</a></li>
+                                                <li><a href="{{ '#' }}">Dashboard</a></li>
+                                                <li><a href="{{ '#' }}">Profile</a></li>
+                                                <li><a href="{{ '#' }}">Enrolled Courses</a></li>
+                                                <li><a href="{{ '#' }}">Wishlist</a></li>
+                                                <li><a href="{{ '#' }}">Reviews</a></li>
+                                                <li><a href="{{ '#' }}">My Quiz Attempts</a></li>
+                                                <li><a href="{{ '#' }}">Order History</a></li>
+                                                <li><a href="{{ '#' }}">Settings</a></li>
                                             </ul>
                                         </li>
                                     </ul>
@@ -606,25 +606,25 @@
                                                     <ul class="mega-menu-item">
                                                         <li><a href="{{ route('aboutus01') }}">About Us</a></li>
                                                         <li><a href="{{ route('aboutus02') }}">About Us 02</a></li>
-                                                        <li><a href="{{ route('eventGrid') }}">Event Grid</a></li>
-                                                        <li><a href="{{ route('eventList') }}">Event List</a></li>
-                                                        <li><a href="{{ route('eventSidebar') }}">Event Sidebar</a></li>
-                                                        <li><a href="{{ route('eventDetails') }}">Event Details</a></li>
-                                                        <li><a href="{{ route('academyGallery') }}">Academy Gallery</a></li>
-                                                        <li><a href="{{ route('admissionGuide') }}">Admission Guide</a></li>
+                                                        <li><a href="{{ '#' }}">Event Grid</a></li>
+                                                        <li><a href="{{ '#' }}">Event List</a></li>
+                                                        <li><a href="{{ '#' }}">Event Sidebar</a></li>
+                                                        <li><a href="{{ '#' }}">Event Details</a></li>
+                                                        <li><a href="{{ '#' }}">Academy Gallery</a></li>
+                                                        <li><a href="{{ '#' }}">Admission Guide</a></li>
                                                     </ul>
                                                 </div>
 
                                                 <div class="col-lg-12 col-xl-3 col-xxl-3 single-mega-item">
                                                     <h3 class="rbt-short-title">Get Started</h3>
                                                     <ul class="mega-menu-item">
-                                                        <li><a href="{{ route('profile') }}">Profile</a></li>
-                                                        <li><a href="{{ route('contact') }}">Contact Us</a></li>
-                                                        <li><a href="{{ route('becomeTeacher') }}">Become a Teacher</a></li>
-                                                        <li><a href="{{ route('instructor') }}">Instructor</a></li>
+                                                        <li><a href="{{ route('dashboard.index') }}">Profile</a></li>
+                                                        <li><a href="{{ route('contact.show') }}">Contact Us</a></li>
+                                                        <li><a href="{{ '#' }}">Become a Teacher</a></li>
+                                                        <li><a href="{{ '#' }}">Instructor</a></li>
                                                         <li><a href="{{ route('faqs') }}">FAQS</a></li>
                                                         <li><a href="{{ route('privacyPolicy') }}">Privacy Policy</a></li>
-                                                        <li><a href="{{ route('pageError') }}">404 Page</a></li>
+                                                        <li><a href="{{ '#' }}">404 Page</a></li>
                                                         <li><a href="{{ route('maintenance') }}">Maintenance</a></li>
                                                     </ul>
                                                 </div>
@@ -632,14 +632,14 @@
                                                 <div class="col-lg-12 col-xl-3 col-xxl-3 single-mega-item">
                                                     <h3 class="rbt-short-title">Shop Pages</h3>
                                                     <ul class="mega-menu-item">
-                                                        <li><a href="{{ route('shop') }}">Shop <span class="rbt-badge-card">Sale Anything</span></a></li>
-                                                        <li><a href="{{ route('singleProduct') }}">Single Product</a></li>
+                                                        <li><a href="{{ '#' }}">Shop <span class="rbt-badge-card">Sale Anything</span></a></li>
+                                                        <li><a href="{{ '#' }}">Single Product</a></li>
                                                         <li><a href="{{ route('cart') }}">Cart Page</a></li>
                                                         <li><a href="{{ route('checkout') }}">Checkout</a></li>
                                                         <li><a href="{{ route('wishlist') }}">Wishlist Page</a></li>
-                                                        <li><a href="{{ route('myAccount') }}">My Acount</a></li>
+                                                        <li><a href="{{ '#' }}">My Acount</a></li>
                                                         <li><a href="{{ route('login') }}">Login & Register</a></li>
-                                                        <li><a href="{{ route('subscription') }}">Subscription</a></li>
+                                                        <li><a href="{{ '#' }}">Subscription</a></li>
                                                     </ul>
                                                 </div>
                                                 <div class="col-lg-12 col-xl-3 col-xxl-3 single-mega-item">
@@ -838,12 +838,12 @@
                                             </div>
                                             <div class="admin-info">
                                                 <span class="name">PixcelsIT</span>
-                                                <a class="rbt-btn-link color-primary" href="{{ route('profile') }}">View Profile</a>
+                                                <a class="rbt-btn-link color-primary" href="{{ route('dashboard.index') }}">View Profile</a>
                                             </div>
                                         </div>
                                         <ul class="user-list-wrapper">
                                             <li>
-                                                <a href="{{ route('instructorDashboard') }}">
+                                                <a href="{{ '#' }}">
                                                     <i class="feather-home"></i>
                                                     <span>My Dashboard</span>
                                                 </a>
@@ -855,31 +855,31 @@
                                                 </a>
                                             </li>
                                             <li>
-                                                <a href="{{ route('instructorEnrolledCourses') }}">
+                                                <a href="{{ '#' }}">
                                                     <i class="feather-shopping-bag"></i>
                                                     <span>Enrolled Courses</span>
                                                 </a>
                                             </li>
                                             <li>
-                                                <a href="{{ route('instructorWishlist') }}">
+                                                <a href="{{ '#' }}">
                                                     <i class="feather-heart"></i>
                                                     <span>Wishlist</span>
                                                 </a>
                                             </li>
                                             <li>
-                                                <a href="{{ route('instructorReviews') }}">
+                                                <a href="{{ '#' }}">
                                                     <i class="feather-star"></i>
                                                     <span>Reviews</span>
                                                 </a>
                                             </li>
                                             <li>
-                                                <a href="{{ route('instructorMyQuizAttempts') }}">
+                                                <a href="{{ '#' }}">
                                                     <i class="feather-list"></i>
                                                     <span>My Quiz Attempts</span>
                                                 </a>
                                             </li>
                                             <li>
-                                                <a href="{{ route('instructorOrderHistory') }}">
+                                                <a href="{{ '#' }}">
                                                     <i class="feather-clock"></i>
                                                     <span>Order History</span>
                                                 </a>
@@ -903,7 +903,7 @@
                                         <hr class="mt--10 mb--10">
                                         <ul class="user-list-wrapper">
                                             <li>
-                                                <a href="{{ route('instructorSettings') }}">
+                                                <a href="{{ '#' }}">
                                                     <i class="feather-settings"></i>
                                                     <span>Settings</span>
                                                 </a>
@@ -1150,10 +1150,10 @@
                                         <div class="demo-single">
                                             <div class="inner">
                                                 <div class="thumbnail">
-                                                    <a href="{{ route('mainDemo') }}"><img src="{{ asset('assets/images/splash/demo/h1.jpg') }}" alt="Demo Images"></a>
+                                                    <a href="{{ route('home') }}"><img src="{{ asset('assets/images/splash/demo/h1.jpg') }}" alt="Demo Images"></a>
                                                 </div>
                                                 <div class="content">
-                                                    <h4 class="title"><a href="{{ route('mainDemo') }}">Home Demo <span class="btn-icon"><i class="feather-arrow-right"></i></span></a></h4>
+                                                    <h4 class="title"><a href="{{ route('home') }}">Home Demo <span class="btn-icon"><i class="feather-arrow-right"></i></span></a></h4>
                                                 </div>
                                             </div>
                                         </div>
@@ -1165,10 +1165,10 @@
                                         <div class="demo-single">
                                             <div class="inner">
                                                 <div class="thumbnail">
-                                                    <a href="{{ route('marketplace') }}"><img src="{{ asset('assets/images/splash/demo/h12.jpg') }}" alt="Demo Images"></a>
+                                                    <a href="{{ '#' }}"><img src="{{ asset('assets/images/splash/demo/h12.jpg') }}" alt="Demo Images"></a>
                                                 </div>
                                                 <div class="content">
-                                                    <h4 class="title"><a href="{{ route('marketplace') }}">Marketplace <span class="btn-icon"><i class="feather-arrow-right"></i></span></a></h4>
+                                                    <h4 class="title"><a href="{{ '#' }}">Marketplace <span class="btn-icon"><i class="feather-arrow-right"></i></span></a></h4>
                                                 </div>
                                             </div>
                                         </div>
@@ -1180,10 +1180,10 @@
                                         <div class="demo-single">
                                             <div class="inner">
                                                 <div class="thumbnail">
-                                                    <a href="{{ route('kindergarten') }}"><img src="{{ asset('assets/images/splash/demo/h4.jpg') }}" alt="Demo Images"></a>
+                                                    <a href="{{ '#' }}"><img src="{{ asset('assets/images/splash/demo/h4.jpg') }}" alt="Demo Images"></a>
                                                 </div>
                                                 <div class="content">
-                                                    <h4 class="title"><a href="{{ route('kindergarten') }}">kindergarten <span class="btn-icon"><i class="feather-arrow-right"></i></span></a></h4>
+                                                    <h4 class="title"><a href="{{ '#' }}">kindergarten <span class="btn-icon"><i class="feather-arrow-right"></i></span></a></h4>
                                                 </div>
                                             </div>
                                         </div>
@@ -1195,10 +1195,10 @@
                                         <div class="demo-single">
                                             <div class="inner">
                                                 <div class="thumbnail">
-                                                    <a href="{{ route('universityClassic') }}"><img src="{{ asset('assets/images/splash/demo/h13.jpg') }}" alt="Demo Images"></a>
+                                                    <a href="{{ '#' }}"><img src="{{ asset('assets/images/splash/demo/h13.jpg') }}" alt="Demo Images"></a>
                                                 </div>
                                                 <div class="content">
-                                                    <h4 class="title"><a href="{{ route('universityClassic') }}">University Classic <span class="btn-icon"><i class="feather-arrow-right"></i></span></a></h4>
+                                                    <h4 class="title"><a href="{{ '#' }}">University Classic <span class="btn-icon"><i class="feather-arrow-right"></i></span></a></h4>
                                                 </div>
                                             </div>
                                         </div>
@@ -1210,10 +1210,10 @@
                                         <div class="demo-single">
                                             <div class="inner">
                                                 <div class="thumbnail">
-                                                    <a href="{{ route('homeElegant') }}"><img src="{{ asset('assets/images/splash/demo/h14.jpg') }}" alt="Demo Images"></a>
+                                                    <a href="{{ '#' }}"><img src="{{ asset('assets/images/splash/demo/h14.jpg') }}" alt="Demo Images"></a>
                                                 </div>
                                                 <div class="content">
-                                                    <h4 class="title"><a href="{{ route('homeElegant') }}">Home Elegant <span class="btn-icon"><i class="feather-arrow-right"></i></span></a></h4>
+                                                    <h4 class="title"><a href="{{ '#' }}">Home Elegant <span class="btn-icon"><i class="feather-arrow-right"></i></span></a></h4>
                                                 </div>
                                             </div>
                                         </div>
@@ -1225,10 +1225,10 @@
                                         <div class="demo-single">
                                             <div class="inner">
                                                 <div class="thumbnail">
-                                                    <a href="{{ route('gymCoaching') }}"><img src="{{ asset('assets/images/splash/demo/h9.jpg') }}" alt="Demo Images"></a>
+                                                    <a href="{{ '#' }}"><img src="{{ asset('assets/images/splash/demo/h9.jpg') }}" alt="Demo Images"></a>
                                                 </div>
                                                 <div class="content">
-                                                    <h4 class="title"><a href="{{ route('gymCoaching') }}">Gym Coaching <span class="btn-icon"><i class="feather-arrow-right"></i></span></a></h4>
+                                                    <h4 class="title"><a href="{{ '#' }}">Gym Coaching <span class="btn-icon"><i class="feather-arrow-right"></i></span></a></h4>
                                                 </div>
                                             </div>
                                         </div>
@@ -1240,10 +1240,10 @@
                                         <div class="demo-single">
                                             <div class="inner">
                                                 <div class="thumbnail">
-                                                    <a href="{{ route('onlineSchool') }}"><img src="{{ asset('assets/images/splash/demo/h3.jpg') }}" alt="Demo Images"></a>
+                                                    <a href="{{ '#' }}"><img src="{{ asset('assets/images/splash/demo/h3.jpg') }}" alt="Demo Images"></a>
                                                 </div>
                                                 <div class="content">
-                                                    <h4 class="title"><a href="{{ route('onlineSchool') }}">Online School <span class="btn-icon"><i class="feather-arrow-right"></i></span></a></h4>
+                                                    <h4 class="title"><a href="{{ '#' }}">Online School <span class="btn-icon"><i class="feather-arrow-right"></i></span></a></h4>
                                                 </div>
                                             </div>
                                         </div>
@@ -1255,10 +1255,10 @@
                                         <div class="demo-single">
                                             <div class="inner">
                                                 <div class="thumbnail">
-                                                    <a href="{{ route('universityStatus') }}"><img src="{{ asset('assets/images/splash/demo/h6.jpg') }}" alt="Demo Images"></a>
+                                                    <a href="{{ '#' }}"><img src="{{ asset('assets/images/splash/demo/h6.jpg') }}" alt="Demo Images"></a>
                                                 </div>
                                                 <div class="content">
-                                                    <h4 class="title"><a href="{{ route('universityStatus') }}">University Status <span class="btn-icon"><i class="feather-arrow-right"></i></span></a></h4>
+                                                    <h4 class="title"><a href="{{ '#' }}">University Status <span class="btn-icon"><i class="feather-arrow-right"></i></span></a></h4>
                                                 </div>
                                             </div>
                                         </div>
@@ -1270,10 +1270,10 @@
                                         <div class="demo-single">
                                             <div class="inner">
                                                 <div class="thumbnail">
-                                                    <a href="{{ route('homeTechnology') }}"><img src="{{ asset('assets/images/splash/demo/h15.jpg') }}" alt="Demo Images"></a>
+                                                    <a href="{{ '#' }}"><img src="{{ asset('assets/images/splash/demo/h15.jpg') }}" alt="Demo Images"></a>
                                                 </div>
                                                 <div class="content">
-                                                    <h4 class="title"><a href="{{ route('homeTechnology') }}">Home Technology <span class="btn-icon"><i class="feather-arrow-right"></i></span></a></h4>
+                                                    <h4 class="title"><a href="{{ '#' }}">Home Technology <span class="btn-icon"><i class="feather-arrow-right"></i></span></a></h4>
                                                 </div>
                                             </div>
                                         </div>
@@ -1285,10 +1285,10 @@
                                         <div class="demo-single">
                                             <div class="inner">
                                                 <div class="thumbnail">
-                                                    <a href="{{ route('instructorPortfolio') }}"><img src="{{ asset('assets/images/splash/demo/h7.jpg') }}" alt="Demo Images"></a>
+                                                    <a href="{{ route('instructorPortfolio', 1) }}"><img src="{{ asset('assets/images/splash/demo/h7.jpg') }}" alt="Demo Images"></a>
                                                 </div>
                                                 <div class="content">
-                                                    <h4 class="title"><a href="{{ route('instructorPortfolio') }}">Instructor Portfolio <span class="btn-icon"><i class="feather-arrow-right"></i></span></a></h4>
+                                                    <h4 class="title"><a href="{{ route('instructorPortfolio', 1) }}">Instructor Portfolio <span class="btn-icon"><i class="feather-arrow-right"></i></span></a></h4>
                                                 </div>
                                             </div>
                                         </div>
@@ -1300,10 +1300,10 @@
                                         <div class="demo-single">
                                             <div class="inner">
                                                 <div class="thumbnail">
-                                                    <a href="{{ route('languageAcademy') }}"><img src="{{ asset('assets/images/splash/demo/h8.jpg') }}" alt="Demo Images"></a>
+                                                    <a href="{{ '#' }}"><img src="{{ asset('assets/images/splash/demo/h8.jpg') }}" alt="Demo Images"></a>
                                                 </div>
                                                 <div class="content">
-                                                    <h4 class="title"><a href="{{ route('languageAcademy') }}">Language Academy <span class="btn-icon"><i class="feather-arrow-right"></i></span></a></h4>
+                                                    <h4 class="title"><a href="{{ '#' }}">Language Academy <span class="btn-icon"><i class="feather-arrow-right"></i></span></a></h4>
                                                 </div>
                                             </div>
                                         </div>
@@ -1315,10 +1315,10 @@
                                         <div class="demo-single">
                                             <div class="inner">
                                                 <div class="thumbnail">
-                                                    <a href="{{ route('singleCourse') }}"><img src="{{ asset('assets/images/splash/demo/h11.jpg') }}" alt="Demo Images"></a>
+                                                    <a href="{{ '#' }}"><img src="{{ asset('assets/images/splash/demo/h11.jpg') }}" alt="Demo Images"></a>
                                                 </div>
                                                 <div class="content">
-                                                    <h4 class="title"><a href="{{ route('singleCourse') }}">Single Course <span class="btn-icon"><i class="feather-arrow-right"></i></span></a></h4>
+                                                    <h4 class="title"><a href="{{ '#' }}">Single Course <span class="btn-icon"><i class="feather-arrow-right"></i></span></a></h4>
                                                 </div>
                                             </div>
                                         </div>
@@ -1330,10 +1330,10 @@
                                         <div class="demo-single">
                                             <div class="inner">
                                                 <div class="thumbnail">
-                                                    <a href="{{ route('onlineCourse') }}"><img src="{{ asset('assets/images/splash/demo/h10.jpg') }}" alt="Demo Images"></a>
+                                                    <a href="{{ '#' }}"><img src="{{ asset('assets/images/splash/demo/h10.jpg') }}" alt="Demo Images"></a>
                                                 </div>
                                                 <div class="content">
-                                                    <h4 class="title"><a href="{{ route('onlineCourse') }}">Online Course <span class="btn-icon"><i class="feather-arrow-right"></i></span></a></h4>
+                                                    <h4 class="title"><a href="{{ '#' }}">Online Course <span class="btn-icon"><i class="feather-arrow-right"></i></span></a></h4>
                                                 </div>
                                             </div>
                                         </div>
@@ -1345,10 +1345,10 @@
                                         <div class="demo-single">
                                             <div class="inner">
                                                 <div class="thumbnail">
-                                                    <a href="{{ route('classicLms') }}"><img src="{{ asset('assets/images/splash/demo/h5.jpg') }}" alt="Demo Images"></a>
+                                                    <a href="{{ '#' }}"><img src="{{ asset('assets/images/splash/demo/h5.jpg') }}" alt="Demo Images"></a>
                                                 </div>
                                                 <div class="content">
-                                                    <h4 class="title"><a href="{{ route('classicLms') }}">Classic Lms <span class="btn-icon"><i class="feather-arrow-right"></i></span></a></h4>
+                                                    <h4 class="title"><a href="{{ '#' }}">Classic Lms <span class="btn-icon"><i class="feather-arrow-right"></i></span></a></h4>
                                                 </div>
                                             </div>
                                         </div>
@@ -1360,10 +1360,10 @@
                                         <div class="demo-single">
                                             <div class="inner">
                                                 <div class="thumbnail">
-                                                    <a href="{{ route('courseSchool') }}"><img src="{{ asset('assets/images/splash/demo/h2.jpg') }}" alt="Demo Images"></a>
+                                                    <a href="{{ '#' }}"><img src="{{ asset('assets/images/splash/demo/h2.jpg') }}" alt="Demo Images"></a>
                                                 </div>
                                                 <div class="content">
-                                                    <h4 class="title"><a href="{{ route('courseSchool') }}">Course School <span class="btn-icon"><i class="feather-arrow-right"></i></span></a></h4>
+                                                    <h4 class="title"><a href="{{ '#' }}">Course School <span class="btn-icon"><i class="feather-arrow-right"></i></span></a></h4>
                                                 </div>
                                             </div>
                                         </div>
@@ -1375,10 +1375,10 @@
                                         <div class="demo-single">
                                             <div class="inner">
                                                 <div class="thumbnail">
-                                                    <a href="{{ route('udemyAffiliate') }}"><img src="{{ asset('assets/images/splash/demo/h16.jpg') }}" alt="Demo Images"></a>
+                                                    <a href="{{ '#' }}"><img src="{{ asset('assets/images/splash/demo/h16.jpg') }}" alt="Demo Images"></a>
                                                 </div>
                                                 <div class="content">
-                                                    <h4 class="title"><a href="{{ route('udemyAffiliate') }}">Udemy Affiliate <span class="btn-icon"><i class="feather-arrow-right"></i></span></a></h4>
+                                                    <h4 class="title"><a href="{{ '#' }}">Udemy Affiliate <span class="btn-icon"><i class="feather-arrow-right"></i></span></a></h4>
                                                 </div>
                                             </div>
                                         </div>
@@ -1390,10 +1390,10 @@
                                         <div class="demo-single">
                                             <div class="inner">
                                                 <div class="thumbnail">
-                                                    <a href="{{ route('onlineAcademy') }}"><img src="{{ asset('assets/images/splash/demo/h17.jpg') }}" alt="Demo Images"></a>
+                                                    <a href="{{ '#' }}"><img src="{{ asset('assets/images/splash/demo/h17.jpg') }}" alt="Demo Images"></a>
                                                 </div>
                                                 <div class="content">
-                                                    <h4 class="title"><a href="{{ route('onlineAcademy') }}">Online Academy <span class="btn-icon"><i class="feather-arrow-right"></i></span></a></h4>
+                                                    <h4 class="title"><a href="{{ '#' }}">Online Academy <span class="btn-icon"><i class="feather-arrow-right"></i></span></a></h4>
                                                 </div>
                                             </div>
                                         </div>
@@ -1405,10 +1405,10 @@
                                         <div class="demo-single">
                                             <div class="inner">
                                                 <div class="thumbnail">
-                                                    <a href="{{ route('instructorsCoaches') }}"><img src="{{ asset('assets/images/splash/demo/h18.jpg') }}" alt="Demo Images"></a>
+                                                    <a href="{{ '#' }}"><img src="{{ asset('assets/images/splash/demo/h18.jpg') }}" alt="Demo Images"></a>
                                                 </div>
                                                 <div class="content">
-                                                    <h4 class="title"><a href="{{ route('instructorsCoaches') }}">Instructor Coaches <span class="btn-icon"><i class="feather-arrow-right"></i></span></a></h4>
+                                                    <h4 class="title"><a href="{{ '#' }}">Instructor Coaches <span class="btn-icon"><i class="feather-arrow-right"></i></span></a></h4>
                                                 </div>
                                             </div>
                                         </div>
@@ -1420,10 +1420,10 @@
                                         <div class="demo-single">
                                             <div class="inner">
                                                 <div class="thumbnail">
-                                                    <a href="{{ route('modernUniversity') }}"><img src="{{ asset('assets/images/splash/demo/h19.jpg') }}" alt="Demo Images"></a>
+                                                    <a href="{{ '#' }}"><img src="{{ asset('assets/images/splash/demo/h19.jpg') }}" alt="Demo Images"></a>
                                                 </div>
                                                 <div class="content">
-                                                    <h4 class="title"><a href="{{ route('modernUniversity') }}">Modern University <span class="btn-icon"><i class="feather-arrow-right"></i></span></a></h4>
+                                                    <h4 class="title"><a href="{{ '#' }}">Modern University <span class="btn-icon"><i class="feather-arrow-right"></i></span></a></h4>
                                                 </div>
                                             </div>
                                         </div>
@@ -1435,10 +1435,10 @@
                                         <div class="demo-single">
                                             <div class="inner">
                                                 <div class="thumbnail">
-                                                    <a href="{{ route('multilingual') }}"><img src="{{ asset('assets/images/splash/demo/h20.jpg') }}" alt="Demo Images"></a>
+                                                    <a href="{{ '#' }}"><img src="{{ asset('assets/images/splash/demo/h20.jpg') }}" alt="Demo Images"></a>
                                                 </div>
                                                 <div class="content">
-                                                    <h4 class="title"><a href="{{ route('multilingual') }}">Multilingual <span class="btn-icon"><i class="feather-arrow-right"></i></span></a></h4>
+                                                    <h4 class="title"><a href="{{ '#' }}">Multilingual <span class="btn-icon"><i class="feather-arrow-right"></i></span></a></h4>
                                                 </div>
                                             </div>
                                         </div>
@@ -1450,10 +1450,10 @@
                                         <div class="demo-single">
                                             <div class="inner">
                                                 <div class="thumbnail">
-                                                    <a href="{{ route('artDesignSchool') }}"><img src="{{ asset('assets/images/splash/demo/h21.jpg') }}" alt="Demo Images"></a>
+                                                    <a href="{{ '#' }}"><img src="{{ asset('assets/images/splash/demo/h21.jpg') }}" alt="Demo Images"></a>
                                                 </div>
                                                 <div class="content">
-                                                    <h4 class="title"><a href="{{ route('artDesignSchool') }}">Art Design School <span class="btn-icon"><i class="feather-arrow-right"></i></span></a></h4>
+                                                    <h4 class="title"><a href="{{ '#' }}">Art Design School <span class="btn-icon"><i class="feather-arrow-right"></i></span></a></h4>
                                                 </div>
                                             </div>
                                         </div>
@@ -1480,10 +1480,10 @@
                                         <div class="demo-single">
                                             <div class="inner">
                                                 <div class="thumbnail">
-                                                    <a href="{{ route('coaching') }}"><img src="{{ asset('assets/images/splash/demo/h23.jpg') }}" alt="Demo Images"></a>
+                                                    <a href="{{ '#' }}"><img src="{{ asset('assets/images/splash/demo/h23.jpg') }}" alt="Demo Images"></a>
                                                 </div>
                                                 <div class="content">
-                                                    <h4 class="title"><a href="{{ route('coaching') }}">Coaching <span class="btn-icon"><i class="feather-arrow-right"></i></span></a></h4>
+                                                    <h4 class="title"><a href="{{ '#' }}">Coaching <span class="btn-icon"><i class="feather-arrow-right"></i></span></a></h4>
                                                 </div>
                                             </div>
                                         </div>
@@ -1495,10 +1495,10 @@
                                         <div class="demo-single">
                                             <div class="inner">
                                                 <div class="thumbnail">
-                                                    <a href="{{ route('healthWellnessInstitute') }}"><img src="{{ asset('assets/images/splash/demo/h24.jpg') }}" alt="Demo Images"></a>
+                                                    <a href="{{ '#' }}"><img src="{{ asset('assets/images/splash/demo/h24.jpg') }}" alt="Demo Images"></a>
                                                 </div>
                                                 <div class="content">
-                                                    <h4 class="title"><a href="{{ route('healthWellnessInstitute') }}">Health Institute <span class="btn-icon"><i class="feather-arrow-right"></i></span></a></h4>
+                                                    <h4 class="title"><a href="{{ '#' }}">Health Institute <span class="btn-icon"><i class="feather-arrow-right"></i></span></a></h4>
                                                 </div>
                                             </div>
                                         </div>
@@ -1510,10 +1510,10 @@
                                         <div class="demo-single">
                                             <div class="inner">
                                                 <div class="thumbnail">
-                                                    <a href="{{ route('lifeCoach') }}"><img src="{{ asset('assets/images/splash/demo/h25.jpg') }}" alt="Demo Images"></a>
+                                                    <a href="{{ '#' }}"><img src="{{ asset('assets/images/splash/demo/h25.jpg') }}" alt="Demo Images"></a>
                                                 </div>
                                                 <div class="content">
-                                                    <h4 class="title"><a href="{{ route('lifeCoach') }}">Life Coach <span class="btn-icon"><i class="feather-arrow-right"></i></span></a></h4>
+                                                    <h4 class="title"><a href="{{ '#' }}">Life Coach <span class="btn-icon"><i class="feather-arrow-right"></i></span></a></h4>
                                                 </div>
                                             </div>
                                         </div>
@@ -1525,10 +1525,10 @@
                                         <div class="demo-single">
                                             <div class="inner">
                                                 <div class="thumbnail">
-                                                    <a href="{{ route('islamicCenter') }}"><img src="{{ asset('assets/images/splash/demo/h26.jpg') }}" alt="Demo Images"></a>
+                                                    <a href="{{ '#' }}"><img src="{{ asset('assets/images/splash/demo/h26.jpg') }}" alt="Demo Images"></a>
                                                 </div>
                                                 <div class="content">
-                                                    <h4 class="title"><a href="{{ route('islamicCenter') }}">Islamic Center <span class="btn-icon"><i class="feather-arrow-right"></i></span></a></h4>
+                                                    <h4 class="title"><a href="{{ '#' }}">Islamic Center <span class="btn-icon"><i class="feather-arrow-right"></i></span></a></h4>
                                                 </div>
                                             </div>
                                         </div>
@@ -1569,24 +1569,24 @@
                                         <h3 class="rbt-short-title">Course Layout</h3>
                                         <ul class="mega-menu-item">
                                             <li><a href="{{ route('courseFilterOneToggle') }}">Filter One Toggle</a></li>
-                                            <li><a href="{{ route('courseFilterOneOpen') }}">Filter One Open</a></li>
-                                            <li><a href="{{ route('courseFilterTwoToggle') }}">Filter Two Toggle</a></li>
-                                            <li><a href="{{ route('courseFilterTwoOpen') }}">Filter Two Open</a></li>
-                                            <li><a href="{{ route('courseWithTab') }}">Course With Tab</a></li>
-                                            <li><a href="{{ route('courseWithTabTwo') }}">Course With Tab Two</a></li>
-                                            <li><a href="{{ route('courseCard2') }}">Course Card Two</a></li>
+                                            <li><a href="{{ route('courseFilterOneToggle') }}">Filter One Open</a></li>
+                                            <li><a href="{{ '#' }}">Filter Two Toggle</a></li>
+                                            <li><a href="{{ '#' }}">Filter Two Open</a></li>
+                                            <li><a href="{{ '#' }}">Course With Tab</a></li>
+                                            <li><a href="{{ '#' }}">Course With Tab Two</a></li>
+                                            <li><a href="{{ '#' }}">Course Card Two</a></li>
                                         </ul>
                                     </div>
                                     <div class="col-lg-12 col-xl-6 col-xxl-6 single-mega-item">
                                         <h3 class="rbt-short-title">Course Layout</h3>
                                         <ul class="mega-menu-item">
-                                            <li><a href="{{ route('courseCard3') }}">Course Card Three</a></li>
-                                            <li><a href="{{ route('courseMasonry') }}">Course Masonry</a></li>
-                                            <li><a href="{{ route('courseWithSidebar') }}">Course With Sidebar</a></li>
+                                            <li><a href="{{ '#' }}">Course Card Three</a></li>
+                                            <li><a href="{{ '#' }}">Course Masonry</a></li>
+                                            <li><a href="{{ '#' }}">Course With Sidebar</a></li>
                                             <li><a href="{{ route('courseDetails') }}">Course Details</a></li>
-                                            <li><a href="{{ route('courseDetails2') }}">Course Details Two</a></li>
-                                            <li><a href="{{ route('lesson') }}">Course Lesson <span class="rbt-badge-card">New</span></a></li>
-                                            <li><a href="{{ route('createCourse') }}">Create Course <span class="rbt-badge-card">New</span></a></li>
+                                            <li><a href="{{ '#' }}">Course Details Two</a></li>
+                                            <li><a href="{{ '#' }}">Course Lesson <span class="rbt-badge-card">New</span></a></li>
+                                            <li><a href="{{ '#' }}">Create Course <span class="rbt-badge-card">New</span></a></li>
                                         </ul>
                                     </div>
                                 </div>
@@ -1612,30 +1612,30 @@
                         <ul class="submenu">
                             <li class="has-dropdown"><a href="#">Instructor Dashboard</a>
                                 <ul class="submenu">
-                                    <li><a href="{{ route('instructorDashboard') }}">Dashboard</a></li>
-                                    <li><a href="{{ route('instructorProfile') }}">Profile</a></li>
-                                    <li><a href="{{ route('instructorEnrolledCourses') }}">Enrolled Courses</a></li>
-                                    <li><a href="{{ route('instructorWishlist') }}">Wishlist</a></li>
-                                    <li><a href="{{ route('instructorReviews') }}">Reviews</a></li>
-                                    <li><a href="{{ route('instructorMyQuizAttempts') }}">My Quiz Attempts</a></li>
-                                    <li><a href="{{ route('instructorOrderHistory') }}">Order History</a></li>
-                                    <li><a href="{{ route('instructorCourse') }}">My Course</a></li>
-                                    <li><a href="{{ route('instructorAnnouncements') }}">Announcements</a></li>
+                                    <li><a href="{{ '#' }}">Dashboard</a></li>
+                                    <li><a href="{{ '#' }}">Profile</a></li>
+                                    <li><a href="{{ '#' }}">Enrolled Courses</a></li>
+                                    <li><a href="{{ '#' }}">Wishlist</a></li>
+                                    <li><a href="{{ '#' }}">Reviews</a></li>
+                                    <li><a href="{{ '#' }}">My Quiz Attempts</a></li>
+                                    <li><a href="{{ '#' }}">Order History</a></li>
+                                    <li><a href="{{ '#' }}">My Course</a></li>
+                                    <li><a href="{{ '#' }}">Announcements</a></li>
                                     <li><a href="{{ route('instructorQuizAttempts') }}">Quiz Attempts</a></li>
                                     <li><a href="{{ route('instructorAssignments') }}">Assignments</a></li>
-                                    <li><a href="{{ route('instructorSettings') }}">Settings</a></li>
+                                    <li><a href="{{ '#' }}">Settings</a></li>
                                 </ul>
                             </li>
                             <li class="has-dropdown"><a href="#">Student Dashboard</a>
                                 <ul class="submenu">
-                                    <li><a href="{{ route('studentDashboard') }}">Dashboard</a></li>
-                                    <li><a href="{{ route('studentProfile') }}">Profile</a></li>
-                                    <li><a href="{{ route('studentEnrolledCourses') }}">Enrolled Courses</a></li>
-                                    <li><a href="{{ route('studentWishlist') }}">Wishlist</a></li>
-                                    <li><a href="{{ route('studentReviews') }}">Reviews</a></li>
-                                    <li><a href="{{ route('studentMyQuizAttempts') }}">My Quiz Attempts</a></li>
-                                    <li><a href="{{ route('studentOrderHistory') }}">Order History</a></li>
-                                    <li><a href="{{ route('studentSettings') }}">Settings</a></li>
+                                    <li><a href="{{ '#' }}">Dashboard</a></li>
+                                    <li><a href="{{ '#' }}">Profile</a></li>
+                                    <li><a href="{{ '#' }}">Enrolled Courses</a></li>
+                                    <li><a href="{{ '#' }}">Wishlist</a></li>
+                                    <li><a href="{{ '#' }}">Reviews</a></li>
+                                    <li><a href="{{ '#' }}">My Quiz Attempts</a></li>
+                                    <li><a href="{{ '#' }}">Order History</a></li>
+                                    <li><a href="{{ '#' }}">Settings</a></li>
                                 </ul>
                             </li>
                         </ul>
@@ -1652,25 +1652,25 @@
                                         <ul class="mega-menu-item">
                                             <li><a href="{{ route('aboutus01') }}">About Us</a></li>
                                             <li><a href="{{ route('aboutus02') }}">About Us 02</a></li>
-                                            <li><a href="{{ route('eventGrid') }}">Event Grid</a></li>
-                                            <li><a href="{{ route('eventList') }}">Event List</a></li>
-                                            <li><a href="{{ route('eventSidebar') }}">Event Sidebar</a></li>
-                                            <li><a href="{{ route('eventDetails') }}">Event Details</a></li>
-                                            <li><a href="{{ route('academyGallery') }}">Academy Gallery</a></li>
-                                            <li><a href="{{ route('admissionGuide') }}">Admission Guide</a></li>
+                                            <li><a href="{{ '#' }}">Event Grid</a></li>
+                                            <li><a href="{{ '#' }}">Event List</a></li>
+                                            <li><a href="{{ '#' }}">Event Sidebar</a></li>
+                                            <li><a href="{{ '#' }}">Event Details</a></li>
+                                            <li><a href="{{ '#' }}">Academy Gallery</a></li>
+                                            <li><a href="{{ '#' }}">Admission Guide</a></li>
                                         </ul>
                                     </div>
 
                                     <div class="col-lg-12 col-xl-3 col-xxl-3 single-mega-item">
                                         <h3 class="rbt-short-title">Get Started</h3>
                                         <ul class="mega-menu-item">
-                                            <li><a href="{{ route('profile') }}">Profile</a></li>
-                                            <li><a href="{{ route('contact') }}">Contact Us</a></li>
-                                            <li><a href="{{ route('becomeTeacher') }}">Become a Teacher</a></li>
-                                            <li><a href="{{ route('instructor') }}">Instructor</a></li>
+                                            <li><a href="{{ route('dashboard.index') }}">Profile</a></li>
+                                            <li><a href="{{ route('contact.show') }}">Contact Us</a></li>
+                                            <li><a href="{{ '#' }}">Become a Teacher</a></li>
+                                            <li><a href="{{ '#' }}">Instructor</a></li>
                                             <li><a href="{{ route('faqs') }}">FAQS</a></li>
                                             <li><a href="{{ route('privacyPolicy') }}">Privacy Policy</a></li>
-                                            <li><a href="{{ route('pageError') }}">404 Page</a></li>
+                                            <li><a href="{{ '#' }}">404 Page</a></li>
                                             <li><a href="{{ route('maintenance') }}">Maintenance</a></li>
                                         </ul>
                                     </div>
@@ -1678,14 +1678,14 @@
                                     <div class="col-lg-12 col-xl-3 col-xxl-3 single-mega-item">
                                         <h3 class="rbt-short-title">Shop Pages</h3>
                                         <ul class="mega-menu-item">
-                                            <li><a href="{{ route('shop') }}">Shop <span class="rbt-badge-card">Sale Anything</span></a></li>
-                                            <li><a href="{{ route('singleProduct') }}">Single Product</a></li>
+                                            <li><a href="{{ '#' }}">Shop <span class="rbt-badge-card">Sale Anything</span></a></li>
+                                            <li><a href="{{ '#' }}">Single Product</a></li>
                                             <li><a href="{{ route('cart') }}">Cart Page</a></li>
                                             <li><a href="{{ route('checkout') }}">Checkout</a></li>
                                             <li><a href="{{ route('wishlist') }}">Wishlist Page</a></li>
-                                            <li><a href="{{ route('myAccount') }}">My Acount</a></li>
+                                            <li><a href="{{ '#' }}">My Acount</a></li>
                                             <li><a href="{{ route('login') }}">Login & Register</a></li>
-                                            <li><a href="{{ route('subscription') }}">Subscription</a></li>
+                                            <li><a href="{{ '#' }}">Subscription</a></li>
                                         </ul>
                                     </div>
                                     <div class="col-lg-12 col-xl-3 col-xxl-3 single-mega-item">
@@ -1955,7 +1955,7 @@
                                 </h6>
                                 <h1 class="title">Education Is The Best Key <span class="theme-gradient">Success In Life</span></h1>
                                 <p class="description">Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet
-                                    sint.Â <span class="fw-500">Velit officia consequat.</span></p>
+                                    sint. <span class="fw-500">Velit officia consequat.</span></p>
                                 <div class="button-group">
                                     <a class="rbt-btn btn-gradient hover-icon-reverse" href="#">
                                         <span class="icon-reverse-wrapper">
@@ -3407,7 +3407,7 @@
                 <div class="row mt--55">
                     <div class="col-lg-12">
                         <div class="load-more-btn text-center">
-                            <a class="rbt-btn btn-gradient btn-lg hover-icon-reverse" href="{{ route('courseWithTabTwo') }}">
+                            <a class="rbt-btn btn-gradient btn-lg hover-icon-reverse" href="{{ '#' }}">
                                 <span class="icon-reverse-wrapper">
                                     <span class="btn-text">View All Courses</span>
                                 <span class="btn-icon"><i class="feather-arrow-right"></i></span>
@@ -3587,7 +3587,7 @@
                                     <div class="single-slide">
                                         <div class="rbt-card shadow-none event-grid-card variation-01 rbt-hover">
                                             <div class="rbt-card-img">
-                                                <a href="{{ route('eventDetails') }}">
+                                                <a href="{{ '#' }}">
                                                     <img src="{{ asset('assets/images/event/grid-type-02.jpg') }}" alt="Card image">
                                                     <div class="rbt-badge-3 bg-white">
                                                         <span>11 Mar</span>
@@ -3600,11 +3600,11 @@
                                                     <li><i class="feather-map-pin"></i>Vancouver</li>
                                                     <li><i class="feather-clock"></i>8:00 am - 5:00 pm</li>
                                                 </ul>
-                                                <h4 class="rbt-card-title"><a href="{{ route('eventDetails') }}">Painting Art Contest 2020 for histudy
+                                                <h4 class="rbt-card-title"><a href="{{ '#' }}">Painting Art Contest 2020 for histudy
                                                         Clud</a></h4>
 
                                                 <div class="read-more-btn">
-                                                    <a class="rbt-btn btn-border hover-icon-reverse btn-sm radius-round" href="{{ route('eventDetails') }}">
+                                                    <a class="rbt-btn btn-border hover-icon-reverse btn-sm radius-round" href="{{ '#' }}">
                                                         <span class="icon-reverse-wrapper">
                                                             <span class="btn-text">Get Ticket</span>
                                                         <span class="btn-icon"><i class="feather-arrow-right"></i></span>
@@ -3622,7 +3622,7 @@
                                     <div class="single-slide">
                                         <div class="rbt-card shadow-none event-grid-card variation-01 rbt-hover">
                                             <div class="rbt-card-img">
-                                                <a href="{{ route('eventDetails') }}">
+                                                <a href="{{ '#' }}">
                                                     <img src="{{ asset('assets/images/event/grid-type-04.jpg') }}" alt="Card image">
                                                     <div class="rbt-badge-3 bg-white">
                                                         <span>11 Jan</span>
@@ -3635,11 +3635,11 @@
                                                     <li><i class="feather-map-pin"></i>IAC Building</li>
                                                     <li><i class="feather-clock"></i>8:00 am - 5:00 pm</li>
                                                 </ul>
-                                                <h4 class="rbt-card-title"><a href="{{ route('eventDetails') }}">Elegant Light Box Paper Cut Dioramas in
+                                                <h4 class="rbt-card-title"><a href="{{ '#' }}">Elegant Light Box Paper Cut Dioramas in
                                                         UK</a></h4>
 
                                                 <div class="read-more-btn">
-                                                    <a class="rbt-btn btn-border hover-icon-reverse btn-sm radius-round" href="{{ route('eventDetails') }}">
+                                                    <a class="rbt-btn btn-border hover-icon-reverse btn-sm radius-round" href="{{ '#' }}">
                                                         <span class="icon-reverse-wrapper">
                                                             <span class="btn-text">Get Ticket</span>
                                                         <span class="btn-icon"><i class="feather-arrow-right"></i></span>
@@ -3658,7 +3658,7 @@
                                     <div class="single-slide">
                                         <div class="rbt-card shadow-none event-grid-card variation-01 rbt-hover">
                                             <div class="rbt-card-img">
-                                                <a href="{{ route('eventDetails') }}">
+                                                <a href="{{ '#' }}">
                                                     <img src="{{ asset('assets/images/event/grid-type-05.jpg') }}" alt="Card image">
                                                     <div class="rbt-badge-3 bg-white">
                                                         <span>11 Mar</span>
@@ -3671,11 +3671,11 @@
                                                     <li><i class="feather-map-pin"></i>Vancouver</li>
                                                     <li><i class="feather-clock"></i>8:00 am - 5:00 pm</li>
                                                 </ul>
-                                                <h4 class="rbt-card-title"><a href="{{ route('eventDetails') }}">Most Effective Ways for Education's
+                                                <h4 class="rbt-card-title"><a href="{{ '#' }}">Most Effective Ways for Education's
                                                         Problem</a></h4>
 
                                                 <div class="read-more-btn">
-                                                    <a class="rbt-btn btn-border hover-icon-reverse btn-sm radius-round" href="{{ route('eventDetails') }}">
+                                                    <a class="rbt-btn btn-border hover-icon-reverse btn-sm radius-round" href="{{ '#' }}">
                                                         <span class="icon-reverse-wrapper">
                                                             <span class="btn-text">Get Ticket</span>
                                                         <span class="btn-icon"><i class="feather-arrow-right"></i></span>
@@ -3694,7 +3694,7 @@
                                     <div class="single-slide">
                                         <div class="rbt-card shadow-none event-grid-card variation-01 rbt-hover">
                                             <div class="rbt-card-img">
-                                                <a href="{{ route('eventDetails') }}">
+                                                <a href="{{ '#' }}">
                                                     <img src="{{ asset('assets/images/event/grid-type-01.jpg') }}" alt="Card image">
                                                     <div class="rbt-badge-3 bg-white">
                                                         <span>11 Jan</span>
@@ -3707,11 +3707,11 @@
                                                     <li><i class="feather-map-pin"></i>IAC Building</li>
                                                     <li><i class="feather-clock"></i>8:00 am - 5:00 pm</li>
                                                 </ul>
-                                                <h4 class="rbt-card-title"><a href="{{ route('eventDetails') }}">International Education Fair 2024</a>
+                                                <h4 class="rbt-card-title"><a href="{{ '#' }}">International Education Fair 2024</a>
                                                 </h4>
 
                                                 <div class="read-more-btn">
-                                                    <a class="rbt-btn btn-border hover-icon-reverse btn-sm radius-round" href="{{ route('eventDetails') }}">
+                                                    <a class="rbt-btn btn-border hover-icon-reverse btn-sm radius-round" href="{{ '#' }}">
                                                         <span class="icon-reverse-wrapper">
                                                             <span class="btn-text">Get Ticket</span>
                                                         <span class="btn-icon"><i class="feather-arrow-right"></i></span>
@@ -3976,8 +3976,8 @@
                                     </a>
                                 </div>
 
-                                <p class="description mt--20">Weâ€™re always in search for talented
-                                    and motivated people. Donâ€™t be shy introduce yourself!
+                                <p class="description mt--20">We’re always in search for talented
+                                    and motivated people. Don’t be shy introduce yourself!
                                 </p>
 
                                 <ul class="social-icon social-default justify-content-start">
@@ -4016,16 +4016,16 @@
                                 <h5 class="ft-title">Useful Links</h5>
                                 <ul class="ft-link">
                                     <li>
-                                        <a href="{{ route('marketplace') }}">Marketplace</a>
+                                        <a href="{{ '#' }}">Marketplace</a>
                                     </li>
                                     <li>
-                                        <a href="{{ route('kindergarten') }}">kindergarten</a>
+                                        <a href="{{ '#' }}">kindergarten</a>
                                     </li>
                                     <li>
-                                        <a href="{{ route('universityClassic') }}">University</a>
+                                        <a href="{{ '#' }}">University</a>
                                     </li>
                                     <li>
-                                        <a href="{{ route('gymCoaching') }}">GYM Coaching</a>
+                                        <a href="{{ '#' }}">GYM Coaching</a>
                                     </li>
                                     <li>
                                         <a href="{{ route('faqs') }}">FAQ</a>
@@ -4045,25 +4045,25 @@
                                 <h5 class="ft-title">Our Company</h5>
                                 <ul class="ft-link">
                                     <li>
-                                        <a href="{{ route('contact') }}">Contact Us</a>
+                                        <a href="{{ route('contact.show') }}">Contact Us</a>
                                     </li>
                                     <li>
-                                        <a href="{{ route('becomeTeacher') }}">Become Teacher</a>
+                                        <a href="{{ '#' }}">Become Teacher</a>
                                     </li>
                                     <li>
                                         <a href="{{ route('blog') }}">Blog</a>
                                     </li>
                                     <li>
-                                        <a href="{{ route('instructor') }}">Instructor</a>
+                                        <a href="{{ '#' }}">Instructor</a>
                                     </li>
                                     <li>
-                                        <a href="{{ route('eventList') }}">Events</a>
+                                        <a href="{{ '#' }}">Events</a>
                                     </li>
                                     <li>
                                         <a href="{{ route('courseFilterOneToggle') }}">Course</a>
                                     </li>
                                     <li>
-                                        <a href="{{ route('contact') }}">Contact</a>
+                                        <a href="{{ route('contact.show') }}">Contact</a>
                                     </li>
                                 </ul>
                             </div>
@@ -4100,13 +4100,13 @@
                 <div class="container">
                     <div class="row align-items-center">
                         <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-12 col-12">
-                            <p class="rbt-link-hover text-center text-lg-start">Copyright Â© 2025 <a href="https://www.pixcelsthemes.com/">Pixcels Themes.</a> All Rights Reserved</p>
+                            <p class="rbt-link-hover text-center text-lg-start">Copyright © 2025 <a href="https://www.pixcelsthemes.com/">Pixcels Themes.</a> All Rights Reserved</p>
                         </div>
                         <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-12 col-12">
                             <ul class="copyright-link rbt-link-hover justify-content-center justify-content-lg-end mt_sm--10 mt_md--10">
                                 <li><a href="#">Terms of service</a></li>
                                 <li><a href="{{ route('privacyPolicy') }}">Privacy policy</a></li>
-                                <li><a href="{{ route('subscription') }}">Subscription</a></li>
+                                <li><a href="{{ '#' }}">Subscription</a></li>
                                 <li><a href="{{ route('login') }}">Login & Register</a></li>
                             </ul>
                         </div>
@@ -4120,3 +4120,4 @@
     </main>
 
 @endsection
+
