@@ -198,7 +198,7 @@
                                     <select name="subject_id" class="form-select" data-live-search="true">
                                         <option value="">اختر المادة</option>
                                         @foreach ($subjects as $subject)
-                                            <option value="{{ $subject->id }}" {{ $user->subjects->contains('id', $subject->id) ? 'selected' : '' }}>
+                                            <option value="{{ $subject->id }}" {{ $user->subjects->contains('name', $subject->name) ? 'selected' : '' }}>
                                                 {{ $subject->name }}
                                             </option>
                                         @endforeach

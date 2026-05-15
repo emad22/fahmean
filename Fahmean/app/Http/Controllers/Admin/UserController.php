@@ -61,7 +61,7 @@ class UserController extends Controller implements HasMiddleware
     public function create()
     {
         $education_levels = EducationLevel::all();
-        $subjects = Subject::all();
+        $subjects = Subject::all()->unique('name')->values();
         $grades = Grade::all();
         $roles = Role::all();
         $teachers = User::role('teacher')->get();
@@ -198,7 +198,7 @@ class UserController extends Controller implements HasMiddleware
         // 3) Get dropdown data
         $education_levels = EducationLevel::all();
         $grades = Grade::all();
-        $subjects = Subject::all();
+        $subjects = Subject::all()->unique('name')->values();
         $teachers = User::role('teacher')->get();
         $students = Student::has('user')->with('user')->get();
 
@@ -387,7 +387,7 @@ class UserController extends Controller implements HasMiddleware
 
     public function getSubjects($gradeId)
     {
-        $subjects = Subject::where('grade_id', $gradeId)->get()->unique('name'); // إزالة التكرار بناءً على الاسم;
+        $subjects = Subject::where('grade_id', $gradeId)->get()->unique('name')->values(); // إزالة التكرار بناءً على الاسم;
         return response()->json($subjects);
     }
 
@@ -427,7 +427,8 @@ class UserController extends Controller implements HasMiddleware
 
         $subjects = Subject::whereIn('grade_id', $gradeIds)
             ->get()
-            ->unique('name'); // إزالة التكرار بناءً على الاسم
+            ->unique('name')
+            ->values(); // إزالة التكرار بناءً على الاسم
 
         return response()->json($subjects);
     }
