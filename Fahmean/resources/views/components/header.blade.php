@@ -336,6 +336,7 @@
                 <ul class="mainmenu">
                     <li><a href="{{ route('home') }}">Home</a></li>
                     <li><a href="{{ route('courseFilterOneToggle') }}">Courses</a></li>
+                    <li><a href="{{ route('teachersCoaches') }}">Teachers</a></li>
                     <li><a href="{{ route('dashboard.index') }}">Dashboard</a></li>
                     <li><a href="{{ route('aboutus01') }}">About Us</a></li>
                     <li><a href="{{ route('contact.show') }}">Contact Us</a></li>

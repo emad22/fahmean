@@ -70,7 +70,8 @@ class HomeController extends Controller
 
     public function instructorsCoaches()
     {
-        return view('home/instructorsCoaches');
+        $teachers = \App\Models\User::role('teacher')->paginate(12);
+        return view('home/instructorsCoaches', compact('teachers'));
     }
 
     public function islamicCenter()

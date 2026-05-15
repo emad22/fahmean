@@ -45,6 +45,10 @@
                     </li>
 
                     <li>
+                        <a href="{{ route('teachersCoaches') }}">Teachers</a>
+                    </li>
+
+                    <li>
                         <a href="{{ route('dashboard.index') }}">Dashboard</a>
                     </li>
 
@@ -767,7 +771,7 @@
                 <div class="row">
                     <div class="col-lg-12">
                         <div class="load-more-btn mt--60 text-center">
-                            <a class="rbt-btn btn-gradient btn-lg hover-icon-reverse" href="#">
+                            <a class="rbt-btn btn-gradient btn-lg hover-icon-reverse" href="{{ route('teachersCoaches') }}">
                                 <span class="icon-reverse-wrapper">
                                     <span class="btn-text">تعرف على كل المدرسين</span>
                                     <span class="btn-icon"><i class="feather-arrow-right"></i></span>
