@@ -8,16 +8,16 @@
 @section('content')
 
     <!-- Start Banner Area -->
-    <div class="rbt-banner-area rbt-banner-8 variation-02 bg_image bg_image--14 header-transperent-spacer" data-black-overlay="7">
+    <div class="rbt-banner-area rbt-banner-8 variation-02 bg_image bg_image--10 header-transperent-spacer" data-black-overlay="1">
         <div class="wrapper w-100">
             <div class="container">
                 <div class="row align-items-center">
                     <div class="col-12">
                         <div class="inner text-center">
-                            <div class="badge-top mb--30">
+                           <!-- <div class="badge-top mb--30">
                                 <span class="rbt-badge">أهلاً بك في صفحة المعلم</span>
-                            </div>
-                            <h1 class="title">أ. <span class="theme-gradient">{{ $teacher->name }}</span></h1>
+                            </div>-->
+                            <h1 class="title">أ. {{ $teacher->name }}</h1>
                             <p class="description">{{ $teacher->headline ?? 'نخبة من كبار معجمي المواد التعليمية في مصر' }}</p>
                             @if($teacher->video_url)
                                 <div class="video-btn mt--30">
@@ -53,13 +53,25 @@
                         <p class="description mt--30">
                             {{ $teacher->bio ?? ($teacher->headline ?? 'معلم خبير يسعى دائماً لتبسيط المعلومة ووصول الطالب لأقصى درجات الفهم والإتقان في المادة العلمية، من خلال أحدث الوسائل التعليمية والمتابعة الدقيقة.') }}
                         </p>
-                        @if($teacher->about_me)
-                             <div class="about-me-content mt--20">
-                                 {!! nl2br(e($teacher->about_me)) !!}
-                             </div>
-                         @endif
+                        @if($teacher->grades->count() > 0)
+                            <div class="mt--20">
+                                @foreach($teacher->grades as $grade)
+                                    <div class="mb--10">
+                                        <h2 class="subtitle bg-secondary-opacity d-inline-block p-2 radius-10 mb-0">{{ $grade->name }}</h2>
+                                    </div>
+                                @endforeach
+                            </div>
+                        @elseif($teacher->educationLevels->count() > 0)
+                            <div class="mt--20">
+                                @foreach($teacher->educationLevels as $level)
+                                    <div class="mb--10">
+                                        <h2 class="subtitle bg-secondary-opacity d-inline-block p-2 radius-10 mb-0">{{ $level->name }}</h2>
+                                    </div>
+                                @endforeach
+                            </div>
+                        @endif
                          
-                         <!-- Social Share -->
+                         <!-- Social Share 
                          <div class="rbt-social-area mt--40">
                              <h6 class="subtitle bg-secondary-opacity d-inline-block p-2 radius-10 mb-3">تواصل مع المعلم</h6>
                              <ul class="social-icon social-default transparent-with-border justify-content-start">
@@ -68,7 +80,7 @@
                                  @if($teacher->instagram_url) <li><a href="{{ $teacher->instagram_url }}"><i class="feather-instagram"></i></a></li> @endif
                                  @if($teacher->linkedin_url) <li><a href="{{ $teacher->linkedin_url }}"><i class="feather-linkedin"></i></a></li> @endif
                              </ul>
-                         </div>
+                         </div>-->
                         <!-- Start Feature List  -->
                         <div class="rbt-feature-wrapper mt--40">
                             <div class="rbt-feature feature-style-2 rbt-radius">
@@ -77,7 +89,12 @@
                                 </div>
                                 <div class="feature-content">
                                     <h6 class="feature-title">شرح وافٍ ومبسط</h6>
-                                    <p class="feature-description">يتم تقديم المحتوى التعليمي بأسلوب شيق يسهل على الطالب استيعاب أصعب النقاط.</p>
+								
+                                    <p class="feature-description">	@if($teacher->about_me)
+                             
+                                 {!! nl2br(e($teacher->about_me)) !!}
+                             
+                         @endif</p>
                                 </div>
                             </div>
                             <div class="rbt-feature feature-style-2 rbt-radius mt--30">
@@ -97,7 +114,7 @@
     </div>
     <!-- End About Area -->
 
-    <!-- Start Counter Up Area -->
+    <!-- Start Counter Up Area 
     <div class="rbt-counterup-area bg-gradient-6 rbt-section-gap">
         <div class="container">
             <div class="row g-5">
@@ -134,16 +151,16 @@
             </div>
         </div>
     </div>
-    <!-- End Counter Up Area -->
+    End Counter Up Area -->
 
     <!-- Start Course Area -->
     <div class="rbt-course-area bg-color-extra2 rbt-section-gap">
         <div class="container">
-            <div class="row mb--60">
+            <div class="row mb--60 mt--20">
                 <div class="col-lg-12">
                     <div class="section-title text-center">
                         <span class="subtitle bg-secondary-opacity">كورسات المدرس</span>
-                        <h2 class="title">استكشف دوراتنا المتاحة</h2>
+                        <h2 class="title">تعرف على كورسات أ. {{ $teacher->name }}</h2>
                     </div>
                 </div>
             </div>
@@ -181,7 +198,7 @@
     </div>
     <!-- End Course Area -->
 
-    <!-- Start Testimonial Area -->
+    <!-- Start Testimonial Area 
     <div class="rbt-testimonial-area bg-color-white rbt-section-gap">
         <div class="container">
             <div class="row mb--60">
@@ -226,6 +243,6 @@
             </div>
         </div>
     </div>
-    <!-- End Testimonial Area -->
+    End Testimonial Area -->
 
 @endsection

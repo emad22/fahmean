@@ -182,8 +182,35 @@
     }
 
     @media (max-width: 767px) {
+        .fahmean-header-actions {
+            gap: 14px;
+            flex-wrap: wrap;
+            justify-content: space-between;
+        }
+
         .fahmean-header-buttons {
-            display: none;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            width: auto;
+            justify-content: flex-start;
+        }
+
+        .fahmean-header-btn {
+            min-width: auto;
+            width: auto;
+            padding: 0 14px;
+            height: 42px;
+            font-size: 14px;
+        }
+
+        .fahmean-header-btn-primary {
+            min-width: auto;
+            padding: 0 18px;
+        }
+
+        .fahmean-header-search {
+            order: -1;
         }
     }
 </style>
@@ -290,19 +317,11 @@
                             </a>
                         </div>
 
-                        <div class="fahmean-header-search">
+						<!-- <div class="fahmean-header-search">
                             <a class="search-trigger-active rbt-round-btn" href="#">
                                 <i class="feather-search"></i>
                             </a>
-                        </div>
-
-                        <div class="header-info d-block d-xl-none">
-                            <div class="ham-menu">
-                                <button class="hamberger-button rbt-round-btn">
-                                    <i class="feather-menu"></i>
-                                </button>
-                            </div>
-                        </div>
+                        </div>-->
                     </div>
 
                 </div>
@@ -329,65 +348,4 @@
         </div>
         <!-- End Search Dropdown  -->
     </div>
-    <!-- Start Side Vav -->
-    <div class="popup-mobile-menu">
-        <div class="inner-wrapper">
-            <div class="inner-top">
-                <div class="content">
-                    <div class="logo">
-                        <div class="logo logo-dark">
-                            <a href="/">
-                                <img src="{{ asset('assets/images/logo/logo.png') }}" alt="Education Logo Images">
-                            </a>
-                        </div>
-                        <div class="logo d-none logo-light">
-                            <a href="/">
-                                <img src="{{ asset('assets/images/dark/logo/logo-light.png') }}" alt="Education Logo Images">
-                            </a>
-                        </div>
-                    </div>
-                    <div class="rbt-btn-close">
-                        <button class="rbt-close-offcanvas rbt-round-btn"><i class="feather-x"></i></button>
-                    </div>
-                </div>
-                <p class="description">أكاديمية فهيمين - منصة التعليم عبر الإنترنت</p>
-                <ul class="navbar-top-left rbt-information-list justify-content-start">
-                    <li><a href="mailto:info@fahmean.com"><i class="feather-mail"></i>info@fahmean.com</a></li>
-                    <li><a href="#"><i class="feather-phone"></i>(010) 735-8555</a></li>
-                </ul>
-            </div>
-            <nav class="side-nav w-100">
-                <ul class="mainmenu">
-                    <li><a href="{{ route('home') }}">Home</a></li>
-                    <li><a href="{{ route('courseFilterOneToggle') }}">Courses</a></li>
-                    <li><a href="{{ route('teachersCoaches') }}">Teachers</a></li>
-                    <li><a href="{{ route('dashboard.index') }}">Dashboard</a></li>
-                    <li><a href="{{ route('aboutus01') }}">About Us</a></li>
-                    <li><a href="{{ route('contact.show') }}">Contact Us</a></li>
-                </ul>
-
-                <div class="read-more-btn">
-                    <div class="rbt-btn-wrapper mt--20">
-                        <a class="rbt-btn btn-border-gradient radius-round btn-sm hover-transform-none w-100 justify-content-center text-center" href="{{ route('register') }}">
-                            <span>ابدأ الآن</span>
-                        </a>
-                    </div>
-                </div>
-            </nav>
-            <div class="rbt-offcanvas-footer">
-                <div class="social-share-wrapper">
-                    <span class="rbt-short-title d-block">Find With Us</span>
-                    <ul class="social-icon social-default transparent-with-border justify-content-start mt--20">
-                        <li><a href="#"><i class="feather-facebook"></i></a></li>
-                        <li><a href="#"><i class="feather-twitter"></i></a></li>
-                        <li><a href="#"><i class="feather-instagram"></i></a></li>
-                        <li><a href="#"><i class="feather-linkedin"></i></a></li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- End Side Vav -->
-    <a class="rbt-close_side_menu" href="javascript:void(0);"></a>
-
 </header>
