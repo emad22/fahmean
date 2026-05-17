@@ -65,13 +65,13 @@ class CourseController extends Controller
     {
         $user = auth()->user();
 
-        if ($user->hasRole('student')) {
+        if ($user->hasRole(['admin', 'teacher', 'assistant_teacher'])) {
+             // Re-use student course-show view for previewing the course
              return app(StudentCourseController::class)->show($id);
         }
 
-        if ($user->hasRole(['admin', 'teacher', 'assistant_teacher'])) {
-             // Admin show method (if different from student)
-             return app(AdminCourseController::class)->show($id);
+        if ($user->hasRole('student')) {
+             return app(StudentCourseController::class)->show($id);
         }
         
         abort(404);

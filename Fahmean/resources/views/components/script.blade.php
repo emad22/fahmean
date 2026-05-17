@@ -13,7 +13,7 @@
     <script src="{{ asset('assets/js/vendor/swiper.js') }}"></script>
     <script src="{{ asset('assets/js/vendor/jquery-appear.js') }}"></script>
     <script src="{{ asset('assets/js/vendor/odometer.js') }}"></script>
-    <script src="{{ asset('assets/js/vendor/backtotop.js') }}"></script>
+    <script src="{{ asset('assets/js/vendor/backtotop.js') }}?v=1.0.1"></script>
     <script src="{{ asset('assets/js/vendor/isotop.js') }}"></script>
     <script src="{{ asset('assets/js/vendor/imageloaded.js') }}"></script>
     <script src="{{ asset('assets/js/vendor/wow.js') }}"></script>

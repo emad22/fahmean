@@ -375,7 +375,17 @@
                         <!-- Progress -->
                         <div class="progress-wrapper">
                             @php
-                                $progress = rand(20, 90);
+                                $totalLessons = $course->lessons()->count();
+                                $completedLessons = 0;
+                                if ($totalLessons > 0) {
+                                    $completedLessons = $course->lessons()
+                                        ->whereHas('completedStudents', function ($q) {
+                                            $q->where('student_id', auth()->id());
+                                        })->count();
+                                    $progress = round(($completedLessons / $totalLessons) * 100);
+                                } else {
+                                    $progress = 0;
+                                }
                             @endphp
                             <div class="progress-header">
                                 <span class="progress-label">نسبة الإنجاز</span>

@@ -65,8 +65,8 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            // URL of the PDF stream route (now using query string)
-            const url = "{{ route('view.pdf', ['path' => $path]) }}";
+            // URL of the PDF stream route (now using relative path to prevent SSL/Mixed Content blocks)
+            const url = "{{ route('view.pdf', ['path' => $path], false) }}";
             console.log('Loading PDF from:', url); // For debugging
 
             // Configure PDF.js worker

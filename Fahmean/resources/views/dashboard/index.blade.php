@@ -458,7 +458,19 @@
                             <div class="course-info-h">
                                 <a href="{{ route('courses.show', $course->id) }}" class="course-title-h">{{ $course->title }}</a>
                                 <div class="progress-wrapper-h">
-                                    @php $progress = rand(10, 90); @endphp
+                                    @php
+                                        $totalLessons = $course->lessons()->count();
+                                        $completedLessons = 0;
+                                        if ($totalLessons > 0) {
+                                            $completedLessons = $course->lessons()
+                                                ->whereHas('completedStudents', function ($q) {
+                                                    $q->where('student_id', auth()->id());
+                                                })->count();
+                                            $progress = round(($completedLessons / $totalLessons) * 100);
+                                        } else {
+                                            $progress = 0;
+                                        }
+                                    @endphp
                                     <div class="progress-bar-h">
                                         <div class="progress-fill-h" style="width: {{ $progress }}%"></div>
                                     </div>

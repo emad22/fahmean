@@ -158,13 +158,13 @@
                                                     </div>
                                                     @endrole
                                                     <div class="col-md-{{ auth()->user()->hasRole('admin') ? '6' : '12' }}">
-                                                        <label>السنة الدراسية *</label>
-                                                        <select name="academic_year" class="form-select premium-input" required>
-                                                            <option value="">اختر السنة الدراسية</option>
-                                                            <option value="2023/2024" {{ $course->academic_year == '2023/2024' ? 'selected' : '' }}>2023/2024</option>
-                                                            <option value="2024/2025" {{ $course->academic_year == '2024/2025' ? 'selected' : '' }}>2024/2025</option>
-                                                            <option value="2025/2026" {{ $course->academic_year == '2025/2026' ? 'selected' : '' }}>2025/2026</option>
-                                                        </select>
+                                                         <label>السنة الدراسية *</label>
+                                                         <select name="academic_year" class="form-select premium-input" required>
+                                                             <option value="">اختر السنة الدراسية</option>
+                                                             <option value="2026-2027" {{ in_array($course->academic_year, ['2026-2027', '2026/2027']) ? 'selected' : '' }}>2026 - 2027 (الحالي)</option>
+                                                             <option value="2025-2026" {{ in_array($course->academic_year, ['2025-2026', '2025/2026']) ? 'selected' : '' }}>2025 - 2026</option>
+                                                             <option value="2024-2025" {{ in_array($course->academic_year, ['2024-2025', '2024/2025']) ? 'selected' : '' }}>2024 - 2025</option>
+                                                         </select>
                                                     </div>
                                                 </div>
                                             </div>
@@ -279,9 +279,9 @@
                                         <button type="submit" class="rbt-btn btn-gradient w-100 shadow-lg mb-3">
                                             <i class="feather-refresh-cw me-1"></i> حفظ كافة التعديلات
                                         </button>
-                                        <button type="button" class="rbt-btn btn-border w-100 mb-3" onclick="alert('جاري التحضير للمعاينة...')">
+                                        <a href="{{ route('courses.show', $course->id) }}" target="_blank" class="rbt-btn btn-border w-100 mb-3 text-center d-flex align-items-center justify-content-center">
                                             <i class="feather-eye me-1"></i> معاينة الكورس
-                                        </button>
+                                        </a>
                                     </div>
                                 </div>
                             </div>

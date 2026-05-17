@@ -305,21 +305,21 @@
             padding-left: 40px;
         }
 
-        .lesson-row.has-pdf {
+        .lesson-row.has-media {
             cursor: pointer;
         }
 
-        .lesson-row.has-pdf:hover {
+        .lesson-row.has-media:hover {
             background: linear-gradient(90deg, #e8eaff 0%, transparent 100%);
         }
 
-        .lesson-row.has-pdf:hover .lesson-icon-circle {
+        .lesson-row.has-media:hover .lesson-icon-circle {
             background: linear-gradient(135deg, #667eea, #764ba2);
             color: white;
             transform: scale(1.15);
         }
 
-        .lesson-row:not(.has-pdf) {
+        .lesson-row:not(.has-media) {
             opacity: 0.6;
         }
 
@@ -489,17 +489,32 @@
                          class="collapse {{ $index == 0 ? 'show' : '' }}" 
                          data-bs-parent="#sectionsAccordion">
                         <div class="lessons-container">
-                            @foreach($section->lessons as $lesson)
-                                <div class="lesson-row {{ $lesson->pdf ? 'has-pdf' : '' }}">
+                             @foreach($section->lessons as $lesson)
+                                @php
+                                    $videoUrl = null;
+                                    if ($lesson->video_source === 'upload' && $lesson->video) {
+                                        $videoUrl = asset('storage/' . $lesson->video);
+                                    } elseif ($lesson->video_url) {
+                                        $videoUrl = $lesson->video_url;
+                                    }
+                                @endphp
+                                <div class="lesson-row {{ ($videoUrl || $lesson->pdf) ? 'has-media' : '' }}">
                                     <div class="lesson-left">
                                         <div class="lesson-icon-circle">
-                                            @if($lesson->pdf)
+                                            @if($videoUrl)
+                                                <i class="feather-video"></i>
+                                            @elseif($lesson->pdf)
                                                 <i class="feather-file-text"></i>
                                             @else
                                                 <i class="feather-book"></i>
                                             @endif
                                         </div>
-                                        @if($lesson->pdf)
+                                        @if($videoUrl)
+                                            <a href="{{ $videoUrl }}" target="_blank" class="lesson-name text-decoration-none" style="color: inherit;">
+                                                {{ $lesson->title }}
+                                                <i class="feather-play-circle small ms-2 text-primary"></i>
+                                            </a>
+                                        @elseif($lesson->pdf)
                                             @php
                                                 $pdfViewerUrl = route('lesson.pdf.viewer', ['path' => $lesson->pdf, 'title' => $lesson->title]);
                                             @endphp
@@ -512,14 +527,31 @@
                                         @endif
                                     </div>
 
-                                    <!-- Lesson Quizzes -->
-                                    @foreach($lesson->quizzes as $quiz)
-                                        <div class="ms-5 mt-2">
-                                            <a href="{{ route('student.quizzes.show', [$course->id, $quiz->id]) }}" class="rbt-btn btn-sm btn-border radius-round px-3 py-1 color-primary" style="font-size: 11px;">
+                                    <div class="lesson-right d-flex align-items-center gap-2 flex-wrap">
+                                        <!-- Video Button -->
+                                        @if($videoUrl)
+                                            <a href="{{ $videoUrl }}" target="_blank" class="rbt-btn btn-sm btn-gradient radius-round px-3 py-1 color-white" style="font-size: 12px; height: auto; line-height: 1.5;">
+                                                <i class="feather-video me-1"></i> مشاهدة الفيديو
+                                            </a>
+                                        @endif
+
+                                        <!-- PDF Button -->
+                                        @if($lesson->pdf)
+                                            @php
+                                                $pdfViewerUrl = route('lesson.pdf.viewer', ['path' => $lesson->pdf, 'title' => $lesson->title]);
+                                            @endphp
+                                            <a href="{{ $pdfViewerUrl }}" class="rbt-btn btn-sm btn-border radius-round px-3 py-1 color-primary" style="font-size: 12px; height: auto; line-height: 1.5;">
+                                                <i class="feather-file-text me-1"></i> ملف الـ PDF
+                                            </a>
+                                        @endif
+
+                                        <!-- Lesson Quizzes -->
+                                        @foreach($lesson->quizzes as $quiz)
+                                            <a href="{{ route('student.quizzes.show', [$course->id, $quiz->id]) }}" class="rbt-btn btn-sm btn-border radius-round px-3 py-1" style="font-size: 11px; height: auto; line-height: 1.5; background: rgba(245, 158, 11, 0.05); border-color: #f59e0b !important; color: #f59e0b !important;">
                                                 <i class="feather-edit-3 me-1"></i> تدريب: {{ $quiz->title }}
                                             </a>
-                                        </div>
-                                    @endforeach
+                                        @endforeach
+                                    </div>
                                 </div>
                             @endforeach
 
@@ -571,8 +603,8 @@
                 });
             });
 
-            // Make entire lesson row clickable if it has PDF
-            const lessonRows = document.querySelectorAll('.lesson-row.has-pdf');
+            // Make entire lesson row clickable if it has media
+            const lessonRows = document.querySelectorAll('.lesson-row.has-media');
             lessonRows.forEach(row => {
                 row.addEventListener('click', function(e) {
                     // Don't trigger if clicking on the link itself

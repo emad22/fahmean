@@ -36,9 +36,12 @@ class EnrollmentRequestController extends Controller
 
         $requestedCourseIds = $myRequests->keys()->toArray();
 
+        $academicYearHyphen = str_replace('/', '-', $student->academic_year);
+        $academicYearSlash = str_replace('-', '/', $student->academic_year);
+
         // الكورسات المتاحة: منشورة + لصف الطالب + غير مسجّل فيها
         $availableCourses = Course::where('status', 'published')
-            ->where('academic_year', $student->academic_year)
+            ->whereIn('academic_year', [$academicYearHyphen, $academicYearSlash])
             ->whereHas('subject', function ($q) use ($student) {
                 $q->where('grade_id', $student->grade_id);
             })

@@ -29,7 +29,7 @@ class PdfController extends Controller
             abort(404, 'Path requirement');
         }
 
-        // تنظيف المسار
+        // تنظيف المسار وإزالة البادئة إن وجدت
         $cleanPath = $path;
         $prefixes = ['storage/', 'public/'];
         foreach ($prefixes as $prefix) {
@@ -38,7 +38,25 @@ class PdfController extends Controller
             }
         }
 
-        // محاولة إيجاد الملف في عدة مسارات
+        // 1. البحث في القرص العام (Public Storage Disk)
+        if (Storage::disk('public')->exists($cleanPath)) {
+            $filePath = Storage::disk('public')->path($cleanPath);
+            return response()->file($filePath, [
+                'Content-Type' => 'application/pdf',
+                'Content-Disposition' => 'inline; filename="' . basename($filePath) . '"'
+            ]);
+        }
+
+        // 2. البحث في القرص المحلي الافتراضي (Local Storage Disk)
+        if (Storage::disk('local')->exists($cleanPath)) {
+            $filePath = Storage::disk('local')->path($cleanPath);
+            return response()->file($filePath, [
+                'Content-Type' => 'application/pdf',
+                'Content-Disposition' => 'inline; filename="' . basename($filePath) . '"'
+            ]);
+        }
+
+        // 3. البحث في المسارات المادية التقليدية كخيار احتياطي
         $possiblePaths = [
             storage_path('app/public/' . $cleanPath),
             storage_path('app/' . $cleanPath),
@@ -46,21 +64,15 @@ class PdfController extends Controller
             public_path($cleanPath)
         ];
 
-        $filePath = null;
         foreach ($possiblePaths as $tryPath) {
             if (file_exists($tryPath)) {
-                $filePath = $tryPath;
-                break;
+                return response()->file($tryPath, [
+                    'Content-Type' => 'application/pdf',
+                    'Content-Disposition' => 'inline; filename="' . basename($tryPath) . '"'
+                ]);
             }
         }
         
-        if (!$filePath) {
-            abort(404, 'File not found');
-        }
-
-        return response()->file($filePath, [
-            'Content-Type' => 'application/pdf',
-            'Content-Disposition' => 'inline; filename="' . basename($filePath) . '"'
-        ]);
+        abort(404, 'File not found');
     }
 }

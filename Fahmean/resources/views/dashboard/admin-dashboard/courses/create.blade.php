@@ -192,7 +192,8 @@
                                                 </div>
                                                 <div class="col-12">
                                                     <label>نبذة عن الكورس</label>
-                                                    <textarea name="description" class="form-control premium-input" rows="4" placeholder="اكتب وصفاً جذاباً يشجع الطلاب على الالتحاق..."></textarea>
+                                                    <div id="course-description-editor" class="bg-white radius-12 border" style="min-height: 200px; direction: rtl; text-align: right;"></div>
+                                                    <textarea name="description" id="courseDescription" class="d-none"></textarea>
                                                 </div>
                                                 @role('admin')
                                                 <div class="col-md-6">
@@ -209,9 +210,9 @@
                                                     <label>السنة الدراسية *</label>
                                                     <select name="academic_year" class="form-select premium-input" required>
                                                         <option value="">اختر السنة الدراسية</option>
-                                                        <option value="2023/2024">2023/2024</option>
-                                                        <option value="2024/2025" selected>2024/2025</option>
-                                                        <option value="2025/2026">2025/2026</option>
+                                                        <option value="2026-2027">2026 - 2027 (الحالي)</option>
+                                                        <option value="2025-2026" selected>2025 - 2026</option>
+                                                        <option value="2024-2025">2024 - 2025</option>
                                                     </select>
                                                 </div>
                                             </div>
@@ -331,7 +332,7 @@
                                     <button type="submit" class="rbt-btn btn-gradient w-100 shadow-lg mb-3">
                                         <i class="feather-check-circle me-1"></i> اعتماد وحفظ الكورس
                                     </button>
-                                    <button type="button" class="rbt-btn btn-border w-100 mb-3" onclick="alert('تم تفعيل المعاينة!')">
+                                    <button type="button" class="rbt-btn btn-border w-100 mb-3" onclick="Swal.fire({ title: 'معاينة الكورس', text: 'يرجى اعتماد وحفظ الكورس أولاً كمسودة لتتمكن من معاينته بشكل كامل ودقيق.', icon: 'info', confirmButtonText: 'حسناً', customClass: { popup: 'radius-15' } })">
                                         <i class="feather-eye me-1"></i> معاينة أولية
                                     </button>
                                     <p class="text-center small text-muted mt-3">
@@ -454,7 +455,8 @@
                         <!-- ملخص / محتوى الدرس -->
                         <div class="course-field mb--20">
                             <label>ملخص الدرس</label>
-                            <textarea id="lessonSummary" name="content" class="form-control" rows="3"></textarea>
+                            <div id="lesson-summary-editor" class="bg-white radius-10 border" style="min-height: 150px; direction: rtl; text-align: right;"></div>
+                            <textarea id="lessonSummary" name="content" class="d-none"></textarea>
                         </div>
 
                         <!-- مدة الدرس -->

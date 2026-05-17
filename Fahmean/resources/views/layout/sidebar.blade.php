@@ -202,6 +202,13 @@
                     <ul class="dashboard-mainmenu rbt-default-sidebar-list">
                         
                         <li>
+                            <a href="{{ route('profile.edit') }}">
+                                <i class="feather-settings"></i>
+                                <span>إعدادات الحساب</span>
+                            </a>
+                        </li>
+
+                        <li>
                             <a href="#"
                                 onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                                 <i class="feather-log-out text-danger"></i>
