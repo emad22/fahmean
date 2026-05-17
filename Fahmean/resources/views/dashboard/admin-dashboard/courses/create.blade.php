@@ -548,6 +548,9 @@
                             <div class="quiz-main-info mb--30 pb--30 border-bottom">
                                 <label class="form-label fw-bold">اسم التدريب / النشاط</label>
                                 <input id="quiz-title-input" type="text" class="form-control premium-input" placeholder="مثال: اختبار قصير على الدرس الأول">
+                                
+                                <label class="form-label fw-bold mt-3">وصف التدريب / النشاط (اختياري)</label>
+                                <textarea id="quiz-description-input" class="form-control premium-input" rows="2" placeholder="اكتب وصفاً قصيراً يظهر للطلاب قبل بدء التدريب..."></textarea>
                             </div>
 
                             <div class="question-form-box p-4 radius-15 bg-gray-light">
@@ -1194,6 +1197,7 @@
                 'monthly': 'إضافة اختبار كامل'
             };
             document.getElementById('quiz-title-input').value = '';
+            document.getElementById('quiz-description-input').value = '';
             document.getElementById('QuizLabel').innerText = mapTitle[type] || 'بناء الأسئلة';
             renderModalQuestionsList();
             resetQuestionForm();
@@ -1206,6 +1210,7 @@
             currentQuizType = quiz.type;
             
             document.getElementById('quiz-title-input').value = quiz.title;
+            document.getElementById('quiz-description-input').value = quiz.description || '';
             document.getElementById('QuizLabel').innerText = quiz.type === 'monthly' ? 'تعديل اختبار كامل' : 'تعديل تدريبات سريعة';
             
             currentQuizQuestions = JSON.parse(JSON.stringify(quiz.questions || []));
@@ -1217,11 +1222,13 @@
 
         document.getElementById('quiz-save-btn').addEventListener('click', function() {
             const quizTitle = document.getElementById('quiz-title-input').value;
+            const quizDescription = document.getElementById('quiz-description-input').value;
             if (!quizTitle) { alert('يرجى كتابة عنوان النشاط'); return; }
             if (currentQuizQuestions.length === 0) { alert('يرجى إضافة سؤال واحد على الأقل'); return; }
 
             const quizObject = {
                 title: quizTitle,
+                description: quizDescription,
                 type: currentQuizType,
                 questions: currentQuizQuestions
             };

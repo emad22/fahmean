@@ -229,10 +229,11 @@ class CourseController extends Controller implements HasMiddleware
     private function createQuizWithQuestions($sectionId, $lessonId, $quizData)
     {
         $quiz = Quiz::create([
-            'section_id' => $sectionId,
-            'lesson_id'  => $lessonId,
-            'title'      => $quizData['title'],
-            'type'       => $quizData['type'] ?? 'normal',
+            'section_id'  => $sectionId,
+            'lesson_id'   => $lessonId,
+            'title'       => $quizData['title'],
+            'description' => $quizData['description'] ?? null,
+            'type'        => $quizData['type'] ?? 'normal',
         ]);
 
         if (!empty($quizData['questions'])) {

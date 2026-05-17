@@ -392,6 +392,12 @@
                                             <input id="quiz-attempts-input" type="number" class="form-control premium-input" value="1" min="1">
                                         </div>
                                     </div>
+                                    <div class="row mt-3">
+                                        <div class="col-12">
+                                            <label class="form-label fw-bold">وصف التدريب / النشاط (اختياري)</label>
+                                            <textarea id="quiz-description-input" class="form-control premium-input" rows="2" placeholder="اكتب وصفاً قصيراً يظهر للطلاب قبل بدء التدريب..."></textarea>
+                                        </div>
+                                    </div>
                                 </div>
                                 <div class="question-form-box p-4 radius-15 bg-gray-light">
                                     <h6 class="fw-bold mb-4">إضافة سؤال جديد</h6>
@@ -577,6 +583,7 @@
                     currentQuizQuestions = [];
                     document.getElementById('quiz_edit_index').value = "-1";
                     document.getElementById('quiz-title-input').value = "";
+                    document.getElementById('quiz-description-input').value = "";
                     renderModalQuestions();
                     resetQuestionForm();
                     new bootstrap.Modal(document.getElementById('Quiz')).show();
@@ -714,6 +721,7 @@
                 const quiz = sections[0].quizzes[index];
                 document.getElementById('quiz_edit_index').value = index;
                 document.getElementById('quiz-title-input').value = quiz.title;
+                document.getElementById('quiz-description-input').value = quiz.description || '';
                 document.getElementById('quiz-attempts-input').value = quiz.attempts_limit || 1;
                 currentQuizQuestions = JSON.parse(JSON.stringify(quiz.questions || []));
                 renderModalQuestions();
@@ -948,6 +956,7 @@
                 const index = parseInt(document.getElementById('quiz_edit_index').value);
                 const data = { 
                     title, 
+                    description: document.getElementById('quiz-description-input').value,
                     attempts_limit: document.getElementById('quiz-attempts-input').value,
                     questions: currentQuizQuestions, 
                     type: currentQuizType 

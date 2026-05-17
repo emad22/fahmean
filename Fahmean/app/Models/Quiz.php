@@ -11,6 +11,7 @@ class Quiz extends Model
         'lesson_id',
         'teacher_id',
         'title',
+        'description',
         'type',
         'attempts_limit',
         'time_limit'
