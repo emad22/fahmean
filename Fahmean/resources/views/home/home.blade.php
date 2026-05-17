@@ -25,8 +25,8 @@
                                         صح وهتوصل لما تريد</span>
                                 </div>
                                 <!--  <h1 class="title">
-                                                                                                                                                                                                                                                                                فاهمين<img src="{{ asset('assets/images/banner/title-h-1.png') }}" style="vertical-align: bottom;"> وحط خط <br> تحت كلمة <img src="{{ asset('assets/images/banner/title-h-2.png') }}">
-                                                                                                                                                                                                                                                                            </h1> -->
+                                                                                                                                                                                                                                                                                                                فاهمين<img src="{{ asset('assets/images/banner/title-h-1.png') }}" style="vertical-align: bottom;"> وحط خط <br> تحت كلمة <img src="{{ asset('assets/images/banner/title-h-2.png') }}">
+                                                                                                                                                                                                                                                                                                            </h1> -->
                                 <h1 class="title">
                                     فاهمين
                                     <span class="highlight-text">
@@ -88,6 +88,17 @@
                             <center>
                                 <h2 class="title">تسجيل الدخول</h2>
                             </center>
+
+                            @if ($errors->any())
+                                <div class="alert alert-danger mb--30" role="alert">
+                                    <ul class="mb-0" style="padding-right: 18px;">
+                                        @foreach ($errors->all() as $error)
+                                            <li>{{ $error }}</li>
+                                        @endforeach
+                                    </ul>
+                                </div>
+                            @endif
+
                             <form class="max-width-auto" action="{{ route('login.post') }}" method="POST">
                                 @csrf
                                 <div class="form-group">
@@ -462,7 +473,7 @@
             </div>
         </div>
         <!-- End Counterup Area  -->--}}
-        <div class="rbt-categories-area bg-color-white rbt-section-gapBottom rbt-section-gapTop">
+        {{-- <div class="rbt-categories-area bg-color-white rbt-section-gapBottom rbt-section-gapTop">
             <div class="container">
                 <div class="row">
                     <div class="col-lg-12">
@@ -623,12 +634,12 @@
                             </div>
                         </a>
                     </div>
-                    <!-- End Category Box Layout  -->--}}
+                    <!-- End Category Box Layout  -->
                 </div>
             </div>
-        </div>
+        </div> --}}
         <!-- Start Teacher Area  -->
-        <div class="rbt-team-area bg-color-white rbt-section-gapBottom">
+        <div class="rbt-team-area bg-color-white rbt-section-gapBottom rbt-section-gapTop">
             <div class="container">
                 <div class="row mb--60">
                     <div class="col-lg-12">
@@ -649,8 +660,8 @@
                                 <div class="inner">
                                     <div class="thumbnail">
                                         <a href="{{ route('instructorPortfolio', $teacher->id) }}">
-                                            <img src="{{ $teacher->profile_image ? asset('uploads/'.$teacher->profile_image) : asset('assets/images/team/team-07.jpg') }}"
-                                                 alt="{{ $teacher->name }}">
+                                            <img src="{{ $teacher->profile_image ? asset('uploads/' . $teacher->profile_image) : asset('assets/images/team/team-07.jpg') }}"
+                                                alt="{{ $teacher->name }}">
                                         </a>
                                     </div>
                                     <div class="content">
@@ -1703,8 +1714,7 @@
                                                     <li><i class="feather-map-pin"></i>IAC Building</li>
                                                     <li><i class="feather-clock"></i>8:00 am - 5:00 pm</li>
                                                 </ul>
-                                                <h4 class="rbt-card-title"><a
-                                                        href="{{ '#' }}">International Education Fair
+                                                <h4 class="rbt-card-title"><a href="{{ '#' }}">International Education Fair
                                                         2024</a>
                                                 </h4>
 

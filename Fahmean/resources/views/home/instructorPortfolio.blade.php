@@ -156,7 +156,7 @@
     <!-- Start Course Area -->
     <div class="rbt-course-area bg-color-extra2 rbt-section-gap">
         <div class="container">
-            <div class="row mb--60 mt--20">
+            <div class="row mb--60">
                 <div class="col-lg-12">
                     <div class="section-title text-center">
                         <span class="subtitle bg-secondary-opacity">كورسات المدرس</span>

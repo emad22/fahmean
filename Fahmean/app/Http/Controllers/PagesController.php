@@ -88,6 +88,10 @@ class PagesController extends Controller
         $request->validate([
             'email' => 'required|email',
             'password' => 'required',
+        ], [
+            'email.required' => 'البريد الإلكتروني مطلوب.',
+            'email.email' => 'يجب إدخال بريد إلكتروني صالح.',
+            'password.required' => 'كلمة السر مطلوبة.',
         ]);
 
         // Attempt login
@@ -106,7 +110,7 @@ class PagesController extends Controller
 
         // Failed
         return back()->withErrors([
-            'email' => 'Invalid email or password.',
+            'email' => 'البريد الإلكتروني أو كلمة السر غير صحيحة.',
         ])->withInput();
     }
 	
