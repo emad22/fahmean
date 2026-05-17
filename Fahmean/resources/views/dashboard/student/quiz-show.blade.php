@@ -63,7 +63,7 @@
                                         <div class="q-index-badge bg-primary text-white d-flex align-items-center justify-content-center fw-bold shadow-sm" style="width: 36px; height: 36px; border-radius: 10px;">
                                             {{ $index + 1 }}
                                         </div>
-                                        <h5 class="mb-0 fw-bold text-dark">{{ $question->question }}</h5>
+                                        <h5 class="mb-0 fw-bold text-dark">{!! $question->question !!}</h5>
                                     </div>
 
                                     <div class="card-body p-4 p-md-5">
@@ -180,7 +180,7 @@
                                             </div>
                                         </div>
                                         
-                                        <h5 class="fw-bold mb-4 text-dark">{{ $question->question }}</h5>
+                                        <h5 class="fw-bold mb-4 text-dark">{!! $question->question !!}</h5>
 
                                         <div class="row g-3">
                                             @foreach($question->answers as $answer)

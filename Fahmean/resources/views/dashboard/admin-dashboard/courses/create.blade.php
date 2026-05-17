@@ -354,7 +354,7 @@
     <!-- Modals (moved to root for correct z-index) -->
     <!-- بداية نافذة الإضافة -->
     <div class="rbt-default-modal modal fade" id="sectionModal" tabindex="-1" aria-labelledby="sectionModalLabel"
-        aria-hidden="true">
+        aria-hidden="true" data-bs-backdrop="static" data-bs-keyboard="false">
 
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
@@ -427,7 +427,7 @@
 
     <!-- نافذة إضافة الدرس -->
     <div class="rbt-default-modal modal fade" id="Lesson" tabindex="-1" aria-labelledby="LessonLabel"
-        aria-hidden="true">
+        aria-hidden="true" data-bs-backdrop="static" data-bs-keyboard="false">
         <div class="modal-dialog modal-dialog-centered modal-lg">
             <div class="modal-content">
 
@@ -530,7 +530,7 @@
     <!-- نهاية نافذة الدرس -->
 
     <!-- نافذة الاختبار (Question Builder) -->
-    <div class="rbt-default-modal modal fade" id="Quiz" tabindex="-1" aria-labelledby="QuizLabel" aria-hidden="true">
+    <div class="rbt-default-modal modal fade" id="Quiz" tabindex="-1" aria-labelledby="QuizLabel" aria-hidden="true" data-bs-backdrop="static" data-bs-keyboard="false">
         <div class="modal-dialog modal-dialog-centered modal-xl">
             <div class="modal-content">
                 <div class="modal-header bg-primary-opacity border-0">
@@ -552,8 +552,9 @@
                                 <h6 class="fw-bold mb-4"><i class="feather-plus-circle me-1"></i> إضافة سؤال جديد</h6>
                                 
                                 <div class="mb-3">
-                                    <label class="small text-muted mb-1">نص السؤال</label>
-                                    <textarea id="question-text" class="form-control radius-10" rows="2" placeholder="اكتب السؤال هنا..."></textarea>
+                                    <label class="small text-muted mb-2">نص السؤال</label>
+                                    <div id="question-text-editor-container" class="bg-white radius-10 border" style="min-height: 150px; direction: rtl; text-align: right;"></div>
+                                    <textarea id="question-text" class="d-none"></textarea>
                                 </div>
 
                                 <div class="mb-3">
@@ -622,7 +623,7 @@
                                     </div>
                                 </div>
 
-                                <button type="button" class="rbt-btn btn-sm btn-gradient w-100 mt-4 radius-10" onclick="addQuestionToQuiz()">
+                                <button type="button" id="add-question-btn" class="rbt-btn btn-sm btn-gradient w-100 mt-4 radius-10" onclick="addQuestionToQuiz()">
                                     <i class="feather-plus me-1"></i> حفظ السؤال للتدريب
                                 </button>
                             </div>
@@ -654,8 +655,33 @@
     @endpush
 
     @push('scripts')
-    <!-- Scripts here -->
+    <!-- Quill Rich Text Editor -->
+    <link href="https://cdn.jsdelivr.net/npm/quill@2.0.2/dist/quill.snow.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/quill@2.0.2/dist/quill.js"></script>
+
     <script>
+        let questionQuill;
+        document.addEventListener('DOMContentLoaded', function() {
+            if (typeof Quill !== 'undefined') {
+                questionQuill = new Quill('#question-text-editor-container', {
+                    theme: 'snow',
+                    placeholder: 'اكتب السؤال هنا ونسقه كما تحب...',
+                    modules: {
+                        toolbar: [
+                            ['bold', 'italic', 'underline', 'strike'],        // toggled buttons
+                            [{ 'list': 'ordered'}, { 'list': 'bullet' }],
+                            [{ 'direction': 'rtl' }],                         // text direction
+                            ['clean']                                         // remove formatting button
+                        ]
+                    }
+                });
+                
+                // Set default alignment and direction to RTL
+                questionQuill.format('direction', 'rtl');
+                questionQuill.format('align', 'right');
+            }
+        });
+
         // Start with one default section
         var sections = [{
             title: 'محتوى الكورس',
@@ -666,37 +692,103 @@
         var currentSectionIndex = 0; 
         var currentQuizQuestions = [];
         var currentQuizType = 'daily';
+        var editingQuestionIndex = -1;
+        var editingLessonIndex = -1;
+        var editingQuizIndex = -1;
 
-        function updateCounters() {
-            let lessons = 0;
-            let quizzes = 0;
-            sections.forEach(s => {
-                lessons += s.lessons.length;
-                quizzes += s.quizzes.length;
-                s.lessons.forEach(l => {
-                    quizzes += (l.quizzes ? l.quizzes.length : 0);
-                });
-            });
+        function renderActivities() {
+            const wrapper = document.getElementById('activitiesWrapper');
+            if (!wrapper) return;
+            wrapper.innerHTML = '';
+            let lCount = 0;
+            let qCount = 0;
+
+            const section = sections[0];
             
-            // UI elements check
+            // Render Lessons
+            if (section.lessons) {
+                section.lessons.forEach((lesson, index) => {
+                    lCount++;
+                    wrapper.insertAdjacentHTML('beforeend', `
+                        <div class="d-flex justify-content-between align-items-center mb-3 p-4 bg-white radius-15 shadow-sm border border-light lesson-item">
+                            <div class="inner d-flex align-items-center gap-3">
+                                <div class="bg-primary-opacity color-primary rounded-circle d-flex align-items-center justify-content-center" style="width: 40px; height: 40px;">
+                                    <i class="feather-play-circle"></i>
+                                </div>
+                                <div>
+                                    <h6 class="mb-0 fw-bold">${lesson.title} <span class="badge bg-primary-opacity color-primary ms-2" style="font-size: 10px;">شرح</span></h6>
+                                    <small class="text-muted"><i class="feather-clock me-1"></i> ${lesson.duration || 'مدة غير محددة'}</small>
+                                </div>
+                            </div>
+                            <div class="d-flex gap-2">
+                                <button type="button" class="btn btn-sm bg-primary-opacity color-primary radius-10 p-2" onclick="editLesson(${index})"><i class="feather-edit"></i></button>
+                                <button type="button" class="btn btn-sm bg-danger-opacity color-danger radius-10 p-2" onclick="removeActivity('lesson', ${index})"><i class="feather-trash-2"></i></button>
+                            </div>
+                        </div>
+                    `);
+                });
+            }
+
+            // Render Quizzes
+            if (section.quizzes) {
+                section.quizzes.forEach((quiz, index) => {
+                    qCount++;
+                    const typeLabel = quiz.type === 'monthly' ? 'امتحان' : 'تدريب';
+                    const typeClass = quiz.type === 'monthly' ? 'bg-danger-opacity color-danger' : 'bg-success-opacity color-success';
+                    const icon = quiz.type === 'monthly' ? 'feather-award' : 'feather-edit-3';
+
+                    wrapper.insertAdjacentHTML('beforeend', `
+                        <div class="d-flex justify-content-between align-items-center mb-3 p-4 bg-white radius-15 shadow-sm border border-light quiz-item">
+                            <div class="inner d-flex align-items-center gap-3">
+                                <div class="${typeClass} rounded-circle d-flex align-items-center justify-content-center" style="width: 40px; height: 40px;">
+                                    <i class="${icon}"></i>
+                                </div>
+                                <div>
+                                    <h6 class="mb-0 fw-bold">${quiz.title} <span class="badge ${typeClass} ms-2" style="font-size: 10px;">${typeLabel}</span></h6>
+                                    <small class="text-muted"><i class="feather-help-circle me-1"></i> ${quiz.questions ? quiz.questions.length : 0} سؤال</small>
+                                </div>
+                            </div>
+                            <div class="d-flex gap-2">
+                                <button type="button" class="btn btn-sm ${typeClass} radius-10 p-2" onclick="editQuiz(${index})"><i class="feather-edit"></i></button>
+                                <button type="button" class="btn btn-sm bg-danger-opacity color-danger radius-10 p-2" onclick="removeActivity('quiz', ${index})"><i class="feather-trash-2"></i></button>
+                            </div>
+                        </div>
+                    `);
+                });
+            }
+
             const totalLessons = document.getElementById('totalLessonsCount');
             const totalQuizzes = document.getElementById('totalQuizzesCount');
             const emptyState = document.getElementById('emptyState');
 
-            if(totalLessons) totalLessons.innerText = lessons;
-            if(totalQuizzes) totalQuizzes.innerText = quizzes;
+            if(totalLessons) totalLessons.innerText = lCount;
+            if(totalQuizzes) totalQuizzes.innerText = qCount;
             
             if(emptyState) {
-                if(lessons > 0 || quizzes > 0) {
+                if(lCount > 0 || qCount > 0) {
                     emptyState.classList.add('d-none');
                 } else {
                     emptyState.classList.remove('d-none');
                 }
             }
+
+            document.getElementById('sectionsData').value = JSON.stringify(sections);
         }
 
         function openActivityModal(type) {
             if (type === 'explanation') {
+                editingLessonIndex = -1;
+                document.getElementById('lessonForm').reset();
+                // Clear hidden paths
+                document.getElementById('lessonVideoPath').value = '';
+                document.getElementById('lessonPdfPath').value = '';
+                document.getElementById('lessonAudioPath').value = '';
+                // Clear progresses
+                document.getElementById('video-progress').classList.add('d-none');
+                document.getElementById('pdf-progress').classList.add('d-none');
+                document.getElementById('audio-progress').classList.add('d-none');
+                // Trigger source change UI
+                document.getElementById('videoSource').dispatchEvent(new Event('change'));
                 bootstrap.Modal.getOrCreateInstance(document.getElementById('Lesson')).show();
             } else if (type === 'practice') {
                 openQuizModal(0, 'daily');
@@ -723,9 +815,7 @@
             const audio_path = document.getElementById('lessonAudioPath').value;
             const video_path = document.getElementById('lessonVideoPath').value;
 
-            const lessonIndex = sections[currentSectionIndex].lessons.length;
-
-            sections[currentSectionIndex].lessons.push({
+            const lessonData = {
                 title: title,
                 content: content,
                 duration: duration,
@@ -734,52 +824,61 @@
                 pdf: pdf_path,
                 audio: audio_path,
                 video: video_path,
-                quizzes: []
-            });
+                quizzes: (editingLessonIndex >= 0) ? (sections[0].lessons[editingLessonIndex].quizzes || []) : []
+            };
 
-            document.getElementById('sectionsData').value = JSON.stringify(sections);
-            updateCounters();
+            if (editingLessonIndex >= 0) {
+                sections[0].lessons[editingLessonIndex] = lessonData;
+                showToast('تم تحديث الدرس بنجاح', 'success');
+            } else {
+                sections[0].lessons.push(lessonData);
+                showToast('تمت إضافة الدرس بنجاح', 'success');
+            }
 
-            const lessonHTML = `
-                <div class="d-flex justify-content-between align-items-center mb-3 p-4 bg-white radius-15 shadow-sm border border-light lesson-item" id="lesson-item-0-${lessonIndex}">
-                    <div class="inner d-flex align-items-center gap-3">
-                        <div class="bg-primary-opacity color-primary rounded-circle d-flex align-items-center justify-content-center" style="width: 40px; height: 40px;">
-                            <i class="feather-play-circle"></i>
-                        </div>
-                        <div>
-                            <h6 class="mb-0 fw-bold">${title} <span class="badge bg-primary-opacity color-primary ms-2" style="font-size: 10px;">شرح</span></h6>
-                            <small class="text-muted"><i class="feather-clock me-1"></i> ${duration || 'مدة غير محددة'}</small>
-                        </div>
-                    </div>
-                    <div class="inner d-flex align-items-center gap-2">
-                        <button type="button" class="btn btn-sm bg-danger-opacity color-danger radius-10 p-2" onclick="removeActivity(this, 'lesson', ${lessonIndex})">
-                            <i class="feather-trash-2"></i>
-                        </button>
-                    </div>
-                </div>
-            `;
-
-            document.getElementById('activitiesWrapper').insertAdjacentHTML('beforeend', lessonHTML);
+            renderActivities();
             this.reset();
             bootstrap.Modal.getOrCreateInstance(document.getElementById('Lesson')).hide();
-            showToast('تمت إضافة الدرس بنجاح', 'success');
+            editingLessonIndex = -1;
         });
 
-        function removeActivity(btn, type, index) {
-            if(confirm('هل أنت متأكد من الحذف؟')) {
-                if(type === 'lesson') {
-                    sections[0].lessons.splice(index, 1);
-                } else {
-                    sections[0].quizzes.splice(index, 1);
-                }
-                btn.closest('.lesson-item, .quiz-item').remove();
-                document.getElementById('sectionsData').value = JSON.stringify(sections);
-                updateCounters();
+        function editLesson(index) {
+            const lesson = sections[0].lessons[index];
+            editingLessonIndex = index;
+            document.getElementById('lessonTitle').value = lesson.title;
+            document.getElementById('lessonSummary').value = lesson.content || '';
+            document.getElementById('lessonDuration').value = lesson.duration || '';
+            document.getElementById('videoSource').value = lesson.video_source || '';
+            
+            // Set paths
+            document.getElementById('lessonVideoPath').value = lesson.video || '';
+            document.getElementById('lessonPdfPath').value = lesson.pdf || '';
+            document.getElementById('lessonAudioPath').value = lesson.audio || '';
+            
+            // Video URL
+            const urlInput = document.getElementById('videoLink').querySelector('input');
+            if (urlInput) urlInput.value = lesson.video_url || '';
+
+            // Clear progress messages
+            document.getElementById('video-progress').classList.add('d-none');
+            document.getElementById('pdf-progress').classList.add('d-none');
+            document.getElementById('audio-progress').classList.add('d-none');
+
+            // Trigger source change UI
+            document.getElementById('videoSource').dispatchEvent(new Event('change'));
+
+            // Show modal
+            bootstrap.Modal.getOrCreateInstance(document.getElementById('Lesson')).show();
+        }
+
+        function removeActivity(type, index) {
+            const item = type === 'lesson' ? sections[0].lessons[index] : sections[0].quizzes[index];
+            if(confirm(`هل أنت متأكد من حذف ${item.title}؟`)) {
+                if(type === 'lesson') sections[0].lessons.splice(index, 1);
+                else sections[0].quizzes.splice(index, 1);
+                renderActivities();
                 showToast('تم الحذف بنجاح', 'success');
             }
         }
-
-
 
         function toggleQuestionUI() {
             const type = document.getElementById('question-type').value;
@@ -815,7 +914,15 @@
         }
 
         function addQuestionToQuiz() {
-            const text = document.getElementById('question-text').value;
+            let text = '';
+            if (questionQuill) {
+                text = questionQuill.root.innerHTML;
+                if (text === '<p><br></p>' || questionQuill.getText().trim() === '') {
+                    text = '';
+                }
+            } else {
+                text = document.getElementById('question-text').value;
+            }
             const type = document.getElementById('question-type').value;
             
             if(!text) { showToast('اكتب السؤال أولاً', 'error'); return; }
@@ -848,11 +955,37 @@
                 if(answers.length < 1) { alert('أضف زوجاً واحداً على الأقل'); return; }
             }
 
-            currentQuizQuestions.push({ text, type, answers });
+            if (editingQuestionIndex > -1) {
+                currentQuizQuestions[editingQuestionIndex] = { text, type, answers };
+                showToast('تم تحديث السؤال بنجاح', 'success');
+            } else {
+                currentQuizQuestions.push({ text, type, answers });
+                showToast('تمت إضافة السؤال بنجاح', 'success');
+            }
+
             renderModalQuestionsList();
+            resetQuestionForm();
+        }
+
+        function resetQuestionForm() {
+            editingQuestionIndex = -1;
+            const btn = document.getElementById('add-question-btn');
+            if (btn) {
+                btn.innerHTML = `<i class="feather-plus me-1"></i> حفظ السؤال للتدريب`;
+                btn.className = "rbt-btn btn-sm btn-gradient w-100 mt-4 radius-10";
+            }
+            const cancelBtn = document.getElementById('cancel-edit-btn');
+            if (cancelBtn) {
+                cancelBtn.remove();
+            }
             
-            // Reset question form
-            document.getElementById('question-text').value = '';
+            if (questionQuill) {
+                questionQuill.setContents([]);
+                questionQuill.format('direction', 'rtl');
+                questionQuill.format('align', 'right');
+            } else {
+                document.getElementById('question-text').value = '';
+            }
             document.getElementById('essay-keywords').value = '';
             document.getElementById('mcq-options-list').innerHTML = `
                 <div class="d-flex align-items-center gap-2 mb-2 mcq-option-item">
@@ -871,6 +1004,81 @@
                     <input type="text" class="form-control form-control-sm radius-10 pair-right" placeholder="العمود ب">
                 </div>
             `;
+        }
+
+        function editQuestionInModal(index) {
+            editingQuestionIndex = index;
+            const q = currentQuizQuestions[index];
+            if (!q) return;
+
+            // Set type
+            document.getElementById('question-type').value = q.type;
+            toggleQuestionUI();
+
+            // Set text
+            if (questionQuill) {
+                questionQuill.root.innerHTML = q.text;
+            } else {
+                document.getElementById('question-text').value = q.text;
+            }
+
+            // Set answers
+            if (q.type === 'mcq') {
+                const list = document.getElementById('mcq-options-list');
+                list.innerHTML = '';
+                q.answers.forEach((ans, ansIdx) => {
+                    const html = `
+                        <div class="d-flex align-items-center gap-2 mb-2 mcq-option-item">
+                            <input type="radio" name="correct_mcq" class="form-check-input" ${ans.is_correct ? 'checked' : ''}>
+                            <input type="text" class="form-control form-control-sm radius-10 option-text" placeholder="الخيار" value="${ans.text.replace(/"/g, '&quot;')}">
+                            ${ansIdx >= 2 ? `<button type="button" class="btn btn-sm text-danger" onclick="this.closest('.mcq-option-item').remove()"><i class="feather-trash-2"></i></button>` : ''}
+                        </div>
+                    `;
+                    list.insertAdjacentHTML('beforeend', html);
+                });
+            } else if (q.type === 'tf') {
+                const isTrueCorrect = q.answers.find(a => a.text === 'صح' || a.is_correct)?.is_correct;
+                if (isTrueCorrect) {
+                    document.getElementById('tf_true').checked = true;
+                } else {
+                    document.getElementById('tf_false').checked = true;
+                }
+            } else if (q.type === 'essay') {
+                document.getElementById('essay-keywords').value = q.answers[0] ? q.answers[0].text : '';
+            } else if (q.type === 'matching') {
+                const list = document.getElementById('matching-pairs-list');
+                list.innerHTML = '';
+                q.answers.forEach((ans, pairIdx) => {
+                    const parts = ans.text.split(' | ');
+                    const left = parts[0] || '';
+                    const right = parts[1] || '';
+                    const html = `
+                        <div class="d-flex align-items-center gap-2 mb-2 m-pair-item">
+                            <input type="text" class="form-control form-control-sm radius-10 pair-left" placeholder="العمود أ" value="${left.replace(/"/g, '&quot;')}">
+                            <i class="feather-arrow-right small text-muted"></i>
+                            <input type="text" class="form-control form-control-sm radius-10 pair-right" placeholder="العمود ب" value="${right.replace(/"/g, '&quot;')}">
+                            ${pairIdx >= 1 ? `<button type="button" class="btn btn-sm text-danger" onclick="this.closest('.m-pair-item').remove()"><i class="feather-trash-2"></i></button>` : ''}
+                        </div>
+                    `;
+                    list.insertAdjacentHTML('beforeend', html);
+                });
+            }
+
+            // Change button to update state and show cancel button
+            const addBtn = document.getElementById('add-question-btn');
+            if (addBtn) {
+                addBtn.innerHTML = `<i class="feather-check me-1"></i> تحديث السؤال`;
+                addBtn.className = "rbt-btn btn-sm btn-success w-100 mt-4 radius-10";
+                
+                // Add cancel button if not already there
+                if (!document.getElementById('cancel-edit-btn')) {
+                    addBtn.insertAdjacentHTML('afterend', `
+                        <button type="button" id="cancel-edit-btn" class="rbt-btn btn-sm btn-border w-100 mt-2 radius-10" onclick="resetQuestionForm()">
+                            <i class="feather-x me-1"></i> إلغاء التعديل
+                        </button>
+                    `);
+                }
+            }
         }
 
         function renderModalQuestionsList() {
@@ -900,12 +1108,15 @@
                 const html = `
                     <div class="p-3 mb-2 bg-white border radius-10 d-flex justify-content-between align-items-start">
                         <div>
-                            <span class="badge ${typeClasses[q.type]} mb-1" style="font-size: 10px;">
-                                ${typeLabels[q.type]}
+                            <span class="badge ${typeClasses[q.type] || 'bg-secondary'} mb-1" style="font-size: 10px;">
+                                ${typeLabels[q.type] || q.type}
                             </span>
                             <p class="mb-0 fw-bold small">${q.text}</p>
                         </div>
-                        <button type="button" class="btn btn-sm text-danger p-0" onclick="removeQuestionFromModal(${i})"><i class="feather-x"></i></button>
+                        <div class="d-flex gap-2">
+                            <button type="button" class="btn btn-sm text-primary p-0" onclick="editQuestionInModal(${i})"><i class="feather-edit-2"></i></button>
+                            <button type="button" class="btn btn-sm text-danger p-0" onclick="removeQuestionFromModal(${i})"><i class="feather-x"></i></button>
+                        </div>
                     </div>
                 `;
                 list.insertAdjacentHTML('beforeend', html);
@@ -920,6 +1131,7 @@
         function openQuizModal(sectionIndex, type) {
             currentQuizType = type;
             currentQuizQuestions = [];
+            editingQuizIndex = -1;
             const mapTitle = {
                 'daily': 'إضافة تدريبات سريعة',
                 'monthly': 'إضافة اختبار كامل'
@@ -927,6 +1139,22 @@
             document.getElementById('quiz-title-input').value = '';
             document.getElementById('QuizLabel').innerText = mapTitle[type] || 'بناء الأسئلة';
             renderModalQuestionsList();
+            resetQuestionForm();
+            bootstrap.Modal.getOrCreateInstance(document.getElementById('Quiz')).show();
+        }
+
+        function editQuiz(index) {
+            const quiz = sections[0].quizzes[index];
+            editingQuizIndex = index;
+            currentQuizType = quiz.type;
+            
+            document.getElementById('quiz-title-input').value = quiz.title;
+            document.getElementById('QuizLabel').innerText = quiz.type === 'monthly' ? 'تعديل اختبار كامل' : 'تعديل تدريبات سريعة';
+            
+            currentQuizQuestions = JSON.parse(JSON.stringify(quiz.questions || []));
+            renderModalQuestionsList();
+            resetQuestionForm();
+            
             bootstrap.Modal.getOrCreateInstance(document.getElementById('Quiz')).show();
         }
 
@@ -941,37 +1169,17 @@
                 questions: currentQuizQuestions
             };
 
-            const quizIndex = sections[0].quizzes.length;
-            sections[0].quizzes.push(quizObject);
+            if (editingQuizIndex >= 0) {
+                sections[0].quizzes[editingQuizIndex] = quizObject;
+                showToast('تم تحديث التدريب بنجاح', 'success');
+            } else {
+                sections[0].quizzes.push(quizObject);
+                showToast('تم حفظ التدريب بنجاح', 'success');
+            }
 
-            document.getElementById('sectionsData').value = JSON.stringify(sections);
-            updateCounters();
-
-            const typeLabel = currentQuizType === 'monthly' ? 'امتحان' : 'تدريب';
-            const typeClass = currentQuizType === 'monthly' ? 'bg-danger-opacity color-danger' : 'bg-success-opacity color-success';
-            const icon = currentQuizType === 'monthly' ? 'feather-award' : 'feather-edit-3';
-
-            const quizHTML = `
-                <div class="d-flex justify-content-between align-items-center mb-3 p-4 bg-white radius-15 shadow-sm border border-light quiz-item" id="quiz-item-0-${quizIndex}">
-                    <div class="inner d-flex align-items-center gap-3">
-                        <div class="${typeClass} rounded-circle d-flex align-items-center justify-content-center" style="width: 40px; height: 40px;">
-                            <i class="${icon}"></i>
-                        </div>
-                        <div>
-                            <h6 class="mb-0 fw-bold">${quizTitle} <span class="badge ${typeClass} ms-2" style="font-size: 10px;">${typeLabel}</span></h6>
-                            <small class="text-muted"><i class="feather-help-circle me-1"></i> ${currentQuizQuestions.length} سؤال</small>
-                        </div>
-                    </div>
-                    <div class="inner d-flex align-items-center gap-2">
-                        <button type="button" class="btn btn-sm bg-danger-opacity color-danger radius-10 p-2" onclick="removeActivity(this, 'quiz', ${quizIndex})">
-                            <i class="feather-trash-2"></i>
-                        </button>
-                    </div>
-                </div>
-            `;
-
-            document.getElementById('activitiesWrapper').insertAdjacentHTML('beforeend', quizHTML);
+            renderActivities();
             bootstrap.Modal.getOrCreateInstance(document.getElementById('Quiz')).hide();
+            editingQuizIndex = -1;
         });
 
         document.getElementById('videoSource').addEventListener('change', function() {
@@ -993,6 +1201,7 @@
             formData.append('type', type);
             formData.append('_token', '{{ csrf_token() }}');
             progressBar.classList.remove('d-none');
+            progressBar.innerText = 'جاري الرفع...';
             fetch('{{ route('temp.upload') }}', { method: 'POST', body: formData })
                 .then(response => response.json())
                 .then(data => { progressBar.innerText = 'تم الرفع بنجاح'; pathInput.value = data.path; })
@@ -1017,13 +1226,17 @@
 
         window.openActivityModal = openActivityModal;
         window.openQuizModal = openQuizModal;
+        window.editLesson = editLesson;
+        window.editQuiz = editQuiz;
         window.addMcqOption = addMcqOption;
         window.addMatchingPair = addMatchingPair;
         window.addQuestionToQuiz = addQuestionToQuiz;
+        window.resetQuestionForm = resetQuestionForm;
+        window.editQuestionInModal = editQuestionInModal;
         window.removeQuestionFromModal = removeQuestionFromModal;
         window.removeActivity = removeActivity;
         window.uploadLessonFile = uploadLessonFile;
-        window.updateCounters = updateCounters;
+        window.renderActivities = renderActivities;
         window.previewCourseImage = previewCourseImage;
     </script>
     @endpush

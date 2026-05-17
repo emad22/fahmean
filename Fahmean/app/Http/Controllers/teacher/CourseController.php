@@ -34,13 +34,16 @@ class CourseController extends Controller implements HasMiddleware
      */
     public function index()
     {
-        $courses = Course::withCount([
-            'sections',
-            'students', 
-            'sections as lessons_count' => function ($query) {
-                $query->join('lessons', 'sections.id', '=', 'lessons.section_id');
-            }
-        ])->with('students:id')->paginate(9);
+        $teacherId = auth()->user()->getEffectiveTeacherId();
+
+        $courses = Course::where('teacher_id', $teacherId)
+            ->withCount([
+                'sections',
+                'students', 
+                'sections as lessons_count' => function ($query) {
+                    $query->join('lessons', 'sections.id', '=', 'lessons.section_id');
+                }
+            ])->with('students:id')->paginate(9);
 
         $students = User::role('student')->get(['id', 'name', 'email']);
         
@@ -105,6 +108,11 @@ class CourseController extends Controller implements HasMiddleware
         $course    = Course::findOrFail($id);
         $teachers  = User::role('teacher')->get();
 
+        $teacherId = auth()->user()->getEffectiveTeacherId();
+        if (!auth()->user()->hasRole('admin') && $course->teacher_id != $teacherId) {
+            return back()->withErrors(['error' => 'عذراً، لا تملك صلاحية تعديل هذا الكورس.']);
+        }
+
         return view('dashboard.admin-dashboard.courses.edit', compact('course', 'teachers'))
             ->with('routePrefix', 'courses');
     }
@@ -114,7 +122,8 @@ class CourseController extends Controller implements HasMiddleware
         $course = Course::findOrFail($id);
 
         // Security: Ensure teacher owns the course if they aren't admin
-        if (!auth()->user()->hasRole('admin') && $course->teacher_id != auth()->id()) {
+        $teacherId = auth()->user()->getEffectiveTeacherId();
+        if (!auth()->user()->hasRole('admin') && $course->teacher_id != $teacherId) {
             return back()->withErrors(['error' => 'عذراً، لا تملك صلاحية تعديل هذا الكورس.']);
         }
 
@@ -257,6 +266,11 @@ class CourseController extends Controller implements HasMiddleware
         $course = Course::with('sections.lessons', 'sections.quizzes', 'sections.assignments')
             ->findOrFail($id);
 
+        $teacherId = auth()->user()->getEffectiveTeacherId();
+        if (!auth()->user()->hasRole('admin') && $course->teacher_id != $teacherId) {
+            return back()->withErrors(['error' => 'عذراً، لا تملك صلاحية حذف هذا الكورس.']);
+        }
+
         foreach ($course->sections as $section) {
             $section->lessons()->delete();
             $section->quizzes()->delete();
@@ -271,6 +285,11 @@ class CourseController extends Controller implements HasMiddleware
 
     public function enrollMultipleStudents(Request $request, Course $course)
     {
+        $teacherId = auth()->user()->getEffectiveTeacherId();
+        if (!auth()->user()->hasRole('admin') && $course->teacher_id != $teacherId) {
+            return back()->withErrors(['error' => 'عذراً، لا تملك صلاحية تعديل هذا الكورس.']);
+        }
+
         $request->validate(['students' => 'required|array']);
         $course->students()->syncWithoutDetaching($request->students);
         return redirect()->back()->with('success', 'تم تسجيل الطلاب في الكورس بنجاح.');
@@ -278,6 +297,11 @@ class CourseController extends Controller implements HasMiddleware
 
     public function updateStatus(Request $request, Course $course)
     {
+        $teacherId = auth()->user()->getEffectiveTeacherId();
+        if (!auth()->user()->hasRole('admin') && $course->teacher_id != $teacherId) {
+            return back()->withErrors(['error' => 'عذراً، لا تملك صلاحية تعديل هذا الكورس.']);
+        }
+
         $request->validate(['status' => 'required|in:draft,published']);
         $course->update(['status' => $request->status]);
         return back()->with('success', 'تم تحديث حالة الكورس بنجاح');
@@ -288,6 +312,11 @@ class CourseController extends Controller implements HasMiddleware
         $course = Course::with(['students' => function($q) {
             $q->withPivot('created_at');
         }])->findOrFail($id);
+
+        $teacherId = auth()->user()->getEffectiveTeacherId();
+        if (!auth()->user()->hasRole('admin') && $course->teacher_id != $teacherId) {
+            return back()->withErrors(['error' => 'عذراً، لا تملك صلاحية عرض هذا الكورس.']);
+        }
 
         $levels = \App\Models\EducationLevel::with('grades')->get();
 
@@ -302,6 +331,11 @@ class CourseController extends Controller implements HasMiddleware
     {
         $course = Course::findOrFail($id);
         
+        $teacherId = auth()->user()->getEffectiveTeacherId();
+        if (!auth()->user()->hasRole('admin') && $course->teacher_id != $teacherId) {
+            return back()->withErrors(['error' => 'عذراً، لا تملك صلاحية تعديل هذا الكورس.']);
+        }
+
         $request->validate([
             'grade_id' => 'required|exists:grades,id'
         ]);

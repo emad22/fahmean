@@ -59,7 +59,7 @@
                                 <!-- Question Content -->
                                 <div class="col">
                                     <div class="d-flex justify-content-between align-items-start mb-3">
-                                        <h6 class="mb-0 fw-bold text-dark flex-grow-1 me-3">{{ $question->question }}</h6>
+                                        <h6 class="mb-0 fw-bold text-dark flex-grow-1 me-3">{!! $question->question !!}</h6>
                                         @php
                                             $typeMap = [
                                                 'multiple_choice' => ['text' => 'اختيار من متعدد', 'class' => 'bg-primary-opacity color-primary', 'icon' => 'check-square'],
@@ -103,7 +103,7 @@
                                             <i class="feather-edit-2 me-1"></i> تعديل
                                         </a>
                                         <button type="button" class="btn-action btn-action-danger radius-10 flex-shrink-0" style="width: 48px;"
-                                                onclick="confirmDelete('{{ $question->question }}', '{{ route($routePrefix . '.destroy', [$quiz->id, $question->id]) }}')">
+                                                onclick="confirmDelete('{{ addslashes(strip_tags($question->question)) }}', '{{ route($routePrefix . '.destroy', [$quiz->id, $question->id]) }}')">
                                             <i class="feather-trash-2"></i>
                                         </button>
                                     </div>
