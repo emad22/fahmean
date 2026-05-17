@@ -144,7 +144,8 @@
                                                     </div>
                                                     <div class="col-12">
                                                         <label>نبذة عن الكورس</label>
-                                                        <textarea name="description" class="form-control premium-input" rows="4">{{ $course->description }}</textarea>
+                                                        <div id="course-description-editor" class="bg-white radius-12 border" style="min-height: 200px; direction: rtl; text-align: right;"></div>
+                                                        <textarea name="description" id="courseDescription" class="d-none">{{ $course->description }}</textarea>
                                                     </div>
                                                     @role('admin')
                                                     <div class="col-md-6">
@@ -310,7 +311,8 @@
                             </div>
                             <div class="course-field mb--20">
                                 <label class="form-label fw-bold">وصف الدرس</label>
-                                <textarea id="lessonContent" class="form-control premium-input" rows="3" placeholder="نبذة مختصرة عما سيتم شرحه..."></textarea>
+                                <div id="lesson-content-editor" class="bg-white radius-10 border" style="min-height: 150px; direction: rtl; text-align: right;"></div>
+                                <textarea id="lessonContent" class="d-none"></textarea>
                             </div>
                             <div class="row g-4">
                                 <div class="col-md-6">
@@ -483,7 +485,7 @@
         <script src="https://cdn.jsdelivr.net/npm/quill@2.0.2/dist/quill.js"></script>
 
         <script>
-            let questionQuill;
+            let questionQuill, descriptionQuill, lessonContentQuill;
             document.addEventListener('DOMContentLoaded', function() {
                 if (typeof Quill !== 'undefined') {
                     questionQuill = new Quill('#question-text-editor-container', {
@@ -498,10 +500,54 @@
                             ]
                         }
                     });
-                    
-                    // Set default alignment and direction to RTL
                     questionQuill.format('direction', 'rtl');
                     questionQuill.format('align', 'right');
+
+                    descriptionQuill = new Quill('#course-description-editor', {
+                        theme: 'snow',
+                        placeholder: 'اكتب وصفاً جذاباً يشجع الطلاب على الالتحاق...',
+                        modules: {
+                            toolbar: [
+                                ['bold', 'italic', 'underline', 'strike'],
+                                [{ 'list': 'ordered'}, { 'list': 'bullet' }],
+                                [{ 'direction': 'rtl' }],
+                                ['clean']
+                            ]
+                        }
+                    });
+                    descriptionQuill.format('direction', 'rtl');
+                    descriptionQuill.format('align', 'right');
+
+                    // Preload existing course description
+                    const descVal = document.getElementById('courseDescription').value;
+                    if (descVal) {
+                        descriptionQuill.root.innerHTML = descVal;
+                    }
+
+                    lessonContentQuill = new Quill('#lesson-content-editor', {
+                        theme: 'snow',
+                        placeholder: 'نبذة مختصرة عما سيتم شرحه...',
+                        modules: {
+                            toolbar: [
+                                ['bold', 'italic', 'underline', 'strike'],
+                                [{ 'list': 'ordered'}, { 'list': 'bullet' }],
+                                [{ 'direction': 'rtl' }],
+                                ['clean']
+                            ]
+                        }
+                    });
+                    lessonContentQuill.format('direction', 'rtl');
+                    lessonContentQuill.format('align', 'right');
+                }
+
+                // Sync main form description with Quill
+                const mainForm = document.getElementById('courseCreateForm');
+                if (mainForm) {
+                    mainForm.addEventListener('submit', function() {
+                        if (descriptionQuill) {
+                            document.getElementById('courseDescription').value = descriptionQuill.root.innerHTML;
+                        }
+                    });
                 }
             });
 
@@ -519,6 +565,11 @@
                 if (type === 'explanation') {
                     document.getElementById('lesson_edit_index').value = "-1";
                     document.getElementById('lessonForm').reset();
+                    if (lessonContentQuill) {
+                        lessonContentQuill.setContents([]);
+                        lessonContentQuill.format('direction', 'rtl');
+                        lessonContentQuill.format('align', 'right');
+                    }
                     document.getElementById('lessonModalTitle').innerText = "إضافة درس جديد";
                     new bootstrap.Modal(document.getElementById('Lesson')).show();
                 } else {
@@ -611,24 +662,30 @@
                 }
             }
 
-            function editLesson(index) {
-                const lesson = sections[0].lessons[index];
-                document.getElementById('lesson_edit_index').value = index;
-                document.getElementById('lessonTitle').value = lesson.title;
-                document.getElementById('lessonContent').value = lesson.content || '';
-                document.getElementById('lessonDuration').value = lesson.duration || '';
-                document.getElementById('videoSource').value = lesson.video_source || 'external';
-                document.getElementById('lessonVideoUrl').value = lesson.video_url || '';
-                document.getElementById('lessonVideoPath').value = lesson.video || '';
-                document.getElementById('lessonPdfPath').value = lesson.pdf || '';
-                toggleVideoInputs();
-                document.getElementById('lessonModalTitle').innerText = "تعديل الدرس";
-                new bootstrap.Modal(document.getElementById('Lesson')).show();
-            }
+             function editLesson(index) {
+                 const lesson = sections[0].lessons[index];
+                 document.getElementById('lesson_edit_index').value = index;
+                 document.getElementById('lessonTitle').value = lesson.title;
+                 document.getElementById('lessonContent').value = lesson.content || '';
+                 if (lessonContentQuill) {
+                     lessonContentQuill.root.innerHTML = lesson.content || '';
+                 }
+                 document.getElementById('lessonDuration').value = lesson.duration || '';
+                 document.getElementById('videoSource').value = lesson.video_source || 'external';
+                 document.getElementById('lessonVideoUrl').value = lesson.video_url || '';
+                 document.getElementById('lessonVideoPath').value = lesson.video || '';
+                 document.getElementById('lessonPdfPath').value = lesson.pdf || '';
+                 toggleVideoInputs();
+                 document.getElementById('lessonModalTitle').innerText = "تعديل الدرس";
+                 new bootstrap.Modal(document.getElementById('Lesson')).show();
+             }
 
             document.getElementById('lessonForm').addEventListener('submit', function(e) {
                 e.preventDefault();
                 const index = parseInt(document.getElementById('lesson_edit_index').value);
+                if (lessonContentQuill) {
+                    document.getElementById('lessonContent').value = lessonContentQuill.root.innerHTML;
+                }
                 const data = {
                     title: document.getElementById('lessonTitle').value,
                     content: document.getElementById('lessonContent').value,

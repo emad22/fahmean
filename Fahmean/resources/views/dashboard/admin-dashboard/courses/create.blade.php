@@ -662,7 +662,7 @@
     <script src="https://cdn.jsdelivr.net/npm/quill@2.0.2/dist/quill.js"></script>
 
     <script>
-        let questionQuill;
+        let questionQuill, descriptionQuill, lessonSummaryQuill;
         document.addEventListener('DOMContentLoaded', function() {
             if (typeof Quill !== 'undefined') {
                 questionQuill = new Quill('#question-text-editor-container', {
@@ -677,10 +677,48 @@
                         ]
                     }
                 });
-                
-                // Set default alignment and direction to RTL
                 questionQuill.format('direction', 'rtl');
                 questionQuill.format('align', 'right');
+
+                descriptionQuill = new Quill('#course-description-editor', {
+                    theme: 'snow',
+                    placeholder: 'اكتب وصفاً جذاباً يشجع الطلاب على الالتحاق...',
+                    modules: {
+                        toolbar: [
+                            ['bold', 'italic', 'underline', 'strike'],
+                            [{ 'list': 'ordered'}, { 'list': 'bullet' }],
+                            [{ 'direction': 'rtl' }],
+                            ['clean']
+                        ]
+                    }
+                });
+                descriptionQuill.format('direction', 'rtl');
+                descriptionQuill.format('align', 'right');
+
+                lessonSummaryQuill = new Quill('#lesson-summary-editor', {
+                    theme: 'snow',
+                    placeholder: 'نبذة مختصرة عما سيتم شرحه...',
+                    modules: {
+                        toolbar: [
+                            ['bold', 'italic', 'underline', 'strike'],
+                            [{ 'list': 'ordered'}, { 'list': 'bullet' }],
+                            [{ 'direction': 'rtl' }],
+                            ['clean']
+                        ]
+                    }
+                });
+                lessonSummaryQuill.format('direction', 'rtl');
+                lessonSummaryQuill.format('align', 'right');
+            }
+
+            // Sync main form description with Quill
+            const mainForm = document.getElementById('courseCreateForm');
+            if (mainForm) {
+                mainForm.addEventListener('submit', function() {
+                    if (descriptionQuill) {
+                        document.getElementById('courseDescription').value = descriptionQuill.root.innerHTML;
+                    }
+                });
             }
         });
 
@@ -781,6 +819,11 @@
             if (type === 'explanation') {
                 editingLessonIndex = -1;
                 document.getElementById('lessonForm').reset();
+                if (lessonSummaryQuill) {
+                    lessonSummaryQuill.setContents([]);
+                    lessonSummaryQuill.format('direction', 'rtl');
+                    lessonSummaryQuill.format('align', 'right');
+                }
                 // Clear hidden paths
                 document.getElementById('lessonVideoPath').value = '';
                 document.getElementById('lessonPdfPath').value = '';
@@ -801,6 +844,10 @@
 
         document.getElementById('lessonForm').addEventListener('submit', function(e) {
             e.preventDefault();
+
+            if (lessonSummaryQuill) {
+                document.getElementById('lessonSummary').value = lessonSummaryQuill.root.innerHTML;
+            }
 
             const title = document.getElementById('lessonTitle').value;
             const content = document.getElementById('lessonSummary').value;
@@ -839,6 +886,11 @@
 
             renderActivities();
             this.reset();
+            if (lessonSummaryQuill) {
+                lessonSummaryQuill.setContents([]);
+                lessonSummaryQuill.format('direction', 'rtl');
+                lessonSummaryQuill.format('align', 'right');
+            }
             bootstrap.Modal.getOrCreateInstance(document.getElementById('Lesson')).hide();
             editingLessonIndex = -1;
         });
@@ -848,6 +900,9 @@
             editingLessonIndex = index;
             document.getElementById('lessonTitle').value = lesson.title;
             document.getElementById('lessonSummary').value = lesson.content || '';
+            if (lessonSummaryQuill) {
+                lessonSummaryQuill.root.innerHTML = lesson.content || '';
+            }
             document.getElementById('lessonDuration').value = lesson.duration || '';
             document.getElementById('videoSource').value = lesson.video_source || '';
             
