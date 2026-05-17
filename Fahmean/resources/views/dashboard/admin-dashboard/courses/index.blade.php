@@ -205,7 +205,7 @@
         @empty
             <div class="col-12 text-center py-5">
                 <i class="feather-box display-1 text-muted opacity-25 mb-3"></i>
-                <h4 class="text-muted">لا يوجد كورسات حالياً</h4>
+                <h4 class="text-muted">لا يوجد كورسات بعد</h4>
             </div>
         @endforelse
     </div>

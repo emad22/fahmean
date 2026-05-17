@@ -294,7 +294,7 @@
 
     @push('modals')
         <!-- Modal for Lesson -->
-        <div class="rbt-default-modal modal fade" id="Lesson" tabindex="-1" aria-labelledby="LessonLabel" aria-hidden="true">
+        <div class="rbt-default-modal modal fade" id="Lesson" tabindex="-1" aria-labelledby="LessonLabel" aria-hidden="true" data-bs-backdrop="static" data-bs-keyboard="false">
             <div class="modal-dialog modal-dialog-centered modal-lg">
                 <div class="modal-content">
                     <form id="lessonForm">
@@ -368,7 +368,7 @@
         </div>
 
         <!-- Modal for Quiz (Advanced Builder) -->
-        <div class="rbt-default-modal modal fade" id="Quiz" tabindex="-1" aria-labelledby="QuizLabel" aria-hidden="true">
+        <div class="rbt-default-modal modal fade" id="Quiz" tabindex="-1" aria-labelledby="QuizLabel" aria-hidden="true" data-bs-backdrop="static" data-bs-keyboard="false">
             <div class="modal-dialog modal-dialog-centered modal-xl">
                 <div class="modal-content">
                     <div class="modal-header bg-primary-opacity border-0">
@@ -394,14 +394,17 @@
                                 <div class="question-form-box p-4 radius-15 bg-gray-light">
                                     <h6 class="fw-bold mb-4">إضافة سؤال جديد</h6>
                                     <div class="mb-3">
-                                        <label class="small text-muted mb-1">السؤال</label>
-                                        <textarea id="question-text" class="form-control radius-10" rows="2" placeholder="اكتب نص السؤال هنا..."></textarea>
+                                        <label class="small text-muted mb-2">السؤال</label>
+                                        <div id="question-text-editor-container" class="bg-white radius-10 border" style="min-height: 150px; direction: rtl; text-align: right;"></div>
+                                        <textarea id="question-text" class="d-none"></textarea>
                                     </div>
                                     <div class="mb-3">
                                         <label class="small text-muted mb-1">النوع</label>
                                         <select id="question-type" class="form-select radius-10" onchange="toggleQuestionUI()">
                                             <option value="multiple_choice">اختيار من متعدد</option>
                                             <option value="true_false">صح أو خطأ</option>
+                                            <option value="essay">سؤال مقالي</option>
+                                            <option value="matching">سؤال التوصيل (المزاوجة)</option>
                                         </select>
                                     </div>
                                     <div id="answers-container">
@@ -432,8 +435,29 @@
                                                 </div>
                                             </div>
                                         </div>
+                                        
+                                        <!-- Essay Answers -->
+                                        <div id="essay-ui" class="d-none">
+                                            <label class="small text-muted mb-2">كلمات مفتاحية للإجابة (اختياري)</label>
+                                            <input type="text" id="essay-keywords" class="form-control radius-10" placeholder="مثال: تعريف، قانون، أهمية">
+                                        </div>
+
+                                        <!-- Matching Answers -->
+                                        <div id="matching-ui" class="d-none">
+                                            <label class="small text-muted mb-2 d-flex justify-content-between">
+                                                <span>أضف أزواج التوصيل</span>
+                                                <button type="button" class="btn btn-sm p-0 color-primary animate-hover" onclick="addMatchingPair()"><i class="feather-plus-circle"></i> زوج إضافي</button>
+                                            </label>
+                                            <div id="matching-pairs-list">
+                                                <div class="d-flex align-items-center gap-2 mb-2 m-pair-item">
+                                                    <input type="text" class="form-control form-control-sm radius-10 pair-left" placeholder="العمود أ">
+                                                    <i class="feather-arrow-right small text-muted"></i>
+                                                    <input type="text" class="form-control form-control-sm radius-10 pair-right" placeholder="العمود ب">
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
-                                    <button type="button" class="rbt-btn btn-sm btn-gradient w-100 mt-4" onclick="addQuestionToQuiz()">حفظ السؤال في القائمة</button>
+                                    <button type="button" id="add-question-btn" class="rbt-btn btn-sm btn-gradient w-100 mt-4" onclick="addQuestionToQuiz()">حفظ السؤال في القائمة</button>
                                 </div>
                             </div>
                             <div class="col-lg-5">
@@ -454,7 +478,33 @@
     @endpush
 
     @push('scripts')
+        <!-- Quill Rich Text Editor -->
+        <link href="https://cdn.jsdelivr.net/npm/quill@2.0.2/dist/quill.snow.css" rel="stylesheet">
+        <script src="https://cdn.jsdelivr.net/npm/quill@2.0.2/dist/quill.js"></script>
+
         <script>
+            let questionQuill;
+            document.addEventListener('DOMContentLoaded', function() {
+                if (typeof Quill !== 'undefined') {
+                    questionQuill = new Quill('#question-text-editor-container', {
+                        theme: 'snow',
+                        placeholder: 'اكتب السؤال هنا ونسقه كما تحب...',
+                        modules: {
+                            toolbar: [
+                                ['bold', 'italic', 'underline', 'strike'],        // toggled buttons
+                                [{ 'list': 'ordered'}, { 'list': 'bullet' }],
+                                [{ 'direction': 'rtl' }],                         // text direction
+                                ['clean']                                         // remove formatting button
+                            ]
+                        }
+                    });
+                    
+                    // Set default alignment and direction to RTL
+                    questionQuill.format('direction', 'rtl');
+                    questionQuill.format('align', 'right');
+                }
+            });
+
             let sections = @json($jsSections);
             if (!Array.isArray(sections) || sections.length === 0) {
                 sections = [{ title: 'محتوى الكورس', summary: '', lessons: [], quizzes: [] }];
@@ -462,6 +512,7 @@
             let currentQuizQuestions = [];
             let currentQuizType = 'monthly';
             let currentSectionIndex = 0;
+            let editingQuestionIndex = -1;
 
             // Global Builder Functions
             function openActivityModal(type) {
@@ -476,6 +527,7 @@
                     document.getElementById('quiz_edit_index').value = "-1";
                     document.getElementById('quiz-title-input').value = "";
                     renderModalQuestions();
+                    resetQuestionForm();
                     new bootstrap.Modal(document.getElementById('Quiz')).show();
                 }
             }
@@ -555,6 +607,7 @@
                     if(type === 'lesson') sections[0].lessons.splice(index, 1);
                     else sections[0].quizzes.splice(index, 1);
                     renderActivities();
+                    showToast('تم الحذف بنجاح', 'success');
                 }
             }
 
@@ -590,8 +643,12 @@
                     const existing = sections[0].lessons[index];
                     if (existing.id) data.id = existing.id;
                     sections[0].lessons[index] = data;
+                    showToast('تم تحديث الدرس بنجاح', 'success');
                 }
-                else sections[0].lessons.push(data);
+                else {
+                    sections[0].lessons.push(data);
+                    showToast('تم حفظ الدرس بنجاح', 'success');
+                }
                 renderActivities();
                 bootstrap.Modal.getInstance(document.getElementById('Lesson')).hide();
             });
@@ -603,37 +660,220 @@
                 document.getElementById('quiz-attempts-input').value = quiz.attempts_limit || 1;
                 currentQuizQuestions = JSON.parse(JSON.stringify(quiz.questions || []));
                 renderModalQuestions();
+                resetQuestionForm();
                 new bootstrap.Modal(document.getElementById('Quiz')).show();
             }
 
             function addQuestionToQuiz() {
-                const text = document.getElementById('question-text').value;
+                let text = '';
+                if (questionQuill) {
+                    text = questionQuill.root.innerHTML;
+                    if (text === '<p><br></p>' || questionQuill.getText().trim() === '') {
+                        text = '';
+                    }
+                } else {
+                    text = document.getElementById('question-text').value;
+                }
                 const type = document.getElementById('question-type').value;
-                if(!text) return;
+                
+                if(!text) { showToast('اكتب السؤال أولاً', 'error'); return; }
+
                 let answers = [];
-                if(type === 'multiple_choice') {
+                if(type === 'multiple_choice' || type === 'mcq') {
                     document.querySelectorAll('.mcq-option-item').forEach(i => {
                         const txt = i.querySelector('.option-text').value;
-                        if(txt) answers.push({ text: txt, is_correct: i.querySelector('input').checked });
+                        const isCorrect = i.querySelector('input').checked;
+                        if(txt) answers.push({ text: txt, is_correct: isCorrect });
                     });
-                } else if(type === 'true_false') {
-                    answers = [{text:'صح', is_correct: document.getElementById('tf_true').checked}, {text:'خطأ', is_correct: document.getElementById('tf_false').checked}];
+                    if(answers.length < 2) { showToast('يجب إضافة خيارين على الأقل', 'error'); return; }
+                } else if(type === 'true_false' || type === 'tf') {
+                    answers = [
+                        {text: 'صح', is_correct: document.getElementById('tf_true').checked}, 
+                        {text: 'خطأ', is_correct: document.getElementById('tf_false').checked}
+                    ];
+                } else if(type === 'essay') {
+                    const keywords = document.getElementById('essay-keywords').value;
+                    if(keywords) answers.push({ text: keywords, is_correct: true });
+                } else if(type === 'matching') {
+                    const pairs = document.querySelectorAll('.m-pair-item');
+                    pairs.forEach(pair => {
+                        const left = pair.querySelector('.pair-left').value;
+                        const right = pair.querySelector('.pair-right').value;
+                        if(left && right) {
+                            answers.push({ text: left + ' | ' + right, is_correct: true });
+                        }
+                    });
+                    if(answers.length < 1) { alert('أضف زوجاً واحداً على الأقل'); return; }
                 }
-                currentQuizQuestions.push({ text, type, answers });
+
+                if (editingQuestionIndex > -1) {
+                    currentQuizQuestions[editingQuestionIndex] = { text, type, answers };
+                    showToast('تم تحديث السؤال بنجاح', 'success');
+                } else {
+                    currentQuizQuestions.push({ text, type, answers });
+                    showToast('تمت إضافة السؤال بنجاح', 'success');
+                }
+
                 renderModalQuestions();
-                document.getElementById('question-text').value = "";
+                resetQuestionForm();
+            }
+
+            function resetQuestionForm() {
+                editingQuestionIndex = -1;
+                const btn = document.getElementById('add-question-btn');
+                if (btn) {
+                    btn.innerHTML = `حفظ السؤال في القائمة`;
+                    btn.className = "rbt-btn btn-sm btn-gradient w-100 mt-4";
+                }
+                const cancelBtn = document.getElementById('cancel-edit-btn');
+                if (cancelBtn) {
+                    cancelBtn.remove();
+                }
+                
+                if (questionQuill) {
+                    questionQuill.setContents([]);
+                    questionQuill.format('direction', 'rtl');
+                    questionQuill.format('align', 'right');
+                } else {
+                    document.getElementById('question-text').value = '';
+                }
+                document.getElementById('essay-keywords').value = '';
+                document.getElementById('mcq-options-list').innerHTML = `
+                    <div class="d-flex align-items-center gap-2 mb-2 mcq-option-item">
+                        <input type="radio" name="correct_mcq" class="form-check-input" checked>
+                        <input type="text" class="form-control form-control-sm option-text" placeholder="الخيار الأول">
+                        <span class="correct-badge"><i class="feather-check"></i> الإجابة الصحيحة</span>
+                    </div>
+                    <div class="d-flex align-items-center gap-2 mb-2 mcq-option-item">
+                        <input type="radio" name="correct_mcq" class="form-check-input">
+                        <input type="text" class="form-control form-control-sm option-text" placeholder="الخيار الثاني">
+                        <span class="correct-badge"><i class="feather-check"></i> الإجابة الصحيحة</span>
+                    </div>
+                `;
+                document.getElementById('matching-pairs-list').innerHTML = `
+                    <div class="d-flex align-items-center gap-2 mb-2 m-pair-item">
+                        <input type="text" class="form-control form-control-sm radius-10 pair-left" placeholder="العمود أ">
+                        <i class="feather-arrow-right small text-muted"></i>
+                        <input type="text" class="form-control form-control-sm radius-10 pair-right" placeholder="العمود ب">
+                    </div>
+                `;
+            }
+
+            function editQuestionInModal(index) {
+                editingQuestionIndex = index;
+                const q = currentQuizQuestions[index];
+                if (!q) return;
+
+                // Normalize type string
+                let cleanType = q.type;
+                if (cleanType === 'mcq') cleanType = 'multiple_choice';
+                if (cleanType === 'tf') cleanType = 'true_false';
+
+                // Set type
+                document.getElementById('question-type').value = cleanType;
+                toggleQuestionUI();
+
+                // Set text
+                if (questionQuill) {
+                    questionQuill.root.innerHTML = q.text;
+                } else {
+                    document.getElementById('question-text').value = q.text;
+                }
+
+                // Set answers
+                if (cleanType === 'multiple_choice') {
+                    const list = document.getElementById('mcq-options-list');
+                    list.innerHTML = '';
+                    q.answers.forEach((ans, ansIdx) => {
+                        const html = `
+                            <div class="d-flex align-items-center gap-2 mb-2 mcq-option-item">
+                                <input type="radio" name="correct_mcq" class="form-check-input" ${ans.is_correct ? 'checked' : ''}>
+                                <input type="text" class="form-control form-control-sm option-text" placeholder="الخيار" value="${ans.text.replace(/"/g, '&quot;')}">
+                                ${ansIdx >= 2 ? `<button type="button" class="btn btn-sm text-danger" onclick="this.closest('.mcq-option-item').remove()">x</button>` : ''}
+                            </div>
+                        `;
+                        list.insertAdjacentHTML('beforeend', html);
+                    });
+                } else if (cleanType === 'true_false') {
+                    const isTrueCorrect = q.answers.find(a => a.text === 'صح' || a.is_correct)?.is_correct;
+                    if (isTrueCorrect) {
+                        document.getElementById('tf_true').checked = true;
+                    } else {
+                        document.getElementById('tf_false').checked = true;
+                    }
+                } else if (cleanType === 'essay') {
+                    document.getElementById('essay-keywords').value = q.answers[0] ? q.answers[0].text : '';
+                } else if (cleanType === 'matching') {
+                    const list = document.getElementById('matching-pairs-list');
+                    list.innerHTML = '';
+                    q.answers.forEach((ans, pairIdx) => {
+                        const parts = ans.text.split(' | ');
+                        const left = parts[0] || '';
+                        const right = parts[1] || '';
+                        const html = `
+                            <div class="d-flex align-items-center gap-2 mb-2 m-pair-item">
+                                <input type="text" class="form-control form-control-sm radius-10 pair-left" placeholder="العمود أ" value="${left.replace(/"/g, '&quot;')}">
+                                <i class="feather-arrow-right small text-muted"></i>
+                                <input type="text" class="form-control form-control-sm radius-10 pair-right" placeholder="العمود ب" value="${right.replace(/"/g, '&quot;')}">
+                                ${pairIdx >= 1 ? `<button type="button" class="btn btn-sm text-danger" onclick="this.closest('.m-pair-item').remove()"><i class="feather-trash-2"></i></button>` : ''}
+                            </div>
+                        `;
+                        list.insertAdjacentHTML('beforeend', html);
+                    });
+                }
+
+                // Change button to update state and show cancel button
+                const addBtn = document.getElementById('add-question-btn');
+                if (addBtn) {
+                    addBtn.innerHTML = `<i class="feather-check me-1"></i> تحديث السؤال`;
+                    addBtn.className = "rbt-btn btn-sm btn-success w-100 mt-4";
+                    
+                    // Add cancel button if not already there
+                    if (!document.getElementById('cancel-edit-btn')) {
+                        addBtn.insertAdjacentHTML('afterend', `
+                            <button type="button" id="cancel-edit-btn" class="rbt-btn btn-sm btn-border w-100 mt-2" onclick="resetQuestionForm()">
+                                <i class="feather-x me-1"></i> إلغاء التعديل
+                            </button>
+                        `);
+                    }
+                }
             }
 
             function renderModalQuestions() {
                 const list = document.getElementById('modal-questions-list');
                 list.innerHTML = "";
                 currentQuizQuestions.forEach((q, i) => {
+                    const typeLabels = {
+                        'multiple_choice': 'اختيار من متعدد',
+                        'mcq': 'اختيار من متعدد',
+                        'true_false': 'صح أو خطأ',
+                        'tf': 'صح أو خطأ',
+                        'essay': 'سؤال مقالي',
+                        'matching': 'سؤال توصيل'
+                    };
+                    const typeClasses = {
+                        'multiple_choice': 'bg-primary-opacity color-primary',
+                        'mcq': 'bg-primary-opacity color-primary',
+                        'true_false': 'bg-success-opacity color-success',
+                        'tf': 'bg-success-opacity color-success',
+                        'essay': 'bg-info-opacity color-info',
+                        'matching': 'bg-warning-opacity color-warning'
+                    };
+
                     list.insertAdjacentHTML('beforeend', `
-                        <div class="p-3 bg-white border radius-10 mb-2 d-flex justify-content-between align-items-center">
-                            <span>${q.text} <small class="text-muted">(${q.type})</small></span>
-                            <button type="button" class="btn btn-sm text-danger" onclick="removeQuestionFromModal(${i})">
-                                <i class="feather-x"></i>
-                            </button>
+                        <div class="p-3 bg-white border radius-10 mb-2 d-flex justify-content-between align-items-start">
+                            <div>
+                                <span class="badge ${typeClasses[q.type] || 'bg-secondary'} mb-1" style="font-size: 10px;">
+                                    ${typeLabels[q.type] || q.type}
+                                </span>
+                                <p class="mb-0 fw-bold small">${q.text}</p>
+                            </div>
+                            <div class="d-flex gap-2">
+                                <button type="button" class="btn btn-sm text-primary p-0" onclick="editQuestionInModal(${i})"><i class="feather-edit-2"></i></button>
+                                <button type="button" class="btn btn-sm text-danger p-0" onclick="removeQuestionFromModal(${i})">
+                                    <i class="feather-x"></i>
+                                </button>
+                            </div>
                         </div>
                     `);
                 });
@@ -659,10 +899,15 @@
                     const existing = sections[0].quizzes[index];
                     if (existing.id) data.id = existing.id;
                     sections[0].quizzes[index] = data;
+                    showToast('تم تحديث التدريب بنجاح', 'success');
                 }
-                else sections[0].quizzes.push(data);
+                else {
+                    sections[0].quizzes.push(data);
+                    showToast('تم حفظ التدريب بنجاح', 'success');
+                }
                 renderActivities();
                 bootstrap.Modal.getInstance(document.getElementById('Quiz')).hide();
+                editingQuestionIndex = -1;
             };
 
             function toggleVideoInputs() {
@@ -718,10 +963,29 @@
                 `);
             }
 
+            function addMatchingPair() {
+                const list = document.getElementById('matching-pairs-list');
+                const html = `
+                    <div class="d-flex align-items-center gap-2 mb-2 m-pair-item">
+                        <input type="text" class="form-control form-control-sm radius-10 pair-left" placeholder="العمود أ">
+                        <i class="feather-arrow-right small text-muted"></i>
+                        <input type="text" class="form-control form-control-sm radius-10 pair-right" placeholder="العمود ب">
+                        <button type="button" class="btn btn-sm text-danger" onclick="this.closest('.m-pair-item').remove()"><i class="feather-trash-2"></i></button>
+                    </div>
+                `;
+                list.insertAdjacentHTML('beforeend', html);
+            }
+
             function toggleQuestionUI() {
                 const t = document.getElementById('question-type').value;
-                document.getElementById('mcq-ui').classList.toggle('d-none', t !== 'multiple_choice');
-                document.getElementById('tf-ui').classList.toggle('d-none', t !== 'true_false');
+                document.getElementById('mcq-ui').classList.toggle('d-none', t !== 'multiple_choice' && t !== 'mcq');
+                document.getElementById('tf-ui').classList.toggle('d-none', t !== 'true_false' && t !== 'tf');
+                
+                const essayUi = document.getElementById('essay-ui');
+                if (essayUi) essayUi.classList.toggle('d-none', t !== 'essay');
+                
+                const matchingUi = document.getElementById('matching-ui');
+                if (matchingUi) matchingUi.classList.toggle('d-none', t !== 'matching');
             }
 
             // Explicitly attach to window
@@ -732,7 +996,10 @@
             window.removeActivity = removeActivity;
             window.addQuestionToQuiz = addQuestionToQuiz;
             window.addMcqOption = addMcqOption;
+            window.addMatchingPair = addMatchingPair;
             window.toggleQuestionUI = toggleQuestionUI;
+            window.editQuestionInModal = editQuestionInModal;
+            window.resetQuestionForm = resetQuestionForm;
             window.removeQuestionFromModal = removeQuestionFromModal;
             window.uploadLessonFile = uploadLessonFile;
             window.previewCourseImage = previewCourseImage;

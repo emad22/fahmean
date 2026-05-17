@@ -35,7 +35,7 @@
                     </div>
                     
                     <div class="card-body p-4">
-                        <h6 class="fw-bold mb-4">{{ $question->question }}</h6>
+                        <h6 class="fw-bold mb-4">{!! $question->question !!}</h6>
                         
                         <div class="answers-grid row g-3">
                             @foreach($question->answers as $answer)

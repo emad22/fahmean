@@ -38,8 +38,8 @@
                 <!-- Question Text -->
                 <div class="form-group mb--30">
                     <label class="fw-bold text-dark mb-2"><i class="feather-help-circle me-1 color-primary"></i> نص السؤال</label>
-                    <textarea name="question" class="form-control border-2 radius-10" required 
-                              placeholder="أدخل نص السؤال هنا..." style="height: 120px;">{{ old('question') }}</textarea>
+                    <div id="question-editor-container" class="bg-white border-2 radius-10" style="min-height: 150px; direction: rtl; text-align: right;">{!! old('question') !!}</div>
+                    <textarea name="question" id="question-textarea" class="d-none"></textarea>
                 </div>
 
                 <div class="row g-5 mb--30">
@@ -192,4 +192,44 @@
             }
         });
     </script>
+
+    @push('scripts')
+        <!-- Quill Rich Text Editor -->
+        <link href="https://cdn.jsdelivr.net/npm/quill@2.0.2/dist/quill.snow.css" rel="stylesheet">
+        <script src="https://cdn.jsdelivr.net/npm/quill@2.0.2/dist/quill.js"></script>
+        <script>
+            let questionQuill;
+            document.addEventListener('DOMContentLoaded', function() {
+                if (typeof Quill !== 'undefined') {
+                    questionQuill = new Quill('#question-editor-container', {
+                        theme: 'snow',
+                        placeholder: 'أدخل نص السؤال هنا ونسقه كما تحب...',
+                        modules: {
+                            toolbar: [
+                                ['bold', 'italic', 'underline', 'strike'],        // toggled buttons
+                                [{ 'list': 'ordered'}, { 'list': 'bullet' }],
+                                [{ 'direction': 'rtl' }],                         // text direction
+                                ['clean']                                         // remove formatting button
+                            ]
+                        }
+                    });
+                    
+                    // Set default alignment and direction to RTL
+                    questionQuill.format('direction', 'rtl');
+                    questionQuill.format('align', 'right');
+                }
+
+                // Sync with textarea on submit
+                const form = document.querySelector('form');
+                if (form) {
+                    form.addEventListener('submit', function() {
+                        const textarea = document.getElementById('question-textarea');
+                        if (questionQuill && textarea) {
+                            textarea.value = questionQuill.root.innerHTML === '<p><br></p>' ? '' : questionQuill.root.innerHTML;
+                        }
+                    });
+                }
+            });
+        </script>
+    @endpush
 @endsection
