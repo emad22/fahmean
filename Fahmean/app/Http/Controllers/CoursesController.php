@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Course;
 
 class CoursesController extends Controller
 {
@@ -17,9 +18,42 @@ class CoursesController extends Controller
         return view('courses/courseCard3');
     }
 
-    public function courseDetails()
+    public function courseDetails(Request $request, $id = null)
     {
-        return view('courses/courseDetails');
+        $id = $id ?? $request->query('id');
+        if ($id) {
+            $course = Course::with([
+                'sections.lessons',
+                'sections.quizzes',
+                'teacher',
+                'subject.grade',
+            ])->find($id);
+        } else {
+            $course = Course::with([
+                'sections.lessons',
+                'sections.quizzes',
+                'teacher',
+                'subject.grade',
+            ])->where('status', 'active')->first() ?? Course::with([
+                'sections.lessons',
+                'sections.quizzes',
+                'teacher',
+                'subject.grade',
+            ])->first();
+        }
+
+        if (!$course) {
+            $course = new Course([
+                'title' => 'كورس اللغة العربية الشامل',
+                'description' => 'تعلم مهارات اللغة العربية من النحو والبلاغة والأدب مع نخبة من كبار المعلمين لضمان الدرجات النهائية.',
+                'requirements' => 'شغف لتعلم اللغة العربية.',
+                'level' => 'المرحلة الثانوية',
+                'price' => 0,
+                'academic_year' => 'الصف الثالث الثانوي',
+            ]);
+        }
+
+        return view('courses/courseDetails', compact('course'));
     }
 
     public function courseDetails2()

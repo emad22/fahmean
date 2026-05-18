@@ -167,6 +167,22 @@
                                                              <option value="2024-2025" {{ in_array($course->academic_year, ['2024-2025', '2024/2025']) ? 'selected' : '' }}>2024 - 2025</option>
                                                          </select>
                                                     </div>
+                                                    <div class="col-md-6">
+                                                        <label>الصف الدراسي *</label>
+                                                        <select id="grade_id" class="selectpicker form-select premium-input" data-live-search="true" required>
+                                                            <option value="">اختر الصف الدراسي</option>
+                                                            @foreach ($grades as $grade)
+                                                                <option value="{{ $grade->id }}" {{ ($course->subject && $course->subject->grade_id == $grade->id) ? 'selected' : '' }}>{{ $grade->name }}</option>
+                                                            @endforeach
+                                                        </select>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <label>المادة الدراسية *</label>
+                                                        <select name="subject_id" id="subject_id" class="selectpicker form-select premium-input" data-live-search="true" required>
+                                                            <option value="">اختر المادة الدراسية</option>
+                                                            <!-- Will be populated dynamically via JS -->
+                                                        </select>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
@@ -1070,6 +1086,60 @@
             window.uploadLessonFile = uploadLessonFile;
             window.previewCourseImage = previewCourseImage;
             window.toggleVideoInputs = toggleVideoInputs;
+
+            // Dynamic dependent dropdowns for Grades and Subjects
+            const allSubjects = @json($subjects);
+            const initialSubjectId = @json($course->subject_id);
+
+            const gradeSelect = document.getElementById('grade_id');
+            const subjectSelect = document.getElementById('subject_id');
+
+            function populateSubjects(gradeId, selectedSubjectId = null) {
+                // Clear current subjects
+                subjectSelect.innerHTML = '<option value="">اختر المادة الدراسية</option>';
+                
+                if (!gradeId) {
+                    if (typeof $ !== 'undefined' && $.fn.selectpicker) {
+                        $(subjectSelect).selectpicker('refresh');
+                    }
+                    return;
+                }
+
+                // Filter subjects belonging to chosen grade
+                const filteredSubjects = allSubjects.filter(s => s.grade_id == gradeId);
+
+                // Populate dropdown
+                filteredSubjects.forEach(subject => {
+                    const option = document.createElement('option');
+                    option.value = subject.id;
+                    option.textContent = subject.name;
+                    if (selectedSubjectId && subject.id == selectedSubjectId) {
+                        option.selected = true;
+                    }
+                    subjectSelect.appendChild(option);
+                });
+
+                if (typeof $ !== 'undefined' && $.fn.selectpicker) {
+                    $(subjectSelect).selectpicker('refresh');
+                }
+            }
+
+            if (gradeSelect) {
+                if (typeof $ !== 'undefined') {
+                    $(gradeSelect).on('change', function() {
+                        populateSubjects($(this).val());
+                    });
+                } else {
+                    gradeSelect.addEventListener('change', function() {
+                        populateSubjects(this.value);
+                    });
+                }
+
+                // Run on page load for initial state
+                if (gradeSelect.value) {
+                    populateSubjects(gradeSelect.value, initialSubjectId);
+                }
+            }
 
             renderActivities();
         </script>

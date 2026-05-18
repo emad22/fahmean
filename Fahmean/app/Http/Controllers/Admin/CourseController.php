@@ -105,13 +105,15 @@ class CourseController extends Controller implements HasMiddleware
     {
         $course    = Course::findOrFail($id);
         $teachers  = User::role('teacher')->get();
+        $grades    = \App\Models\Grade::all();
+        $subjects  = \App\Models\Subject::all();
 
         $teacherId = auth()->user()->getEffectiveTeacherId();
         if (!auth()->user()->hasRole('admin') && $course->teacher_id != $teacherId) {
             return back()->withErrors(['error' => 'عذراً، لا تملك صلاحية تعديل هذا الكورس.']);
         }
 
-        return view('dashboard.admin-dashboard.courses.edit', compact('course', 'teachers'))
+        return view('dashboard.admin-dashboard.courses.edit', compact('course', 'teachers', 'grades', 'subjects'))
             ->with('routePrefix', 'courses');
     }
 
@@ -132,6 +134,7 @@ class CourseController extends Controller implements HasMiddleware
                 'price'          => 'required|numeric',
                 'image'          => 'nullable|image',
                 'academic_year'  => 'nullable|string',
+                'subject_id'     => 'required|exists:subjects,id',
             ];
 
             if (auth()->user()->hasRole(['admin'])) {
@@ -153,6 +156,7 @@ class CourseController extends Controller implements HasMiddleware
                 'video_source'  => $request->video_source,
                 'video_url'     => $request->video_url,
                 'academic_year' => $request->academic_year,
+                'subject_id'    => $request->subject_id,
                 'status'        => $request->status ?? 'draft',
             ];
 
