@@ -546,11 +546,22 @@
                         <!-- Left: Quiz Info & Question Form -->
                         <div class="col-lg-7 border-end">
                             <div class="quiz-main-info mb--30 pb--30 border-bottom">
-                                <label class="form-label fw-bold">اسم التدريب / النشاط</label>
-                                <input id="quiz-title-input" type="text" class="form-control premium-input" placeholder="مثال: اختبار قصير على الدرس الأول">
-                                
-                                <label class="form-label fw-bold mt-3">وصف التدريب / النشاط (اختياري)</label>
-                                <textarea id="quiz-description-input" class="form-control premium-input" rows="2" placeholder="اكتب وصفاً قصيراً يظهر للطلاب قبل بدء التدريب..."></textarea>
+                                <div class="row">
+                                    <div class="col-8">
+                                        <label class="form-label fw-bold">اسم التدريب / النشاط</label>
+                                        <input id="quiz-title-input" type="text" class="form-control premium-input" placeholder="مثال: اختبار قصير على الدرس الأول">
+                                    </div>
+                                    <div class="col-4">
+                                        <label class="form-label fw-bold">عدد المحاولات</label>
+                                        <input id="quiz-attempts-input" type="number" class="form-control premium-input" value="1" min="1">
+                                    </div>
+                                </div>
+                                <div class="row mt-3">
+                                    <div class="col-12">
+                                        <label class="form-label fw-bold">وصف التدريب / النشاط (اختياري)</label>
+                                        <textarea id="quiz-description-input" class="form-control premium-input" rows="2" placeholder="اكتب وصفاً قصيراً يظهر للطلاب قبل بدء التدريب..."></textarea>
+                                    </div>
+                                </div>
                             </div>
 
                             <div class="question-form-box p-4 radius-15 bg-gray-light">
@@ -1198,6 +1209,7 @@
             };
             document.getElementById('quiz-title-input').value = '';
             document.getElementById('quiz-description-input').value = '';
+            document.getElementById('quiz-attempts-input').value = 1;
             document.getElementById('QuizLabel').innerText = mapTitle[type] || 'بناء الأسئلة';
             renderModalQuestionsList();
             resetQuestionForm();
@@ -1211,6 +1223,7 @@
             
             document.getElementById('quiz-title-input').value = quiz.title;
             document.getElementById('quiz-description-input').value = quiz.description || '';
+            document.getElementById('quiz-attempts-input').value = quiz.attempts_limit || 1;
             document.getElementById('QuizLabel').innerText = quiz.type === 'monthly' ? 'تعديل اختبار كامل' : 'تعديل تدريبات سريعة';
             
             currentQuizQuestions = JSON.parse(JSON.stringify(quiz.questions || []));
@@ -1223,12 +1236,15 @@
         document.getElementById('quiz-save-btn').addEventListener('click', function() {
             const quizTitle = document.getElementById('quiz-title-input').value;
             const quizDescription = document.getElementById('quiz-description-input').value;
+            const quizAttempts = document.getElementById('quiz-attempts-input').value;
+            
             if (!quizTitle) { alert('يرجى كتابة عنوان النشاط'); return; }
             if (currentQuizQuestions.length === 0) { alert('يرجى إضافة سؤال واحد على الأقل'); return; }
 
             const quizObject = {
                 title: quizTitle,
                 description: quizDescription,
+                attempts_limit: quizAttempts,
                 type: currentQuizType,
                 questions: currentQuizQuestions
             };

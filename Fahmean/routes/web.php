@@ -57,6 +57,11 @@ Route::middleware(['auth'])->prefix('dashboard')->group(function () {
         Route::get('/view-pdf-stream', 'streamFile')->name('view.pdf');
     });
 
+    // Video Viewer Routes
+    Route::controller(\App\Http\Controllers\VideoController::class)->group(function() {
+        Route::get('/lesson-video-player', 'showViewer')->name('lesson.video.viewer');
+    });
+
     // Unified Profile Management
     Route::controller(\App\Http\Controllers\ProfileController::class)->group(function() {
         Route::get('/profile/edit', 'edit')->name('profile.edit');

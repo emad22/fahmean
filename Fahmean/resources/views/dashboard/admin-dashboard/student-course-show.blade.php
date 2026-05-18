@@ -509,8 +509,11 @@
                                                 <i class="feather-book"></i>
                                             @endif
                                         </div>
-                                        @if($videoUrl)
-                                            <a href="{{ $videoUrl }}" target="_blank" class="lesson-name text-decoration-none" style="color: inherit;">
+                                                @if($videoUrl)
+                                            @php
+                                                $secureVideoUrl = route('lesson.video.viewer', ['lesson_id' => $lesson->id]);
+                                            @endphp
+                                            <a href="{{ $secureVideoUrl }}" target="_blank" class="lesson-name text-decoration-none" style="color: inherit;">
                                                 {{ $lesson->title }}
                                                 <i class="feather-play-circle small ms-2 text-primary"></i>
                                             </a>
@@ -530,7 +533,7 @@
                                     <div class="lesson-right d-flex align-items-center gap-2 flex-wrap">
                                         <!-- Video Button -->
                                         @if($videoUrl)
-                                            <a href="{{ $videoUrl }}" target="_blank" class="rbt-btn btn-sm btn-gradient radius-round px-3 py-1 color-white" style="font-size: 12px; height: auto; line-height: 1.5;">
+                                            <a href="{{ $secureVideoUrl }}" target="_blank" class="rbt-btn btn-sm btn-gradient radius-round px-3 py-1 color-white" style="font-size: 12px; height: auto; line-height: 1.5;">
                                                 <i class="feather-video me-1"></i> مشاهدة الفيديو
                                             </a>
                                         @endif

@@ -27,12 +27,17 @@
                              return [
                                 'id' => $quiz->id,
                                 'title' => $quiz->title,
+                                'description' => $quiz->description,
+                                'attempts_limit' => $quiz->attempts_limit,
                                 'type' => $quiz->type,
                                 'questions' => $quiz->questions->map(function($q) {
+                                     $qType = $q->type;
+                                     if($qType === 'multiple_choice') $qType = 'mcq';
+                                     if($qType === 'true_false') $qType = 'tf';
                                      return [
                                          'id' => $q->id,
                                          'text' => $q->question,
-                                         'type' => $q->type,
+                                         'type' => $qType,
                                          'answers' => $q->answers->map(function($a){ 
                                             return ['text' => $a->answer, 'is_correct' => $a->is_correct]; 
                                          })
@@ -46,19 +51,24 @@
                      return [
                         'id' => $quiz->id,
                         'title' => $quiz->title,
+                        'description' => $quiz->description,
+                        'attempts_limit' => $quiz->attempts_limit,
                         'type' => $quiz->type,
                         'questions' => $quiz->questions->map(function($q) {
+                             $qType = $q->type;
+                             if($qType === 'multiple_choice') $qType = 'mcq';
+                             if($qType === 'true_false') $qType = 'tf';
                              return [
                                  'id' => $q->id,
                                  'text' => $q->question,
-                                 'type' => $q->type,
+                                 'type' => $qType,
                                  'answers' => $q->answers->map(function($a){ 
                                     return ['text' => $a->answer, 'is_correct' => $a->is_correct]; 
                                  })
                              ];
                         })
                      ];
-                })
+                })->values()
             ];
         });
 

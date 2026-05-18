@@ -7,9 +7,21 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Admin\CourseController as AdminCourseController;
 use App\Http\Controllers\teacher\CourseController as TeacherCourseController;
 use App\Http\Controllers\Student\CourseController as StudentCourseController;
+use Illuminate\Routing\Controllers\HasMiddleware;
+use Illuminate\Routing\Controllers\Middleware;
 
-class CourseController extends Controller
+class CourseController extends Controller implements HasMiddleware
 {
+    public static function middleware(): array
+    {
+        return [
+            // بنشيل الحماية من index و show لأن الطالب بيحتاج يفتحهم بصلاحياته العادية
+            new Middleware('permission:create course', only: ['create', 'store']),
+            new Middleware('permission:edit course', only: ['edit', 'update', 'updateStatus', 'enrollStudent']),
+            new Middleware('permission:delete course', only: ['destroy']),
+        ];
+    }
+
     /**
      * Display a listing of the resource.
      */
